@@ -9,19 +9,23 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        "3xl": "1920px",
+      },
       fontFamily: {
         clashDisplay: ["var(--kanit)"],
       },
       colors: {
         "color-background": "#FFFFFF",
-        "color-background-dark": "#171717",
+        // "color-background-dark": "#171717",
+        "color-background-dark": "#212121",
         "color-foreground": "#000000",
         "color-foreground-dark": "#ffffff",
         "color-foreground-light": "#5f5f5f",
         "color-foreground-light-dark": "#b7b7b7",
         "color-border": "#d1d5db",
         "color-border-dark": "#676767",
-        "color-primary": "#f6f6f6",
+        "color-primary": "#f7f7f7",
         // "color-primary-dark": "var(--color-primary-dark)",
         "color-primary-dark": "#333333",
         "color-second": "#e4e4e4",

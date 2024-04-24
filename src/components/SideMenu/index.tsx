@@ -87,8 +87,6 @@ export default function SideMenu() {
                                             : <img src={`/images/${item.icon}.svg`} alt="" className="w-[25px] h-[25px]" />
                                         }
                                     </div>
-                                    {/* <div className={`text-color-foreground-light dark:text-color-foreground-light-dark ${activeIndex === index ? " !text-color-foreground dark:!text-color-foreground-dark" : ""}`}>{item.title}</div> */}
-
                                     <div className={`text-color-foreground-light dark:text-color-foreground-light-dark`}>{item.title}</div>
                                 </div>
                             </Link>

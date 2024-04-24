@@ -22,9 +22,9 @@ export default function ThemeSwitch() {
 
     return (
         <div className="relative cursor-pointer">
-            <div className="flex items-center w-10 h-5 bg-color-second dark:bg-color-second-dark p-0.5" onClick={toggleTheme}>
+            <div className="flex items-center w-10 h-4 bg-color-second dark:bg-color-second-dark p-0.5" onClick={toggleTheme}>
                 <motion.div
-                    className="w-1/2 h-full bg-color-third dark:bg-color-third-dark"
+                    className="w-1/2 h-full bg-white dark:bg-color-third-dark"
                     initial={{ x: theme === 'light' ? 0 : '50%' }}
                     animate={{ x: theme === 'light' ? 0 : '100%' }}
                 >

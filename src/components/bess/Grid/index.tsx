@@ -39,9 +39,10 @@ export default function Grid({ data }: GridProps) {
 
                 <div>
                     <div className="flex items-center">
-                        <div className={`${onOff === 'on' ? "text-color-foreground-light dark:text-color-foreground-light-dark" : "text-color-third dark:text-color-third-dark"}`}>Off</div>
+                        <Label text="Off / On" />
+                        {/* <div className={`${onOff === 'on' ? "text-color-foreground-light dark:text-color-foreground-light-dark" : "text-color-third dark:text-color-third-dark"}`}>Off</div>
                         <div className="text-color-foreground-light dark:text-color-foreground-light-dark">&nbsp;|&nbsp;</div>
-                        <div className={`${onOff === 'off' ? "text-color-foreground-light dark:text-color-foreground-light-dark" : "text-color-third dark:text-color-third-dark"}`}>On</div>
+                        <div className={`${onOff === 'off' ? "text-color-foreground-light dark:text-color-foreground-light-dark" : "text-color-third dark:text-color-third-dark"}`}>On</div> */}
                     </div>
                     {/* <Label text="Off / On" /> */}
                     <div className={`flex items-center w-10 h-4 mt-1.5 ml-auto mr-0 p-0.5 cursor-pointer ${onOff === "on" ? "bg-color-third dark:bg-color-third-dark" : "bg-color-second dark:bg-color-second-dark"}`}

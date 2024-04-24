@@ -22,12 +22,15 @@ export default function PC({ data, className }: PCProps) {
     return (
         <Card className="h-full items-center mb-4 md:mb-0">
             <div className="md:grid md:grid-cols-10 md:items-center h-full">
-                <div className="flex items-center justify-center col-span-3 h-full py-3 md:pr-3 md:border-r border-color-border dark:border-color-border-dark text-center">
+                <div className="flex items-center justify-center col-span-3 h-full py-0 md:pr-3 md:border-r border-color-border dark:border-color-border-dark text-center">
                     <div>
-                        <H3 text="PC 1" />
+                        <div className="">
+                            <H3 text="PC 1" className="!mb-0" />
+                            <div className="text-color-fifth dark:text-color-fifth-dark">Idle</div>
+                        </div>
                         {themeReady
-                            ? <img src={`/images/pcs${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-[80%] md:w-full 2xl:w-[95%] mt-6 mx-auto" />
-                            : <img src={`/images/pcs.png`} alt="" className="w-[80%] md:w-full 2xl:w-[95%] mt-6 mx-auto" />
+                            ? <img src={`/images/pcs${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-[80%] md:w-full 2xl:w-[95%] mt-5 mx-auto" />
+                            : <img src={`/images/pcs.png`} alt="" className="w-[80%] md:w-full 2xl:w-[95%] mt-5 mx-auto" />
                         }
                     </div>
                 </div>

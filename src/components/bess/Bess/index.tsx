@@ -27,15 +27,15 @@ export default function Bess({ data }: BessProps) {
             <div className="flex items-center justify-between">
                 <H3 text={`Bess ${data.bId}`} className="!mb-0" />
                 <div className="flex items-center">
-                    <GiElectric className={`w-6 h-6 ${data.runningStatus === 'Idle' ? "fill-color-fifth dark:fill-color-fifth-dark" : "fill-color-third dark:fill-color-third-dark"}`} />
+                    <GiElectric className={`w-5 h-5 mr-0.5 ${data.runningStatus === 'Idle' ? "fill-color-fifth dark:fill-color-fifth-dark" : "fill-color-third dark:fill-color-third-dark"}`} />
                     <div className={`${data.runningStatus === 'Idle' ? "text-color-fifth dark:text-color-fifth-dark" : "text-color-third dark:text-color-third-dark"}`}>{data.runningStatus}</div>
                 </div>
             </div>
-            <div>{data.chargeDischargeState}</div>
-            <div className="flex items-center relative mb-3">
+            {/* <div>{data.chargeDischargeState}</div> */}
+            <div className="flex items-center relative mt-6 mb-4">
                 {themeReady
-                    ? <img src={`/images/bess${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] h-auto mx-auto" />
-                    : <img src={`/images/bess.png`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] h-auto mx-auto" />
+                    ? <img src={`/images/bess${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:w-[65%] h-auto mx-auto" />
+                    : <img src={`/images/bess.png`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:[65%] h-auto mx-auto" />
                 }
                 <div className="flex justify-between items-center w-full mt-4 mb-10">
                     <div className="w-50%">
