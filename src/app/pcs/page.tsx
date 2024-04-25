@@ -9,12 +9,12 @@ import { Table, TableThead, TableBody, TableRow, TableCell } from "@/components/
 import { api } from "@/helpers/apiHelper"
 
 async function getPcData() {
-    const res = await api('/pcsdata', 'GET');
+    const res = await api('/pcsdata/', 'GET');
     return res
 }
 
 async function getPcsControl() {
-    const res = await api('/pcsctrl', 'GET');
+    const res = await api('/pcsctrl/', 'GET');
     return res
 }
 

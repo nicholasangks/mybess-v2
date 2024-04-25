@@ -10,12 +10,12 @@ import Bess from "@/components/bess/Bess"
 import { api } from "@/helpers/apiHelper"
 
 async function getBessesData() {
-    const res = await api('/battery', 'GET');
+    const res = await api('/battery/', 'GET');
     return res
 }
 
 async function getGraph1() {
-    const res = await api('/graphdata3', 'GET');
+    const res = await api('/graphdata3/', 'GET');
     return res
 }
 

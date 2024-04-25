@@ -9,12 +9,12 @@ import Cluster from '@/components/bess/Cluster';
 import { api } from '@/helpers/apiHelper';
 
 async function getBessData() {
-    const res = await api('/bess1', 'GET');
+    const res = await api('/bess1/', 'GET');
     return res
 }
 
 async function getClusters() {
-    const res = await api('/battery', 'GET');
+    const res = await api('/battery/', 'GET');
 
     const clusters = [];
     if (res.hasOwnProperty("bess1")) {
