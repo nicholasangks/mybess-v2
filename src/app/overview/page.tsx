@@ -18,12 +18,12 @@ async function getGeneralInfo() {
 }
 
 async function getBessesData() {
-    const res = await api('/battery', 'GET');
+    const res = await api('/battery/', 'GET');
     return res
 }
 
 async function getPcsData() {
-    const res = await api('/pcsdata', 'GET');
+    const res = await api('/pcsdata/', 'GET');
     return res
 }
 
