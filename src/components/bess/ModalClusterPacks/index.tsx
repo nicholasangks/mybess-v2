@@ -14,7 +14,7 @@ interface ModalClusterPacksProps {
 
 async function getPacksData(cId: string) {
 
-    const res = await api('/battery', 'GET');
+    const res = await api('/battery/', 'GET');
     const packs = [];
 
     if (res.hasOwnProperty("bess1")) {
@@ -35,7 +35,7 @@ async function getPacksData(cId: string) {
 }
 
 async function getClusterData(cId: string) {
-    const res = await api(`/bess1/${cId}`, 'GET');
+    const res = await api(`/bess1/${cId}/`, 'GET');
     return res;
 }
 
