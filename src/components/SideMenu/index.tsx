@@ -59,8 +59,9 @@ export default function SideMenu() {
 
 
     return (
-        <div className="sticky top-0 w-[240px] md:w-[270px] xl:w-[290px] h-screen px-6 lg:px-8 py-6 bg-color-primary dark:bg-color-primary-dark">
-            <img src="/images/brand-assets/logo-full.png" alt="" className="w-[80%] h-auto object-contain" />
+        <div className="sticky top-0 w-[50px] md:w-[270px] xl:w-[290px] h-screen md:px-6 lg:px-8 py-6 bg-color-primary dark:bg-color-primary-dark">
+            <img src="/images/brand-assets/logo-short.png" alt="" className="block md:hidden w-[70%] h-auto object-contain mx-auto" />
+            <img src="/images/brand-assets/logo-full.png" alt="" className="hidden md:block w-[80%] h-auto object-contain" />
             <div className="mt-6 lg:mt-10">
                 {items.map((item: any, index: number) => (
                     <div key={index}>
@@ -79,15 +80,15 @@ export default function SideMenu() {
                             </div>
                         ) : (
                             <Link href={item.link} key={index}>
-                                <div key={index} className="flex items-center py-3 cursor-pointer" onClick={() => setActiveIndex(index)}>
-                                    <div className="mr-2.5">
+                                <div key={index} className="flex items-center justify-center md:justify-normal py-3 cursor-pointer" onClick={() => setActiveIndex(index)}>
+                                    <div className="md:mr-2.5">
                                         {/* <object type="image/svg+xml" data={`/images/${item.icon}${theme === 'dark' ? "-white" :  "-white"}.svg`} className="w-[25px] h-[25px]"></object> */}
                                         {themeReady
                                             ? <img src={`/images/${item.icon}${theme === 'dark' ? '-dark.svg' : '.svg'}`} alt="" className="w-[25px] h-[25px]" />
                                             : <img src={`/images/${item.icon}.svg`} alt="" className="w-[25px] h-[25px]" />
                                         }
                                     </div>
-                                    <div className={`text-color-foreground-light dark:text-color-foreground-light-dark`}>{item.title}</div>
+                                    <div className={`hidden md:block text-color-foreground-light dark:text-color-foreground-light-dark`}>{item.title}</div>
                                 </div>
                             </Link>
                         )}
@@ -106,18 +107,18 @@ export default function SideMenu() {
                             }
                             {/* <img src={`/images/icon-moon${currentTheme === 'dark' ? "-white" : ""}.svg`} className="w-[25px] h-[25px]" /> */}
                         </div>
-                        <div className={`text-color-foreground-light dark:text-color-foreground-light-dark`}>Dark Mode</div>
+                        <div className={`hidden md:block text-color-foreground-light dark:text-color-foreground-light-dark`}>Dark Mode</div>
                     </div>
                     <ThemeSwitch />
                     {/* */}
                 </div>
             </div>
 
-            <div className="absolute bottom-8 flex items-center">
-                <div className="flex items-end justify-center w-8 h-8 mr-3 rounded-full bg-color-second dark:bg-color-second-dark overflow-hidden">
+            <div className="absolute bottom-8 flex items-center justify-center w-full md:w-auto md:justify-normal">
+                <div className="flex items-end justify-center w-8 h-8 md:mr-3 rounded-full bg-color-second dark:bg-color-second-dark overflow-hidden">
                     <FaUser className="w-[80%] h-[80%] object-contain fill-color-third dark:fill-color-third-dark" />
                 </div>
-                <div>User</div>
+                <div className="hidden md:block">User</div>
             </div>
         </div>
     )
