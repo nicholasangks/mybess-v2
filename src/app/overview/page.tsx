@@ -13,7 +13,7 @@ import { GiElectric } from "react-icons/gi";
 import PC from "@/components/bess/PC"
 
 async function getGeneralInfo() {
-    const res = await api('/generalinfo', 'GET');
+    const res = await api('/generalinfo/', 'GET');
     return res
 }
 
