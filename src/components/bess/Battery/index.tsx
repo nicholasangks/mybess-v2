@@ -22,7 +22,7 @@ export default function Battery({ voltage, temperature }: BatteryProps) {
         // <div className={`w-full h-auto aspect-square p-1 bg-color-primary text-center${percentage < 50 ? ' border border-red-300 bg-red-200' : ''}`}>
         <div className={`w-full h-auto p-1 bg-color-primary dark:bg-color-primary-dark text-center${percentage < 50 ? ' border border-red-300 bg-red-200' : ''}`}>
             <div className={`flex items-center justify-center h-6 bg-white dark:bg-color-second-dark text-center${percentage < 50 ? ' bg-red-400 text-white' : ''}`}>
-                {voltage} v
+                {voltage} V
             </div>
             <div className="pt-4">
                 <div>
@@ -35,7 +35,7 @@ export default function Battery({ voltage, temperature }: BatteryProps) {
                         ))}
                     </div>
                     <div className="mt-2 lg:mt-3">
-                        {temperature}
+                        {temperature} °C
                     </div>
                 </div>
             </div>

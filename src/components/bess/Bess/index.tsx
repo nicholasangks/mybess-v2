@@ -61,13 +61,13 @@ export default function Bess({ data }: BessProps) {
                     <DataCell withBgColor={true} className="col-span-3">
                         <Label text="Charge Capacity" />
                     </DataCell>
-                    <DataCell withBgColor={true} className="justify-end col-span-2">{data.chargeCapacity} kW</DataCell>
+                    <DataCell withBgColor={true} className="justify-end col-span-2">{data.chargeCapacity} kWh</DataCell>
                 </DataList>
                 <DataList cols={5}>
                     <DataCell className="col-span-3">
                         <Label text="Discharge Capacity" />
                     </DataCell>
-                    <DataCell className="justify-end col-span-2">{data.dischargeCapacity} kW</DataCell>
+                    <DataCell className="justify-end col-span-2">{data.dischargeCapacity} kWh</DataCell>
                 </DataList>
                 <DataList cols={5}>
                     <DataCell withBgColor={true} className="col-span-3">
@@ -79,13 +79,13 @@ export default function Bess({ data }: BessProps) {
                     <DataCell className="col-span-3">
                         <Label text="Total Current" />
                     </DataCell>
-                    <DataCell className="justify-end col-span-2">{data.totalCurrent} kW</DataCell>
+                    <DataCell className="justify-end col-span-2">{data.totalCurrent} A</DataCell>
                 </DataList>
                 <DataList cols={5}>
                     <DataCell withBgColor={true} className="col-span-3">
                         <Label text="Total Voltage" />
                     </DataCell>
-                    <DataCell withBgColor={true} className="justify-end col-span-2">{data.totalVoltage} kW</DataCell>
+                    <DataCell withBgColor={true} className="justify-end col-span-2">{data.totalVoltage} V</DataCell>
                 </DataList>
             </DataListWrapper>
         </Card>

@@ -58,43 +58,37 @@ export default function Pcs() {
                         </TableThead>
                         <TableBody>
                             <TableRow>
-                                <TableCell><Label text="Voltage" /></TableCell>
+                                <TableCell><Label text="Voltage (V)" /></TableCell>
                                 <TableCell className="text-center">{pc.voltageL1}</TableCell>
                                 <TableCell className="text-center">{pc.voltageL2}</TableCell>
                                 <TableCell className="text-center">{pc.voltageL3}</TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell><Label text="Current voltage (kW)" /></TableCell>
+                                <TableCell><Label text="Current (A)" /></TableCell>
                                 <TableCell className="text-center">{pc.currentL1}</TableCell>
                                 <TableCell className="text-center">{pc.currentL2}</TableCell>
                                 <TableCell className="text-center">{pc.currentL3}</TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell><Label text="Total Active Power (kVAR)" /></TableCell>
+                                <TableCell><Label text="Active Power (kW)" /></TableCell>
                                 <TableCell className="text-center">{pc.activePowerL1}</TableCell>
                                 <TableCell className="text-center">{pc.activePowerL2}</TableCell>
                                 <TableCell className="text-center">{pc.activePowerL3}</TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell><Label text="Reactive Power" /></TableCell>
+                                <TableCell><Label text="Reactive Power (kVAR)" /></TableCell>
                                 <TableCell className="text-center">{pc.reactivePowerL1}</TableCell>
                                 <TableCell className="text-center">{pc.reactivePowerL2}</TableCell>
                                 <TableCell className="text-center">{pc.reactivePowerL3}</TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell><Label text="Active Power" /></TableCell>
-                                <TableCell className="text-center">{pc.activePowerL1}</TableCell>
-                                <TableCell className="text-center">{pc.activePowerL2}</TableCell>
-                                <TableCell className="text-center">{pc.activePowerL3}</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell><Label text="Apparent Power" /></TableCell>
+                                <TableCell><Label text="Apparent Power (kVA)" /></TableCell>
                                 <TableCell className="text-center">{pc.apparentPowerL1}</TableCell>
                                 <TableCell className="text-center">{pc.apparentPowerL2}</TableCell>
                                 <TableCell className="text-center">{pc.apparentPowerL3}</TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell><Label text="Power factor" /></TableCell>
+                                <TableCell><Label text="Power Factor" /></TableCell>
                                 <TableCell className="text-center">{pc.powerFactorL1}</TableCell>
                                 <TableCell className="text-center">{pc.powerFactorL2}</TableCell>
                                 <TableCell className="text-center">{pc.powerFactorL3}</TableCell>

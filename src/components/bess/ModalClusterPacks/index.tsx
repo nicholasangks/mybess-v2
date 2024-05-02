@@ -66,8 +66,8 @@ export default function ModalCusterPacks({ open, setOpen, cId }: ModalClusterPac
                 <div className="lg:flex items-center justify-between w-[1000px] mx-auto">
                     <H3 text={`${cId}`} className="!mb-0 capitalize" />
                     <div className="lg:flex items-center">
-                        <div className="mr-5">Max cell voltage: {cluster.maxCellVoltage}</div>
-                        <div className="mr-5">Max cell temperature: {cluster.maxCellTemperature}</div>
+                        <div className="mr-5">Max cell voltage: {cluster.maxCellVoltage} V</div>
+                        <div className="mr-5">Max cell temperature: {cluster.maxCellTemperature} °C</div>
                         <div>Alarm: {cluster.alarmCount}</div>
                     </div>
                 </div>
@@ -80,10 +80,10 @@ export default function ModalCusterPacks({ open, setOpen, cId }: ModalClusterPac
                                 <H3 text={`Pack ${pack.pId}`} className="!mb-0" />
                                 <div className="lg:flex items-center">
                                     <div className="mr-5">
-                                        <Label text={`Min Cell Voltage ${pack.minCellVoltage}`} />
+                                        <Label text={`Min Cell Voltage ${pack.minCellVoltage} V`} />
                                     </div>
                                     <div>
-                                        <Label text={`Max Cell Voltage ${pack.maxCellVoltage}`} />
+                                        <Label text={`Max Cell Voltage ${pack.maxCellVoltage} V`} />
                                     </div>
                                 </div>
                             </div>

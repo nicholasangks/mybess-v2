@@ -65,15 +65,15 @@ export default function Cluster({
                         <div>
                             <div className="px-0 md:px-2 py-2">
                                 <Label text="Total Capacity" />
-                                <div>- kW</div>
+                                <div>- kWh</div>
                             </div>
                             <div className="px-0 md:px-2 py-2">
-                                <Label text="Total voltage" />
-                                <div>{data.totalVoltage} kW</div>
+                                <Label text="Total Voltage" />
+                                <div>{data.totalVoltage} V</div>
                             </div>
                             <div className="px-0 md:px-2 py-2">
-                                <Label text="Total current" />
-                                <div>{data.totalCurrent} a</div>
+                                <Label text="Total Current" />
+                                <div>{data.totalCurrent} A</div>
                             </div>
                         </div>
                     </div>
@@ -81,16 +81,16 @@ export default function Cluster({
                     <div>
                         <div>
                             <div className="px-0 md:px-2 py-2">
-                                <Label text="Max cell temperature" />
-                                <div>{data.maxCellTemperature} kW</div>
+                                <Label text="Max Cell Temperature" />
+                                <div>{data.maxCellTemperature} °C</div>
                             </div>
                             <div className="px-0 md:px-2 py-2">
-                                <Label text="Min cell voltage" />
-                                <div>{data.minCellVoltage} a</div>
+                                <Label text="Min Cell Voltage" />
+                                <div>{data.minCellVoltage} V</div>
                             </div>
                             <div className="px-0 md:px-2 py-2">
-                                <Label text="Max cell voltage" />
-                                <div>{data.maxCellVoltage} kW</div>
+                                <Label text="Max Cell Voltage" />
+                                <div>{data.maxCellVoltage} V</div>
                             </div>
                         </div>
                     </div>

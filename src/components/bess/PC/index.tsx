@@ -38,15 +38,15 @@ export default function PC({ data, className }: PCProps) {
                     <div className="md:pl-4 xl:pl-5">
                         <div className="p-2.5">
                             <Label text="Total Charge Daily" />
-                            <div>{data.totalChargeDaily} kwh</div>
+                            <div>{data.totalChargeDaily} kWh</div>
                         </div>
                         <div className="p-2.5">
                             <Label text="Total Discharge Daily" />
-                            <div>{data.totalDischargeDaily} kwh</div>
+                            <div>{data.totalDischargeDaily} kWh</div>
                         </div>
                         <div className="p-2.5">
                             <Label text="Total Active Power" />
-                            <div>{data.totalActivePower} kwh</div>
+                            <div>{data.totalActivePower} kW</div>
                         </div>
                     </div>
 
@@ -56,7 +56,7 @@ export default function PC({ data, className }: PCProps) {
                             <div>{data.totalReactivePower} kVAR</div>
                         </div>
                         <div className="p-2.5">
-                            <Label text="Total Apprent Power" />
+                            <Label text="Total Apparent Power" />
                             <div>{data.totalApparentPower} kVA</div>
                         </div>
 

@@ -17,12 +17,12 @@ export default function SideMenu() {
             link: '/overview'
         },
         {
-            title: 'Besses',
+            title: 'BESS',
             icon: 'icon-bess',
             link: '/besses'
         },
         {
-            title: 'PCs',
+            title: 'PCS',
             icon: 'icon-pcs',
             link: '/pcs'
         }
@@ -60,8 +60,8 @@ export default function SideMenu() {
 
     return (
         <div className="sticky top-0 w-[50px] md:w-[270px] xl:w-[290px] h-screen md:px-6 lg:px-8 py-6 bg-color-primary dark:bg-color-primary-dark">
-            <img src="/images/brand-assets/logo-short.png" alt="" className="block md:hidden w-[70%] h-auto object-contain mx-auto" />
-            <img src="/images/brand-assets/logo-full.png" alt="" className="hidden md:block w-[80%] h-auto object-contain" />
+            <img src="/images/brand-assets/logo-short.png" alt="" className="block md:hidden w-full h-auto object-contain mx-auto" />
+            <img src="/images/brand-assets/logo-full.png" alt="" className="hidden md:block w-full h-auto object-contain" />
             <div className="mt-6 lg:mt-10">
                 {items.map((item: any, index: number) => (
                     <div key={index}>

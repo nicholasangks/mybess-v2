@@ -60,10 +60,13 @@ export default function Overview() {
                 <H1 text="Bess Site Overview" className="!mb-0" />
                 <div>Alarm: 0</div>
             </div>
-            {themeReady
-                ? <img src={`/images/overview${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="mx-auto mt-10" />
-                : <img src={`/images/overview.png`} alt="" className="mx-auto mt-10" />
-            }
+            <div className="relative">
+                {themeReady
+                    ? <img src={`/images/overview${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="mx-auto mt-10" />
+                    : <img src={`/images/overview.png`} alt="" className="mx-auto mt-10" />
+                }
+                {/* <div className="absolute top-0 bottom-0 left-0 right-0 w-20 h-0.5 mx-auto bg-color-third-dark rotate-[30deg]"></div> */}
+            </div>
             {/* <img src="/images/overview-white.png" alt="" className="mx-auto mt-12" /> */}
 
             <div className="mt-8">
@@ -73,11 +76,11 @@ export default function Overview() {
                             <TableCell>Bess Id</TableCell>
                             <TableCell>SOC (%)</TableCell>
                             <TableCell>SOH (%)</TableCell>
-                            <TableCell>Charge Capacity (kW)</TableCell>
-                            <TableCell>Discharge Capacity (kW)</TableCell>
+                            <TableCell>Charge Capacity (kWh)</TableCell>
+                            <TableCell>Discharge Capacity (kWh)</TableCell>
                             <TableCell>Power (kW)</TableCell>
-                            <TableCell>Total Current (kW)</TableCell>
-                            <TableCell>Total Voltage (kW)</TableCell>
+                            <TableCell>Total Current (A)</TableCell>
+                            <TableCell>Total Voltage (V)</TableCell>
                         </TableRow>
                     </TableThead>
                     <TableBody>
