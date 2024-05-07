@@ -1,16 +1,16 @@
 'use client'
 
 import { useState, useEffect } from "react"
-import { useTheme } from "next-themes";
-import Link from "next/link"
+import { useTheme } from "next-themes"
 import H1 from "@/components/Heading/H1"
-import H3 from "@/components/Heading/H3"
 import Label from "@/components/Label"
 import Card from "@/components/Card"
 import { Table, TableThead, TableBody, TableRow, TableCell } from "@/components/Table"
 import { api } from "@/helpers/apiHelper"
 import { GiElectric } from "react-icons/gi";
+import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
 import PC from "@/components/bess/PC"
+import { motion } from "framer-motion";
 
 async function getGeneralInfo() {
     const res = await api('/generalinfo/', 'GET');
@@ -60,17 +60,72 @@ export default function Overview() {
                 <H1 text="Bess Site Overview" className="!mb-0" />
                 <div>Alarm: 0</div>
             </div>
-            <div className="relative">
-                {themeReady
-                    ? <img src={`/images/overview${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="mx-auto mt-10" />
-                    : <img src={`/images/overview.png`} alt="" className="mx-auto mt-10" />
-                }
-                {/* <div className="absolute top-0 bottom-0 left-0 right-0 w-20 h-0.5 mx-auto bg-color-third-dark rotate-[30deg]"></div> */}
-            </div>
-            {/* <img src="/images/overview-white.png" alt="" className="mx-auto mt-12" /> */}
 
-            <div className="mt-8">
-                <Table className="w-full ">
+            <div className="w-full overflow-x-scroll">
+                <div className="relative w-[680px] h-[396px] mt-10 mb-10 mx-auto">
+                    {/* {themeReady
+                    ? <img src={`/images/overview${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-full h-auto mx-auto mt-10" />
+                    : <img src={`/images/overview.png`} alt="" className="mx-auto mt-10" />
+                } */}
+                    <img src={`/images/overview-vector.png`} alt="" className="absolute w-full h-full mx-auto z-10" />
+                    {themeReady
+                        ? <img src={`/images/overview-grid-base${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-full h-full mx-auto" />
+                        : <img src={`/images/overview-grid-base.png`} alt="" className="w-full h-full mx-auto" />
+                    }
+                    <div className="flex absolute top-[200px] left-[254px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-x-hidden">
+                        <motion.div
+                            className="absolute w-4 h-full bg-color-third dark:bg-color-third-dark"
+                            initial={{ x: -10 }}
+                            animate={{ x: 100 }}
+                            transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
+                        ></motion.div>
+
+                        {/* <motion.div
+                        className="absolute w-4 h-full bg-[#5d70d1]"
+                        initial={{ x: 100 }}
+                        animate={{ x: -10 }}
+                        transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
+                    ></motion.div> */}
+                    </div>
+
+                    <div className="absolute top-[190px] left-[380px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-hidden">
+                        <motion.div
+                            className="w-4 h-full bg-color-third dark:bg-color-third-dark"
+                            initial={{ x: -10 }}
+                            animate={{ x: 100 }}
+                            transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
+                        ></motion.div>
+                    </div>
+
+                    <div className="absolute top-[120px] left-[396px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-hidden">
+                        <motion.div
+                            className="w-4 h-full bg-color-third dark:bg-color-third-dark"
+                            initial={{ x: -10 }}
+                            animate={{ x: 100 }}
+                            transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
+                        ></motion.div>
+                    </div>
+
+
+                    <div className="absolute top-[50px] left-[360px] w-[2.5px] h-[280px] bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[60deg] overflow-hidden">
+                        <motion.div
+                            className="w-full h-4 bg-color-third dark:bg-color-third-dark"
+                            initial={{ y: 300 }}
+                            animate={{ y: 110 }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                        ></motion.div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex md:hidden items-center justify-center mb-10 md:mb-0 text-center">
+                <HiArrowLongLeft className="w-6 h-6 text-color-foreground-light dark:text-color-foreground-light-dark" />
+                <Label text="Swipe to view" className="mx-3" />
+                <HiArrowLongRight className="w-6 h-6 text-color-foreground-light dark:text-color-foreground-light-dark" />
+            </div>
+
+            <div className="w-full mt-8 overflow-x-scroll">
+                <Table className="!w-[1200px] lg:!w-full">
                     <TableThead>
                         <TableRow className="!bg-transparent">
                             <TableCell>Bess Id</TableCell>
@@ -116,17 +171,17 @@ export default function Overview() {
                     </TableBody>
                 </Table>
             </div>
-            <div className="grid grid-cols-10 gap-5 mt-8">
-                <div className="col-span-6">
+            <div className="lg:grid lg:grid-cols-10 gap-5 mt-8">
+                <div className="lg:col-span-6">
                     <PC data={pc} className="h-full" />
                 </div>
-                <div className="grid grid-cols-2 gap-4 col-span-4">
-                    <Card className="relative overflow-hidden">
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 gap-4 lg:col-span-4 mt-4 lg:mt-0">
+                    <Card className="relative min-h-[120px] lg:min-h-0 overflow-hidden">
                         <img src="/images/bess-no-grid.png" alt="" className="absolute -right-5 -bottom-7 w-[45%]" />
                         <Label text="Number of Bess" />
                         <div className="!mb-0">{info.numberOfBess}</div>
                     </Card>
-                    <Card className="relative overflow-hidden">
+                    <Card className="relative min-h-[120px] lg:min-h-0 overflow-hidden">
                         <img src="/images/cluster-no-grid.png" alt="" className="absolute -right-5 -bottom-7 w-[45%]" />
                         <Label text="Number of Cluster" />
                         <div>{info.numberOfCluster}</div>

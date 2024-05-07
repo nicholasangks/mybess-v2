@@ -29,12 +29,12 @@ export default function PC({ data, className }: PCProps) {
                             <div className="text-color-fifth dark:text-color-fifth-dark">Idle</div>
                         </div>
                         {themeReady
-                            ? <img src={`/images/pcs${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-[80%] md:w-full 2xl:w-[95%] mt-5 mx-auto" />
-                            : <img src={`/images/pcs.png`} alt="" className="w-[80%] md:w-full 2xl:w-[95%] mt-5 mx-auto" />
+                            ? <img src={`/images/pcs${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-[80%] md:w-[85%] lg:w-full 2xl:w-[95%] mt-5 mx-auto" />
+                            : <img src={`/images/pcs.png`} alt="" className="w-[80%] md:w-[85%] lg:w-full 2xl:w-[95%] mt-5 mx-auto" />
                         }
                     </div>
                 </div>
-                <div className="grid grid-cols-2 md:col-span-7 items-center">
+                <div className="grid grid-cols-2 md:col-span-7">
                     <div className="md:pl-4 xl:pl-5">
                         <div className="p-2.5">
                             <Label text="Total Charge Daily" />
