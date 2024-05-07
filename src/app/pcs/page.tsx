@@ -38,7 +38,7 @@ export default function Pcs() {
         <div>
             <H1 text="PC Overview" />
             <div className="">
-                <div className="md:grid lg:grid-cols-10 gap-4 xl:gap-5">
+                <div className="md:grid lg:grid-cols-10 3xl:max-w-[1900px] gap-4 xl:gap-5">
                     <div className="md:col-span-7">
                         <PC data={pc} className="h-full" />
                     </div>

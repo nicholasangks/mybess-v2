@@ -34,8 +34,8 @@ export default function Bess({ data }: BessProps) {
             {/* <div>{data.chargeDischargeState}</div> */}
             <div className="flex items-center relative mt-6 mb-4">
                 {themeReady
-                    ? <img src={`/images/bess${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:w-[65%] h-auto mx-auto" />
-                    : <img src={`/images/bess.png`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:[65%] h-auto mx-auto" />
+                    ? <img src={`/images/bess${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:w-[65%] max-w-[236px] h-auto mx-auto" />
+                    : <img src={`/images/bess.png`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:[65%] max-w-[240px] h-auto mx-auto" />
                 }
                 <div className="flex justify-between items-center w-full mt-4 mb-10">
                     <div className="w-50%">

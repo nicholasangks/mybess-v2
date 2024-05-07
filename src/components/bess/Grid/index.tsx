@@ -57,8 +57,8 @@ export default function Grid({ data }: GridProps) {
                 </div>
             </div>
             {themeReady
-                ? <img src={`/images/grid${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-[45%] md:w-[57%] h-auto mx-auto mt-3 mb-3" />
-                : <img src={`/images/grid.png`} alt="" className="w-[45%] md:w-[57%] h-auto mx-auto mt-3 mb-3" />
+                ? <img src={`/images/grid${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-[45%] md:w-[57%] 3xl:w-[40%] h-auto mx-auto mt-3 mb-3" />
+                : <img src={`/images/grid.png`} alt="" className="w-[45%] md:w-[57%] 3xl:w-[40%] h-auto mx-auto mt-3 mb-3" />
             }
             <div className="grid grid-cols-2 border-t border-color-border dark:border-color-border-dark text-center">
                 <div className="pt-2.5 text-center border-r border-color-border dark:border-color-border-dark">

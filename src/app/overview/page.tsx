@@ -177,12 +177,12 @@ export default function Overview() {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 gap-4 lg:col-span-4 mt-4 lg:mt-0">
                     <Card className="relative min-h-[120px] lg:min-h-0 overflow-hidden">
-                        <img src="/images/bess-no-grid.png" alt="" className="absolute -right-5 -bottom-7 w-[45%]" />
+                        <img src="/images/bess-no-grid.png" alt="" className="absolute -right-7 -bottom-9 3xl:-right-9 3xl:-bottom-11 w-[50%] xl:max-w-[100px] 2xl:max-w-[110px] 3xl:max-w-[130px]" />
                         <Label text="Number of Bess" />
                         <div className="!mb-0">{info.numberOfBess}</div>
                     </Card>
                     <Card className="relative min-h-[120px] lg:min-h-0 overflow-hidden">
-                        <img src="/images/cluster-no-grid.png" alt="" className="absolute -right-5 -bottom-7 w-[45%]" />
+                        <img src="/images/cluster-no-grid.png" alt="" className="absolute -right-7 -bottom-9 3xl:-right-9 3xl:-bottom-11 w-[50%] xl:max-w-[100px] 2xl:max-w-[110px] 3xl:max-w-[130px]" />
                         <Label text="Number of Cluster" />
                         <div>{info.numberOfCluster}</div>
                     </Card>

@@ -50,7 +50,7 @@ export default function Besses() {
                     <LineChart />
                 </Card>
             </div >
-            <div className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-5">
+            <div className="md:grid md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-4 xl:gap-5">
                 {/* {besses && Object.keys(besses).map((index: any) => ( */}
                 {besses && Object.entries(besses).map(([bessKey, bessValue]: [string, any]) => (
                     <>

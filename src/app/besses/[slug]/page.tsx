@@ -56,11 +56,11 @@ export default function BessDetails({ params }: { params: { slug: string } }) {
         <>
             <ModalCusterPacks open={openClusterModal} setOpen={setOpenClusterModal} cId={cId} />
             <H1 text="Bess Details" />
-            <div className="md:grid md:grid-cols-3 gap-4 xl:gap-5">
+            <div className="md:grid md:grid-cols-3 3xl:grid-cols-4 gap-4 xl:gap-5">
                 <div className="md:col-span-1">
                     <Bess data={bess} />
                 </div>
-                <div className="md:col-span-2">
+                <div className="md:col-span-2 3xl:col-span-3 3xl:max-w-[700px]">
                     {clusters.map((cluster: any, index: number) => {
                         return <Cluster
                             onClick={() => handleModalPacks(cluster.cId)}
