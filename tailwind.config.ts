@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        "3xl": "1920px",
+        "3xl": "1728px",
       },
       fontFamily: {
         clashDisplay: ["var(--kanit)"],
