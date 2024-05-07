@@ -62,7 +62,7 @@ export default function Overview() {
             </div>
 
             <div className="w-full overflow-x-scroll">
-                <div className="relative w-[680px] h-[396px] mt-10 mb-10 mx-auto">
+                <div className="relative w-[680px] h-[396px] mt-10 mb-6 mx-auto">
                     {/* {themeReady
                     ? <img src={`/images/overview${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-full h-auto mx-auto mt-10" />
                     : <img src={`/images/overview.png`} alt="" className="mx-auto mt-10" />
