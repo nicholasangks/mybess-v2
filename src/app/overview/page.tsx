@@ -117,12 +117,15 @@ export default function Overview() {
                         ></motion.div>
 
                         {/* pv */}
-                        <motion.div
-                            className="absolute w-full h-4 bg-[#8080ff] dark:bg-[#dadaff]"
-                            initial={{ y: 15 }}
-                            animate={{ y: 82 }}
-                            transition={{ duration: 1.5, repeat: Infinity, delay: 0.8 }}
-                        ></motion.div>
+                        <div
+                            className="absolute top-[32px] w-full h-[82px] bg-[#D2D2D2] dark:bg-[#8E8E8E] overflow-y-hidden">
+                            <motion.div
+                                className="absolute w-full h-4 bg-[#8080ff] dark:bg-[#dadaff]"
+                                initial={{ y: -15 }}
+                                animate={{ y: 82 }}
+                                transition={{ duration: 1.5, ease: "linear", repeat: Infinity, delay: 0.8 }}
+                            ></motion.div>
+                        </div>
 
                         {/* pv */}
                         {/* <motion.div
