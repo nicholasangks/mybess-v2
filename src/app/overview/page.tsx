@@ -63,16 +63,24 @@ export default function Overview() {
 
             <div className="w-full overflow-x-scroll">
                 <div className="relative w-[680px] h-[396px] mt-10 mb-6 mx-auto">
-                    {/* {themeReady
-                    ? <img src={`/images/overview${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-full h-auto mx-auto mt-10" />
-                    : <img src={`/images/overview.png`} alt="" className="mx-auto mt-10" />
-                } */}
                     <img src={`/images/overview-vector.png`} alt="" className="absolute w-full h-full mx-auto z-10" />
                     {themeReady
                         ? <img src={`/images/overview-grid-base${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-full h-full mx-auto" />
                         : <img src={`/images/overview-grid-base.png`} alt="" className="w-full h-full mx-auto" />
                     }
-                    <div className="flex absolute top-[200px] left-[254px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-x-hidden">
+                    {/* Grid to bess */}
+                    <div className="flex absolute top-[200px] left-[256px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-x-hidden">
+                        <motion.div
+                            className="absolute w-4 h-full bg-[#abab00] dark:bg-[#FFFF00]"
+                            initial={{ x: -10 }}
+                            animate={{ x: 100 }}
+                            transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
+                        ></motion.div>
+                    </div>
+
+
+                    {/* to end user */}
+                    <div className="absolute top-[190px] left-[380px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-hidden">
                         <motion.div
                             className="absolute w-4 h-full bg-color-third dark:bg-color-third-dark"
                             initial={{ x: -10 }}
@@ -80,26 +88,19 @@ export default function Overview() {
                             transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
                         ></motion.div>
 
-                        {/* <motion.div
-                        className="absolute w-4 h-full bg-[#5d70d1]"
-                        initial={{ x: 100 }}
-                        animate={{ x: -10 }}
-                        transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
-                    ></motion.div> */}
-                    </div>
-
-                    <div className="absolute top-[190px] left-[380px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-hidden">
+                        {/* Solar */}
                         <motion.div
-                            className="w-4 h-full bg-color-third dark:bg-color-third-dark"
-                            initial={{ x: -10 }}
+                            className="absolute w-4 h-full bg-[#8080ff] dark:bg-[#dadaff]"
+                            initial={{ x: -15 }}
                             animate={{ x: 100 }}
-                            transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
+                            transition={{ duration: 1.5, ease: "linear", repeat: Infinity, delay: 2 }}
                         ></motion.div>
                     </div>
 
+                    {/* pv */}
                     <div className="absolute top-[120px] left-[396px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-hidden">
                         <motion.div
-                            className="w-4 h-full bg-color-third dark:bg-color-third-dark"
+                            className="w-4 h-full bg-[#8080ff] dark:bg-[#dadaff]"
                             initial={{ x: -10 }}
                             animate={{ x: 100 }}
                             transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
@@ -114,6 +115,36 @@ export default function Overview() {
                             animate={{ y: 110 }}
                             transition={{ duration: 1.5, repeat: Infinity }}
                         ></motion.div>
+
+                        {/* pv */}
+                        <motion.div
+                            className="absolute w-full h-4 bg-[#8080ff] dark:bg-[#dadaff]"
+                            initial={{ y: 15 }}
+                            animate={{ y: 82 }}
+                            transition={{ duration: 1.5, repeat: Infinity, delay: 0.8 }}
+                        ></motion.div>
+
+                        {/* pv */}
+                        {/* <motion.div
+                            className="absolute w-full h-4 bg-color-third dark:bg-[#dadaff] z-10"
+                            initial={{ y: 82 }}
+                            animate={{ y: 250 }}
+                            transition={{ duration: 2, ease: "linear", repeat: Infinity, delay: 1.6 }}
+                        ></motion.div> */}
+
+                        {/* Grid to bess */}
+                        <div
+                            className="absolute bottom-[36px] w-full h-[50px] bg-[#D2D2D2] dark:bg-[#8E8E8E] overflow-y-hidden">
+                            <motion.div
+                                className="absolute w-full h-4 bg-[#abab00] dark:bg-[#FFFF00]"
+                                // initial={{ y: 173 }}
+                                // animate={{ y: 250 }}
+                                initial={{ y: -20 }}
+                                animate={{ y: 100 }}
+                                transition={{ duration: 1.5, ease: "linear", repeat: Infinity, delay: 0.8 }}
+                            ></motion.div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -196,6 +227,6 @@ export default function Overview() {
                     </Card>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
