@@ -158,7 +158,7 @@ export default function Overview() {
                 <HiArrowLongRight className="w-6 h-6 text-color-foreground-light dark:text-color-foreground-light-dark" />
             </div>
 
-            <div className="w-full mt-8 overflow-x-scroll">
+            <div className="w-full mt-6 overflow-x-scroll">
                 <Table className="!w-[1200px] lg:!w-full">
                     <TableThead>
                         <TableRow className="!bg-transparent">
