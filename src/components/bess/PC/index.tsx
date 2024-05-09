@@ -25,7 +25,7 @@ export default function PC({ data, className }: PCProps) {
                 <div className="flex items-center justify-center col-span-3 h-full py-0 md:pr-3 md:border-r border-color-border dark:border-color-border-dark text-center">
                     <div>
                         <div className="">
-                            <H3 text="PC 1" className="!mb-0" />
+                            <H3 text="PCS 1" className="!mb-0" />
                             <div className="text-color-fifth dark:text-color-fifth-dark">Idle</div>
                         </div>
                         {themeReady
