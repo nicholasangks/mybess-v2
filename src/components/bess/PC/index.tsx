@@ -26,7 +26,7 @@ export default function PC({ data, className }: PCProps) {
                     <div>
                         <div className="">
                             <H3 text="PCS 1" className="!mb-0" />
-                            <div className="text-color-fifth dark:text-color-fifth-dark">Idle</div>
+                            {/* <div className="text-color-fifth dark:text-color-fifth-dark">Idle</div> */}
                         </div>
                         {themeReady
                             ? <img src={`/images/pcs${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-[80%] md:w-[85%] lg:w-full 2xl:w-[95%] mt-5 mx-auto" />

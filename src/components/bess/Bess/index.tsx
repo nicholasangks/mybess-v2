@@ -15,12 +15,19 @@ export default function Bess({ data }: BessProps) {
     const { theme } = useTheme();
 
     useEffect(() => {
+        // if(data){
+        //     console.log(data.SOC)
+        //     console.log(parseInt("99"))
+        //     if(parseInt(data.SOC) < 50){
+        //         console.log("les")
+        //     }else{
+        //         console.log("mor")
+        //     }
+        // }
         if (theme !== undefined) {
             setThemeReady(true);
         }
     }, [theme]);
-
-    const imageUrl = `/images/bess${theme === 'dark' ? '-dark.png' : '.png'}`;
 
     return (
         <Card className="mb-4 md:mb-0">
@@ -34,23 +41,23 @@ export default function Bess({ data }: BessProps) {
             {/* <div>{data.chargeDischargeState}</div> */}
             <div className="flex items-center relative mt-6 mb-4">
                 {themeReady
-                    ? <img src={`/images/bess${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:w-[65%] max-w-[236px] h-auto mx-auto" />
-                    : <img src={`/images/bess.png`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:[65%] max-w-[240px] h-auto mx-auto" />
+                    ? <img src={`/images/bess${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:w-[65%] 3xl:max-w-[210px] h-auto mx-auto" />
+                    : <img src={`/images/bess.png`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:[65%] max-w-[210px] h-auto mx-auto" />
                 }
                 <div className="flex justify-between items-center w-full mt-4 mb-10">
                     <div className="w-50%">
                         <Label text="SOC" />
                         <div>{data.SOC}%</div>
-                        <div className="w-full h-1 bg-[#bfbfbf] dark:bg-color-fifth-dark">
-                            <div className={`h-full mt-1 ${Math.floor(data.SOC) < 50 ? "bg-color-fourth dark:bg-color-fourth-dark" : "bg-color-third dark:bg-color-third-dark"}`} style={{ width: Math.floor(data.SOC) + '%' }}></div>
+                        <div className="w-full h-1 mt-1 bg-[#bfbfbf] dark:bg-color-fifth-dark">
+                            <div className={`h-full ${parseInt(data.SOC) < 50 ? "bg-color-fourth dark:bg-color-fourth-dark" : "bg-color-third dark:bg-color-third-dark"}`} style={{ width: parseInt(data.SOC) + '%' }}></div>
                             {/* <div className={`h-full mt-1 ${Math.floor(40) < 50 ? "bg-color-fourth dark:bg-color-fourth-dark" : "bg-color-third dark:bg-color-third-dark"}`} style={{ width: '40%' }}></div> */}
                         </div>
                     </div>
                     <div className="text-right">
                         <Label text="SOH" />
                         <div>{data.SOH}%</div>
-                        <div className="w-full h-1 ml-auto mr-0 bg-[#bfbfbf] dark:bg-color-fifth-dark">
-                            <div className={`h-full mt-1 ${Math.floor(data.SOC) < 50 ? "bg-color-fourth dark:bg-color-fourth-dark" : "bg-color-third dark:bg-color-third-dark"}`} style={{ width: Math.floor(data.SOH) + '%' }}></div>
+                        <div className="w-full h-1 mt-1 ml-auto mr-0 bg-[#bfbfbf] dark:bg-color-fifth-dark">
+                            <div className={`h-full ${parseInt(data.SOH) < 50 ? "bg-color-fourth dark:bg-color-fourth-dark" : "bg-color-third dark:bg-color-third-dark"}`} style={{ width: parseInt(data.SOH) + '%' }}></div>
                         </div>
                     </div>
                 </div>
