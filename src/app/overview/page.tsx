@@ -184,7 +184,7 @@ export default function Overview() {
                                         </div></TableCell>
                                     <TableCell>
                                         <div className="flex items-center">
-                                            <div className="w-12 h-1 mr-2 bg-[#bfbfbf] dark:bg-color-fifth-dark">
+                                            <div className="w-12 h-[0.21rem] mr-2 bg-[#bfbfbf] dark:bg-color-fifth-dark">
                                                 <div className={`h-full ${parseInt(bessValue.SOC) < 50 ? "bg-color-fourth dark:bg-color-fourth-dark" : "bg-color-third dark:bg-color-third-dark"}`} style={{ width: parseInt(bessValue.SOC) + '%' }}></div>
                                             </div>
                                             {bessValue.SOC}
@@ -192,7 +192,7 @@ export default function Overview() {
                                     </TableCell>
                                     <TableCell>
                                         <div className="flex items-center">
-                                            <div className="relative w-12 h-1 mr-2 bg-[#bfbfbf] dark:bg-color-fifth-dark">
+                                            <div className="relative w-12 h-[0.21rem] mr-2 bg-[#bfbfbf] dark:bg-color-fifth-dark">
                                                 <div className={`h-full ${parseInt(bessValue.SOH) < 50 ? "bg-color-fourth dark:bg-color-fourth-dark" : "bg-color-third dark:bg-color-third-dark"}`} style={{ width: parseInt(bessValue.SOH) + '%' }}></div>
                                             </div>
                                             {bessValue.SOH}
