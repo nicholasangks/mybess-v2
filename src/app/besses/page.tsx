@@ -23,8 +23,8 @@ async function getGraph1() {
 export default function Besses() {
     const [besses, setBesses] = useState<any>([]);
 
-    const { data: bessesData, error: bessesError } = useSWR('/battery/', getBessesData, { refreshInterval: 5000 });
-    const { data: graph1Data, error: graph1Error } = useSWR('/graphdata3/', getGraph1, { refreshInterval: 5000 });
+    const { data: bessesData, error: bessesError } = useSWR('bessData', getBessesData, { refreshInterval: 5000 });
+    const { data: graph1Data, error: graph1Error } = useSWR('graphData', getGraph1, { refreshInterval: 5000 });
 
     useEffect(() => {
         if (bessesData) {

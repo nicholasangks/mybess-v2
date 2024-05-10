@@ -19,6 +19,9 @@ export default function PC({ data, className }: PCProps) {
         }
     }, [theme]);
 
+    useEffect(() => {
+    }, [data]);
+
     return (
         <Card className="h-full items-center mb-4 md:mb-0">
             <div className="md:grid md:grid-cols-10 md:items-center h-full">

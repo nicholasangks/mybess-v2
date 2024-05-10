@@ -35,9 +35,9 @@ export default function Overview() {
     const [besses, setBesses] = useState<any>([]);
     const [pc, setPc] = useState<any>([]);
 
-    const { data: generalInfo, error: generalInfoError } = useSWR('/generalinfo/', getGeneralInfo, { refreshInterval: 5000 });
-    const { data: bessesData, error: bessesDataError } = useSWR('/battery/', getBessesData, { refreshInterval: 5000 });
-    const { data: pcData, error: pcDataError } = useSWR('/pcsdata/', getPcsData, { refreshInterval: 5000 });
+    const { data: generalInfo, error: generalInfoError } = useSWR('generalInfo', getGeneralInfo, { refreshInterval: 5000 });
+    const { data: bessesData, error: bessesDataError } = useSWR('bessData', getBessesData, { refreshInterval: 5000 });
+    const { data: pcData, error: pcDataError } = useSWR('pcsData', getPcsData, { refreshInterval: 5000 });
 
     // const init = async () => {
     //     let generalInfo = await getGeneralInfo()

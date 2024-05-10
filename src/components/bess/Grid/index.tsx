@@ -27,6 +27,10 @@ export default function Grid({ data }: GridProps) {
         }
     }, [theme]);
 
+
+    useEffect(() => {
+    }, [data]);
+
     return (
         <Card className="h-full">
             <div className="flex justify-between">
