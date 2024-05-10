@@ -5,6 +5,7 @@ import H3 from "@/components/Heading/H3"
 import Label from "@/components/Label"
 import { DataListWrapper, DataList, DataCell } from "@/components/DataList"
 import { GiElectric } from "react-icons/gi";
+import { motion } from "framer-motion";
 
 interface BessProps {
     data: any;
@@ -33,16 +34,25 @@ export default function Bess({ data }: BessProps) {
         <Card className="mb-4 md:mb-0">
             <div className="flex items-center justify-between">
                 <H3 text={`Bess ${data.bId}`} className="!mb-0" />
-                <div className="flex items-center">
-                    <GiElectric className={`w-5 h-5 mr-0.5 ${data.runningStatus === 'Idle' ? "fill-color-fifth dark:fill-color-fifth-dark" : "fill-color-third dark:fill-color-third-dark"}`} />
-                    <div className={`${data.runningStatus === 'Idle' ? "text-color-fifth dark:text-color-fifth-dark" : "text-color-third dark:text-color-third-dark"}`}>{data.runningStatus}</div>
+                <div className="relative flex items-center">
+                    {
+                        data.runningStatus !== 'Idle' &&
+                        <motion.div
+                            className="h-6 w-6 mr-1.5 border-t-2 border-l-2 border-color-third-dark rounded-full overflow-hidden"
+                            animate={{ rotate: [0, 360] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                        ></motion.div>
+                    }
+                    <GiElectric className={`w-4 h-4 ${data.runningStatus === 'Idle' ? "fill-color-fifth dark:fill-color-fifth-dark" : "absolute left-1 fill-color-third dark:fill-color-third-dark"}`} />
+                    {/* <GiElectric className={`w-5 h-5 mr-0.5 ${data.runningStatus === 'Idle' ? "fill-color-fifth dark:fill-color-fifth-dark" : "fill-color-third dark:fill-color-third-dark"}`} /> */}
+                    <div className={`text-[1rem] ${data.runningStatus === 'Idle' ? "text-color-fifth dark:text-color-fifth-dark" : "text-color-third dark:text-color-third-dark"}`}>{data.runningStatus}</div>
                 </div>
             </div>
             {/* <div>{data.chargeDischargeState}</div> */}
-            <div className="flex items-center relative mt-6 mb-4">
+            <div className="flex items-center relative mt-6 mb-5">
                 {themeReady
-                    ? <img src={`/images/bess${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:w-[65%] 2xl:max-w-[210px] h-auto mx-auto" />
-                    : <img src={`/images/bess.png`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:[65%] max-w-[210px] h-auto mx-auto" />
+                    ? <img src={`/images/bess${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:w-[65%] xl:max-w-[210px] h-auto mx-auto" />
+                    : <img src={`/images/bess.png`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:[65%] xl:max-w-[210px] h-auto mx-auto" />
                 }
                 <div className="flex justify-between items-center w-full mt-4 mb-10">
                     <div className="w-50%">
