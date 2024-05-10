@@ -8,7 +8,8 @@ import Card from "@/components/Card"
 import { Table, TableThead, TableBody, TableRow, TableCell } from "@/components/Table"
 import { api } from "@/helpers/apiHelper"
 import { GiElectric } from "react-icons/gi";
-import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
+// import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import PC from "@/components/bess/PC"
 import { motion } from "framer-motion";
 import useSWR from 'swr';
@@ -122,11 +123,12 @@ export default function Overview() {
 
 
                     <div className="absolute top-[50px] left-[360px] w-[2.5px] h-[280px] bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[60deg] overflow-hidden">
+                        {/* bess to end user */}
                         <motion.div
                             className="w-full h-4 bg-color-third dark:bg-color-third-dark"
-                            initial={{ y: 300 }}
+                            initial={{ y: 210 }}
                             animate={{ y: 110 }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
+                            transition={{ duration: 1.5, ease: 'linear', repeat: Infinity }}
                         ></motion.div>
 
                         {/* pv */}
@@ -160,15 +162,14 @@ export default function Overview() {
                                 transition={{ duration: 1.5, ease: "linear", repeat: Infinity, delay: 0.8 }}
                             ></motion.div>
                         </div>
-
                     </div>
                 </div>
             </div>
 
             <div className="flex md:hidden items-center justify-center mb-10 md:mb-0 text-center">
-                <HiArrowLongLeft className="w-6 h-6 text-color-foreground-light dark:text-color-foreground-light-dark" />
+                <FiArrowLeft className="w-6 h-6 text-color-foreground-light dark:text-color-foreground-light-dark" />
                 <Label text="Swipe to view" className="mx-3" />
-                <HiArrowLongRight className="w-6 h-6 text-color-foreground-light dark:text-color-foreground-light-dark" />
+                <FiArrowRight className="w-6 h-6 text-color-foreground-light dark:text-color-foreground-light-dark" />
             </div>
 
             <div className="w-full mt-6 overflow-x-scroll">
