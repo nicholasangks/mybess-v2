@@ -14,6 +14,7 @@ interface BessProps {
 export default function Bess({ data }: BessProps) {
     const [themeReady, setThemeReady] = useState(false);
     const { theme } = useTheme();
+    // const test = "10"
 
     useEffect(() => {
         // if(data){
@@ -59,15 +60,22 @@ export default function Bess({ data }: BessProps) {
                         <Label text="SOC" />
                         <div>{data.SOC}%</div>
                         <div className="w-full h-[0.21rem] mt-1 bg-[#bfbfbf] dark:bg-color-fifth-dark">
-                            <div className={`h-full ${parseInt(data.SOC) < 50 ? "bg-color-fourth dark:bg-color-fourth-dark" : "bg-color-third dark:bg-color-third-dark"}`} style={{ width: parseInt(data.SOC) + '%' }}></div>
-                            {/* <div className={`h-full mt-1 ${Math.floor(40) < 50 ? "bg-color-fourth dark:bg-color-fourth-dark" : "bg-color-third dark:bg-color-third-dark"}`} style={{ width: '40%' }}></div> */}
+                            <div className={`h-full ${parseInt(data.SOC) <= 10 ? "bg-color-fourth dark:bg-color-fourth-dark" : parseInt(data.SOC) <= 30 ? "bg-color-six dark:bg-color-six-dark" : "bg-color-third dark:bg-color-third-dark"}`}
+                                style={{ width: parseInt(data.SOC) + '%' }}>
+                            </div>
+
+                            {/* <div className={`h-full ${parseInt(test) <= 10 ? "bg-color-fourth dark:bg-color-fourth-dark" : parseInt(test) <= 30 ? "bg-color-six dark:bg-color-six-dark" : "bg-color-third dark:bg-color-third-dark"}`}
+                                style={{ width: parseInt(test) + '%' }}>
+                            </div> */}
                         </div>
                     </div>
                     <div className="text-right">
                         <Label text="SOH" />
                         <div>{data.SOH}%</div>
                         <div className="w-full h-[0.21rem] mt-1 ml-auto mr-0 bg-[#bfbfbf] dark:bg-color-fifth-dark">
-                            <div className={`h-full ${parseInt(data.SOH) < 50 ? "bg-color-fourth dark:bg-color-fourth-dark" : "bg-color-third dark:bg-color-third-dark"}`} style={{ width: parseInt(data.SOH) + '%' }}></div>
+                            <div className={`h-full ${parseInt(data.SOH) <= 10 ? "bg-color-fourth dark:bg-color-fourth-dark" : parseInt(data.SOH) <= 30 ? "bg-color-six dark:bg-color-six-dark" : "bg-color-third dark:bg-color-third-dark"}`}
+                                style={{ width: parseInt(data.SOH) + '%' }}>
+                            </div>
                         </div>
                     </div>
                 </div>

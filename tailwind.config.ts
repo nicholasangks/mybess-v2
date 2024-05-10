@@ -35,7 +35,9 @@ const config: Config = {
         "color-fourth": "#FA4515",
         "color-fourth-dark": "#FA4515",
         "color-fifth": "#7f7f7f",
-        "color-fifth-dark": "#b7b7b7", // 838383
+        "color-fifth-dark": "#b7b7b7",
+        "color-six": "#e39300", // orange
+        "color-six-dark": "#f29d00",
         "color-temp-rgba": "rgba(1, 103, 252, .5)",
       },
     },

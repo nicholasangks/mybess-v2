@@ -8,6 +8,7 @@ import H3 from "@/components/Heading/H3"
 import LineChart from "@/components/LineChart"
 import Bess from "@/components/bess/Bess"
 import { api } from "@/helpers/apiHelper"
+import useSWR from "swr";
 
 async function getBessesData() {
     const res = await api('/battery/', 'GET');
@@ -22,15 +23,24 @@ async function getGraph1() {
 export default function Besses() {
     const [besses, setBesses] = useState<any>([]);
 
-    const init = async () => {
-        let data = await getBessesData()
-        let graph1 = await getGraph1()
-        setBesses(data)
-    }
+    const { data: bessesData, error: bessesError } = useSWR('/battery/', getBessesData, { refreshInterval: 5000 });
+    const { data: graph1Data, error: graph1Error } = useSWR('/graphdata3/', getGraph1, { refreshInterval: 5000 });
 
     useEffect(() => {
-        init()
-    }, []);
+        if (bessesData) {
+            setBesses(bessesData);
+        }
+    }, [bessesData]);
+
+    // const init = async () => {
+    //     let data = await getBessesData()
+    //     let graph1 = await getGraph1()
+    //     setBesses(data)
+    // }
+
+    // useEffect(() => {
+    //     init()
+    // }, []);
 
 
     return (

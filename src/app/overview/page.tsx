@@ -11,6 +11,7 @@ import { GiElectric } from "react-icons/gi";
 import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
 import PC from "@/components/bess/PC"
 import { motion } from "framer-motion";
+import useSWR from 'swr';
 
 async function getGeneralInfo() {
     const res = await api('/generalinfo/', 'GET');
@@ -34,15 +35,27 @@ export default function Overview() {
     const [besses, setBesses] = useState<any>([]);
     const [pc, setPc] = useState<any>([]);
 
-    const init = async () => {
-        let generalInfo = await getGeneralInfo()
-        let bessesData = await getBessesData()
-        let pcData = await getPcsData()
+    const { data: generalInfo, error: generalInfoError } = useSWR('/generalinfo/', getGeneralInfo, { refreshInterval: 5000 });
+    const { data: bessesData, error: bessesDataError } = useSWR('/battery/', getBessesData, { refreshInterval: 5000 });
+    const { data: pcData, error: pcDataError } = useSWR('/pcsdata/', getPcsData, { refreshInterval: 5000 });
 
-        setInfo(generalInfo)
-        setBesses(bessesData)
-        setPc(pcData)
-    }
+    // const init = async () => {
+    //     let generalInfo = await getGeneralInfo()
+    //     let bessesData = await getBessesData()
+    //     let pcData = await getPcsData()
+
+    //     setInfo(generalInfo)
+    //     setBesses(bessesData)
+    //     setPc(pcData)
+    // }
+
+    useEffect(() => {
+        if (generalInfo && bessesData && pcData) {
+            setInfo(generalInfo);
+            setBesses(bessesData);
+            setPc(pcData);
+        }
+    }, [generalInfo, bessesData, pcData]);
 
     useEffect(() => {
         if (theme !== undefined) {
@@ -50,9 +63,9 @@ export default function Overview() {
         }
     }, [theme]);
 
-    useEffect(() => {
-        init()
-    }, []);
+    // useEffect(() => {
+    //     init()
+    // }, []);
 
     return (
         <div>
@@ -185,7 +198,9 @@ export default function Overview() {
                                     <TableCell>
                                         <div className="flex items-center">
                                             <div className="w-12 h-[0.21rem] mr-2 bg-[#bfbfbf] dark:bg-color-fifth-dark">
-                                                <div className={`h-full ${parseInt(bessValue.SOC) < 50 ? "bg-color-fourth dark:bg-color-fourth-dark" : "bg-color-third dark:bg-color-third-dark"}`} style={{ width: parseInt(bessValue.SOC) + '%' }}></div>
+                                                <div className={`h-full ${parseInt(bessValue.SOC) <= 10 ? "bg-color-fourth dark:bg-color-fourth-dark" : parseInt(bessValue.SOC) <= 30 ? "bg-color-six dark:bg-color-six-dark" : "bg-color-third dark:bg-color-third-dark"}`}
+                                                    style={{ width: parseInt(bessValue.SOC) + '%' }}>
+                                                </div>
                                             </div>
                                             {bessValue.SOC}
                                         </div>
@@ -193,7 +208,9 @@ export default function Overview() {
                                     <TableCell>
                                         <div className="flex items-center">
                                             <div className="relative w-12 h-[0.21rem] mr-2 bg-[#bfbfbf] dark:bg-color-fifth-dark">
-                                                <div className={`h-full ${parseInt(bessValue.SOH) < 50 ? "bg-color-fourth dark:bg-color-fourth-dark" : "bg-color-third dark:bg-color-third-dark"}`} style={{ width: parseInt(bessValue.SOH) + '%' }}></div>
+                                                <div className={`h-full ${parseInt(bessValue.SOH) <= 10 ? "bg-color-fourth dark:bg-color-fourth-dark" : parseInt(bessValue.SOH) <= 30 ? "bg-color-six dark:bg-color-six-dark" : "bg-color-third dark:bg-color-third-dark"}`}
+                                                    style={{ width: parseInt(bessValue.SOH) + '%' }}>
+                                                </div>
                                             </div>
                                             {bessValue.SOH}
                                         </div>

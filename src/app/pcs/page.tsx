@@ -7,6 +7,7 @@ import PC from "@/components/bess/PC"
 import Grid from "@/components/bess/Grid"
 import { Table, TableThead, TableBody, TableRow, TableCell } from "@/components/Table"
 import { api } from "@/helpers/apiHelper"
+import useSWR from "swr";
 
 async function getPcData() {
     const res = await api('/pcsdata/', 'GET');
@@ -22,17 +23,27 @@ export default function Pcs() {
     const [pc, setPc] = useState<any>([])
     const [pcsControl, setPcsControl] = useState<any>([])
 
-    const init = async () => {
-        let _pc = await getPcData()
-        let _pcsControl = await getPcsControl()
-
-        setPc(_pc)
-        setPcsControl(_pcsControl)
-    }
+    const { data: pcsData, error: pcsError } = useSWR('pcsData', getPcData, { refreshInterval: 5000 });
+    const { data: pcsControlData, error: pcsControlError } = useSWR('pcsControl', getPcsControl, { refreshInterval: 5000 });
 
     useEffect(() => {
-        init()
-    }, []);
+        if (pcsData && pcsControlData) {
+            setPc(pcsData)
+            setPcsControl(pcsControlData)
+        }
+    }, [pcsData, pcsControlData]);
+
+    // const init = async () => {
+    //     let _pc = await getPcData()
+    //     let _pcsControl = await getPcsControl()
+
+    //     setPc(_pc)
+    //     setPcsControl(_pcsControl)
+    // }
+
+    // useEffect(() => {
+    //     init()
+    // }, []);
 
     return (
         <div>
