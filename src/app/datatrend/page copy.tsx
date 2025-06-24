@@ -24,10 +24,10 @@ export default function DataTrend() {
 
   const fetchTrendingData = async () => {
     const payload = {
-        start_date: "2024-02-03",
-        end_date: "2024-02-09",
-        data: ["C1 SOC", "C1 Total Power", "C1 Total Voltage"]
-      };
+        start_date: '2024-02-09',
+        end_date: '2024-02-09',
+        data: ['C1 SOC', 'C1 Total Power', 'C1 Total Voltage'],
+    };
 
     try {
       const result = await api('/trending/', 'POST', payload);
@@ -38,7 +38,10 @@ export default function DataTrend() {
         data,
         fill: false,
         borderColor: getColor(label),
+        borderWidth: 1.5,
         tension: 0.3,
+        pointRadius: 0,
+        pointHoverRadius: 0,
       }));
       setDatasets(formattedDatasets);
     } catch (error) {
@@ -70,6 +73,49 @@ export default function DataTrend() {
     datasets,
   };
 
+  const chartOptions = {
+    responsive: true,
+    interaction: {
+      mode: 'index' as const,
+      intersect: false,
+    },
+    plugins: {
+      tooltip: {
+        mode: 'index' as const,
+        intersect: false,
+        callbacks: {
+          title: (tooltipItems: any) => {
+            const date = dayjs(tooltipItems[0].label);
+            return date.format('hh:mm A');
+          },
+          label: (tooltipItem: any) => {
+            const label = tooltipItem.dataset.label;
+            const value = tooltipItem.formattedValue;
+            let unit = '';
+            if (label.includes('Power')) unit = 'kW';
+            else if (label.includes('SOC')) unit = '%';
+            else if (label.includes('Voltage')) unit = 'V';
+            return `${label} = ${value} ${unit}`;
+          },
+        },
+      },
+      legend: {
+        position: 'top' as const,
+        labels: {
+          color: '#ffffff',
+        },
+      },
+    },
+    scales: {
+      x: {
+        ticks: { color: '#ccc' },
+      },
+      y: {
+        ticks: { color: '#ccc' },
+      },
+    },
+  };
+
   return (
     <div className="p-10">
       <H1 text="Trending Data Chart" />
@@ -77,7 +123,7 @@ export default function DataTrend() {
         <p className="mt-4">Loading...</p>
       ) : (
         <div className="mt-10">
-          <Line data={chartData} />
+          <Line data={chartData} options={chartOptions} />
         </div>
       )}
     </div>
