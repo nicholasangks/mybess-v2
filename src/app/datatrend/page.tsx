@@ -24,13 +24,13 @@ export default function DataTrend() {
 
   const fetchTrendingData = async () => {
     const payload = {
-      start_date: dayjs().subtract(6, 'day').format('YYYY-MM-DD'),
-      end_date: dayjs().format('YYYY-MM-DD'),
-      data: ['C1 SOC', 'C1 Total Power', 'C1 Total Voltage'],
+        start_date: '2024-02-09',
+        end_date: '2024-02-09',
+        data: ['C1 SOC', 'C1 Total Power', 'C1 Total Voltage'],
     };
 
     try {
-      const result = await api('/trending/', 'POST', payload); // Note the trailing slash
+      const result = await api('/trending/', 'POST', payload);
 
       setLabels(result.labels);
       const formattedDatasets = Object.entries(result.datasets).map(([label, data]) => ({
@@ -38,7 +38,10 @@ export default function DataTrend() {
         data,
         fill: false,
         borderColor: getColor(label),
+        borderWidth: 1.5,
         tension: 0.3,
+        pointRadius: 0,
+        pointHoverRadius: 0,
       }));
       setDatasets(formattedDatasets);
     } catch (error) {
@@ -72,8 +75,14 @@ export default function DataTrend() {
 
   const chartOptions = {
     responsive: true,
+    interaction: {
+      mode: 'index' as const,
+      intersect: false,
+    },
     plugins: {
       tooltip: {
+        mode: 'index' as const,
+        intersect: false,
         callbacks: {
           title: (tooltipItems: any) => {
             const date = dayjs(tooltipItems[0].label);
