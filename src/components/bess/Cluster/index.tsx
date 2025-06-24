@@ -3,6 +3,7 @@ import { useTheme } from "next-themes";
 import Card from "@/components/Card"
 import H3 from "@/components/Heading/H3"
 import Label from "@/components/Label"
+import { formatNumber } from "@/helpers/formatters"
 
 interface ClusterProps {
     className?: string;
@@ -31,12 +32,14 @@ export default function Cluster({
             onClick={onClick}
         >
             <div className="w-full md:w-[35%] md:!pr-3 !p-0  md:border-r border-color-border md:dark:border-color-border-dark">
-                <div className="flex items-center justify-between">
+                <div className="flex justify-between">
                     <H3 text={`Cluster ${data.cId}`} className="!mb-0" />
-                    <div className="flex items-center">
-                        {/* <div className="w-2 h-2 mr-2 rounded-full bg-color-second"></div> */}
-                        <div className={`w-1.5 h-1.5 mr-1.5 rounded-full ${data.runningStatus === 'Idle' ? "bg-color-fifth dark:bg-color-fifth-dark" : "bg-color-third dark:bg-color-third-dark"}`}></div>
-                        <div className={`${data.runningStatus === 'Idle' ? "text-color-fifth dark:text-color-fifth-dark" : "text-color-third dark:text-color-third-dark"}`}>{data.runningStatus}</div>
+                    <div>
+                        <Label text="Connection Status" className="text-sm" />
+                        <div className="flex items-center justify-end text-sm">
+                            <div className={`w-1.5 h-1.5 mr-1.5 rounded-full ${data.runningStatus === 'Idle' ? "bg-color-fifth dark:bg-color-fifth-dark" : "bg-color-third dark:bg-color-third-dark"}`}></div>
+                            <div className={`${data.runningStatus === 'Idle' ? "text-color-fifth dark:text-color-fifth-dark" : "text-color-third dark:text-color-third-dark"}`}>{data.runningStatus}</div>
+                        </div>
                     </div>
                 </div>
                 {/* <div>{data.runningStatus}</div> */}
@@ -51,11 +54,11 @@ export default function Cluster({
                 <div className="grid grid-cols-2 mb-6 md:mb-0 border-t border-b md:border-b-0 border-color-border dark:border-color-border-dark">
                     <div className="pt-2 pb-2 md:pb-0 px-2 border-r border-color-border dark:border-color-border-dark text-center">
                         <Label text="SOC" />
-                        <div>{data.SOC}%</div>
+                        <div>{formatNumber(data?.SOC, 1, '%')}</div>
                     </div>
                     <div className="pt-2 px-2 text-center">
                         <Label text="SOH" />
-                        <div>{data.SOH}%</div>
+                        <div>{formatNumber(data?.SOH, 1, '%')}</div>
                     </div>
                 </div>
             </div>
@@ -69,11 +72,11 @@ export default function Cluster({
                             </div>
                             <div className="px-0 md:px-2 py-2">
                                 <Label text="Total Voltage" />
-                                <div>{data.totalVoltage} V</div>
+                                <div>{formatNumber(data?.totalVoltage, 1, ' V')}</div>
                             </div>
                             <div className="px-0 md:px-2 py-2">
                                 <Label text="Total Current" />
-                                <div>{data.totalCurrent} A</div>
+                                <div>{formatNumber(data?.totalCurrent, 1, ' A')}</div>
                             </div>
                         </div>
                     </div>
@@ -82,15 +85,15 @@ export default function Cluster({
                         <div>
                             <div className="px-0 md:px-2 py-2">
                                 <Label text="Max Cell Temperature" />
-                                <div>{data.maxCellTemperature} °C</div>
+                                <div>{formatNumber(data?.maxCellTemperature, 1, ' °C')}</div>
                             </div>
                             <div className="px-0 md:px-2 py-2">
                                 <Label text="Min Cell Voltage" />
-                                <div>{data.minCellVoltage} V</div>
+                                <div>{formatNumber(data?.minCellVoltage, 1, ' V')}</div>
                             </div>
                             <div className="px-0 md:px-2 py-2">
                                 <Label text="Max Cell Voltage" />
-                                <div>{data.maxCellVoltage} V</div>
+                                <div>{formatNumber(data?.maxCellVoltage, 1, ' V')}</div>
                             </div>
                         </div>
                     </div>

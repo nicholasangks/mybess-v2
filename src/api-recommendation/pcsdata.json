@@ -1,0 +1,28 @@
+{
+  "totalChargeDaily": "100.00",
+  "totalDischargeDaily": "20.00",
+  "totalActivePower": "30.200",
+  "totalReactivePower": "0.200",
+  "totalApparentPower": "0.100",
+  "totalPowerFactor": "1.000",
+  "layers": [
+    {
+      "layer": 1,
+      "voltage": "213.400",
+      "current": "-31.200",
+      "activePower": "-10.020",
+      "reactivePower": "1.000",
+      "apparentPower": "0.010",
+      "powerFactor": "1.000"
+    },
+    {
+      "layer": 2,
+      "voltage": "214.300",
+      "current": "-33.100",
+      "activePower": "-9.980",
+      "reactivePower": "0.900",
+      "apparentPower": "0.020",
+      "powerFactor": "0.990"
+    }
+  ]
+}

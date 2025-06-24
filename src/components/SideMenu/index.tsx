@@ -10,6 +10,7 @@ export default function SideMenu() {
     const [themeReady, setThemeReady] = useState(false);
     const { theme } = useTheme();
     const [activeIndex, setActiveIndex] = useState(0);
+    const [openItems, setOpenItems] = useState<number[]>([]);
     const items = [
         {
             title: 'Overview',
@@ -17,38 +18,50 @@ export default function SideMenu() {
             link: '/overview'
         },
         {
-            title: 'BESS',
+            title: 'System',
             icon: 'icon-bess',
-            link: '/besses'
+            link: '/besses',
+            sublist: [
+                {
+                    title: 'Battery System',
+                    link: '/besses',
+                },
+                {
+                    title: 'PCS',
+                    link: '/pcs',
+                },
+                {
+                    title: 'Others',
+                    link: '/infrastructure',
+                },
+            ]
+        },
+        // {
+        //     title: 'PCS',
+        //     icon: 'icon-pcs',
+        //     link: '/pcs'
+        // },
+        {
+            title: 'Control',
+            icon: 'icon-control',
+            link: '/controlpanel'
         },
         {
-            title: 'PCS',
-            icon: 'icon-pcs',
-            link: '/pcs'
+            title: 'Alarm',
+            icon: 'icon-alarm',
+            link: '/alarms'
+        },
+        {
+            title: 'Data Trend',
+            icon: 'icon-data-trend',
+            link: '/datatrend'
         }
-        // {
-        //     title: 'Settings',
-        //     icon: 'icon-settings.svg',
-        //     link: '/settings',
-        //     sublist: [
-        //         {
-        //             title: 'Profile',
-        //             link: '/settings/profile'
-        //         },
-        //         {
-        //             title: 'Account',
-        //             link: '/settings/account'
-        //         }
-        //     ]
-        // }
     ]
 
-    const handleItemClick = (index: any) => {
-        // if (openItems.includes(index)) {
-        //     setOpenItems(openItems.filter((item) => item !== index));
-        // } else {
-        //     setOpenItems([...openItems, index]);
-        // }
+    const handleItemClick = (index: number) => {
+        setOpenItems((prev) =>
+            prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+        );
     };
 
     useEffect(() => {
@@ -63,35 +76,58 @@ export default function SideMenu() {
             <img src="/images/brand-assets/logo-short.png" alt="" className="block xl:hidden w-[70%] h-auto object-contain mx-auto" />
             <img src="/images/brand-assets/logo-full.png" alt="" className="hidden xl:block w-full h-auto object-contain" />
             <div className="mt-6 xl:mt-10">
-                {items.map((item: any, index: number) => (
+                {items.map((item, index) => (
                     <div key={index}>
                         {item.sublist ? (
                             <div>
-                                <div className="flex items-center py-3 cursor-pointer" onClick={() => handleItemClick(index)}>
+                                <div
+                                    className="flex items-center py-3 cursor-pointer"
+                                    onClick={() => handleItemClick(index)}
+                                >
                                     <div className="mr-2.5">
-                                        {themeReady
-                                            ? <img src={`/images/${item.icon}${theme === 'dark' ? '-dark.svg' : '.svg'}`} alt="" className="w-[25px] h-[25px]" />
-                                            : <img src={`/images/${item.icon}.svg`} alt="" className="w-[25px] h-[25px]" />
-                                        }
+                                        <img
+                                            src={`/images/${item.icon}${themeReady && theme === 'dark' ? '-dark.svg' : '.svg'}`}
+                                            alt=""
+                                            className="w-[24px] h-[24px]"
+                                        />
                                     </div>
-                                    <div className="text-color-foreground-light">{item.title}</div>
-                                    <FaAngleRight className="ml-auto" />
+                                    <div className="text-color-foreground-light dark:text-color-foreground-light-dark">{item.title}</div>
+                                    <FaAngleRight
+                                        className={`ml-auto text-color-foreground-light dark:text-color-foreground-light-dark transition-transform duration-200 ${openItems.includes(index) ? 'rotate-90' : ''
+                                            }`}
+                                    />
                                 </div>
+                                {openItems.includes(index) && (
+                                    <div className="ml-8 flex flex-col gap-2">
+                                        {item.sublist.map((sub, subIdx) => (
+                                            <Link href={sub.link} key={subIdx}>
+                                                <div className="text-sm text-color-foreground-light dark:text-color-foreground-light-dark hover:underline cursor-pointer py-1">
+                                                    {sub.title}
+                                                </div>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         ) : (
                             <Link href={item.link} key={index}>
-                                <div key={index} className="flex items-center justify-center xl:justify-normal py-3 cursor-pointer" onClick={() => setActiveIndex(index)}>
+                                <div
+                                    className="flex items-center justify-center xl:justify-normal py-3 cursor-pointer"
+                                    onClick={() => setActiveIndex(index)}
+                                >
                                     <div className="xl:mr-2.5">
-                                        {themeReady
-                                            ? <img src={`/images/${item.icon}${theme === 'dark' ? '-dark.svg' : '.svg'}`} alt="" className="w-[25px] h-[25px]" />
-                                            : <img src={`/images/${item.icon}.svg`} alt="" className="w-[25px] h-[25px]" />
-                                        }
+                                        <img
+                                            src={`/images/${item.icon}${themeReady && theme === 'dark' ? '-dark.svg' : '.svg'}`}
+                                            alt=""
+                                            className="w-[24px] h-[24px]"
+                                        />
                                     </div>
-                                    <div className={`hidden xl:block text-color-foreground-light dark:text-color-foreground-light-dark`}>{item.title}</div>
+                                    <div className="hidden xl:block text-color-foreground-light dark:text-color-foreground-light-dark">
+                                        {item.title}
+                                    </div>
                                 </div>
                             </Link>
                         )}
-
                     </div>
                 ))}
             </div>

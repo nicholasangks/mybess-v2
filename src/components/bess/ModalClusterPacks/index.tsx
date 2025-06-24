@@ -5,6 +5,8 @@ import H3 from '@/components/Heading/H3';
 import Label from '@/components/Label';
 import Battery from '../Battery';
 import { api } from '@/helpers/apiHelper';
+import Link from 'next/link';
+import { formatNumber } from '@/helpers/formatters';
 
 interface ModalClusterPacksProps {
     open: boolean;
@@ -14,7 +16,7 @@ interface ModalClusterPacksProps {
 
 async function getPacksData(cId: string) {
 
-    const res = await api('/battery/', 'GET');
+    const res = await api('/batterydata/', 'GET');
     const packs = [];
 
     if (res.hasOwnProperty("bess1")) {
@@ -35,7 +37,8 @@ async function getPacksData(cId: string) {
 }
 
 async function getClusterData(cId: string) {
-    const res = await api(`/bess1/${cId}/`, 'GET');
+    // const res = await api(`/bess1/${cId}/`, 'GET');
+    const res = await api(`/cluster1/`, 'GET');
     return res;
 }
 
@@ -66,9 +69,9 @@ export default function ModalCusterPacks({ open, setOpen, cId }: ModalClusterPac
                 <div className="lg:flex items-center justify-between w-[1000px] mx-auto">
                     <H3 text={`${cId}`} className="!mb-0 capitalize" />
                     <div className="lg:flex items-center">
-                        <div className="mr-5">Max cell voltage: {cluster.maxCellVoltage} V</div>
-                        <div className="mr-5">Max cell temperature: {cluster.maxCellTemperature} °C</div>
-                        <div>Alarm: {cluster.alarmCount}</div>
+                        <div className="mr-5">Max cell voltage: {formatNumber(cluster?.maxCellVoltage, 1, ' V')}</div>
+                        <div className="mr-5">Max cell temperature: {formatNumber(cluster?.maxCellTemperature, 1, ' °C')}</div>
+                        <div><Link href="/alarms">Alarm: {cluster?.alarmCount ?? '-'}</Link></div>
                     </div>
                 </div>
             </div>

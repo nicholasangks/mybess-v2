@@ -3,6 +3,7 @@ import { useTheme } from "next-themes";
 import Card from "@/components/Card"
 import H3 from "@/components/Heading/H3"
 import Label from "@/components/Label"
+import { formatNumber } from '@/helpers/formatters';
 
 interface PCProps {
     data: any;
@@ -21,8 +22,9 @@ export default function PC({ data, className }: PCProps) {
 
     return (
         <Card className="h-full items-center mb-4 md:mb-0">
-            <div className="md:grid md:grid-cols-10 md:items-center h-full">
-                <div className="flex items-center justify-center col-span-3 h-full py-0 md:pr-3 md:border-r border-color-border dark:border-color-border-dark text-center">
+            <div className="relative md:grid md:grid-cols-10 md:items-center h-full">
+                <div className="absolute top-0 right-0">{data?.runningStatus ?? '-'}</div>
+                <div className="relative flex items-center justify-center col-span-3 h-full py-0 md:pr-3 md:border-r border-color-border dark:border-color-border-dark text-center">
                     <div>
                         <div className="">
                             <H3 text="PCS 1" className="!mb-0" />
@@ -34,36 +36,46 @@ export default function PC({ data, className }: PCProps) {
                         }
                     </div>
                 </div>
-                <div className="grid grid-cols-2 md:col-span-7">
-                    <div className="md:pl-4 xl:pl-5">
-                        <div className="p-2.5">
-                            <Label text="Total Charge Daily" />
-                            <div>{data.totalChargeDaily} kWh</div>
-                        </div>
-                        <div className="p-2.5">
-                            <Label text="Total Discharge Daily" />
-                            <div>{data.totalDischargeDaily} kWh</div>
-                        </div>
-                        <div className="p-2.5">
-                            <Label text="Total Active Power" />
-                            <div>{data.totalActivePower} kW</div>
-                        </div>
+                <div className="grid grid-cols-3 gap-3.5 md:col-span-7">
+                    <div>
+                        <Label text="PCS Status" />
+                        <div>{data?.runningStatus ?? '-'}</div>
+                    </div>
+                    <div>
+                        <Label text="Mode" />
+                        <div>{data?.gridMode ?? '-'}</div>
+                    </div>
+                    <div>
+                        <Label text="Voltage" />
+                        <div>{formatNumber(data?.busVoltage, 1, ' V')}</div>
                     </div>
 
                     <div>
-                        <div className="p-2.5">
-                            <Label text="Total Reactive Power" />
-                            <div>{data.totalReactivePower} kVAR</div>
-                        </div>
-                        <div className="p-2.5">
-                            <Label text="Total Apparent Power" />
-                            <div>{data.totalApparentPower} kVA</div>
-                        </div>
+                        <Label text="Current" />
+                        <div>{formatNumber(data?.busCurrent, 1, ' A')}</div>
+                    </div>
+                    <div>
+                        <Label text="Power" />
+                        <div>{formatNumber(data?.busPower, 1, ' V')}</div>
+                    </div>
 
-                        <div className="p-2.5">
-                            <Label text="Total Power Factor" />
-                            <div>{data.totalPowerFactor}</div>
-                        </div>
+                    <div>
+                        <Label text="Frequency" />
+                        <div>{formatNumber(data?.acFrequency, 1, ' Hz')}</div>
+                    </div>
+
+                    <div>
+                        <Label text="DC Voltage" />
+                        <div>{formatNumber(data?.dcVoltage, 1, ' V')}</div>
+                    </div>
+
+                    <div>
+                        <Label text="DC Current" />
+                        <div>{formatNumber(data?.dcCurrent, 1, ' A')}</div>
+                    </div>
+                    <div>
+                        <Label text="DC Power" />
+                        <div>{formatNumber(data?.dcPower, 1, ' V')}</div>
                     </div>
                 </div>
             </div>

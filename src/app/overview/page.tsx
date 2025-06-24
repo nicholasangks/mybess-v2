@@ -2,17 +2,28 @@
 
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
+import Link from "next/link"
 import H1 from "@/components/Heading/H1"
+import H2 from "@/components/Heading/H2"
+import H3 from "@/components/Heading/H3"
 import Label from "@/components/Label"
 import Card from "@/components/Card"
 import { Table, TableThead, TableBody, TableRow, TableCell } from "@/components/Table"
 import { api } from "@/helpers/apiHelper"
 import { GiElectric } from "react-icons/gi";
+import { motion } from "framer-motion";
 // import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import PC from "@/components/bess/PC"
-import { motion } from "framer-motion";
 import useSWR from 'swr';
+import SocChart from "@/components/charts/SocChart"
+import PowerChart from "@/components/charts/PowerChart"
+// import SoHGaugeChart from "@/components/charts/SohGaugeChart"
+import GenericGaugeChart from "@/components/charts/GenericGaugeChart"
+import SemiCircleProgress from "@/components/SemiCircleProgress"
+import BarIndicator from "@/components/BarIndicator"
+import { LuArrowUpRight } from "react-icons/lu";
+import { formatNumber } from '@/helpers/formatters';
 
 async function getGeneralInfo() {
     const res = await api('/generalinfo/', 'GET');
@@ -24,10 +35,48 @@ async function getBessesData() {
     return res
 }
 
+async function getBess1Data() {
+    const res = await api('/bess1data/', 'GET');
+    return res
+}
+
 async function getPcsData() {
     const res = await api('/pcsdata/', 'GET');
     return res
 }
+
+async function getSocData() {
+    const res = await api('/soc/', 'GET');
+    return res
+}
+
+async function getPowerData() {
+    const res = await api('/power/', 'GET');
+    return res
+}
+
+async function getAlarmSummaryData() {
+    const res = await api('/alarmSummary/', 'GET');
+    return res
+}
+
+// To be delete
+const mockSocData = [
+    { timestamp: "00:00", soc: 0.0 },
+    { timestamp: "00:10", soc: 2.0 },
+    { timestamp: "00:20", soc: 3.0 },
+    { timestamp: "00:30", soc: 2.0 },
+    { timestamp: "00:40", soc: 4.0 },
+];
+
+// To be delete
+const mockPowerData = [
+    { timestamp: "00:00", power: 0.0 },
+    { timestamp: "00:10", power: 1.0 },
+    { timestamp: "00:20", power: 4.0 },
+    { timestamp: "00:30", power: 6.0 },
+    { timestamp: "00:40", power: 3.0 },
+];
 
 export default function Overview() {
     const [themeReady, setThemeReady] = useState(false);
@@ -35,10 +84,18 @@ export default function Overview() {
     const [info, setInfo] = useState<any>([]);
     const [besses, setBesses] = useState<any>([]);
     const [pc, setPc] = useState<any>([]);
+    const [soc, setSoc] = useState<any>([]);
+    const [power, setPower] = useState<any>([]);
+    const [alarmSummary, setAlarmSummary] = useState<any>([]);
+    const [bess1, setBess1] = useState<any>([]);
 
-    const { data: generalInfo, error: generalInfoError } = useSWR('generalInfo', getGeneralInfo, { refreshInterval: 5000 });
-    const { data: bessesData, error: bessesDataError } = useSWR('bessData', getBessesData, { refreshInterval: 5000 });
+    // const { data: generalInfo, error: generalInfoError } = useSWR('generalInfo', getGeneralInfo, { refreshInterval: 5000 });
+    // const { data: bessesData, error: bessesDataError } = useSWR('bessData', getBessesData, { refreshInterval: 5000 });
     const { data: pcData, error: pcDataError } = useSWR('pcsData', getPcsData, { refreshInterval: 5000 });
+    const { data: socData, error: socDataError } = useSWR('socData', getSocData, { fallbackData: mockSocData, refreshInterval: 5000 });
+    const { data: powerData, error: powerDataError } = useSWR('powerData', getPowerData, { fallbackData: mockPowerData, refreshInterval: 5000 });
+    const { data: alarmSummaryData, error: alarmSummaryDataError } = useSWR('alarmSummary', getAlarmSummaryData, { refreshInterval: 5000 });
+    const { data: bess1Data, error: bess1DataError } = useSWR('bess1Data', getBess1Data, { refreshInterval: 5000 });
 
     // const init = async () => {
     //     let generalInfo = await getGeneralInfo()
@@ -50,23 +107,33 @@ export default function Overview() {
     //     setPc(pcData)
     // }
 
+    // useEffect(() => {
+    //     // if (generalInfo && bessesData && pcData) {
+    //         // setInfo(generalInfo);
+    //         // setBesses(bessesData);
+    //         setPc(pcData);
+    //         setSoc(socData);
+    //         setPower(powerData);
+    //         setAlarmSummary(alarmSummaryData);
+    //         setBess1(bess1Data);
+    //     // }
+    // }, [generalInfo, bessesData, pcData, bess1Data]);
+
     useEffect(() => {
-        if (generalInfo && bessesData && pcData) {
-            setInfo(generalInfo);
-            setBesses(bessesData);
-            setPc(pcData);
-        }
-    }, [generalInfo, bessesData, pcData]);
+        // if (generalInfo && bessesData && pcData) {
+        setPc(pcData);
+        setSoc(socData);
+        setPower(powerData);
+        setAlarmSummary(alarmSummaryData);
+        setBess1(bess1Data);
+        // }
+    }, [pcData, socData, powerData, alarmSummaryData, bess1Data]);
 
     useEffect(() => {
         if (theme !== undefined) {
             setThemeReady(true);
         }
     }, [theme]);
-
-    // useEffect(() => {
-    //     init()
-    // }, []);
 
     return (
         <div>
@@ -75,95 +142,108 @@ export default function Overview() {
                 <div>Alarm: 0</div>
             </div>
 
-            <div className="w-full overflow-x-scroll">
-                <div className="relative w-[680px] h-[396px] mt-10 mb-6 mx-auto">
-                    <img src={`/images/overview-vector.png`} alt="" className="absolute w-full h-full mx-auto z-10" />
-                    {themeReady
-                        ? <img src={`/images/overview-grid-base${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-full h-full mx-auto" />
-                        : <img src={`/images/overview-grid-base.png`} alt="" className="w-full h-full mx-auto" />
-                    }
-                    {/* Grid to bess */}
-                    <div className="flex absolute top-[200px] left-[256px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-x-hidden">
-                        <motion.div
-                            className="absolute w-4 h-full bg-[#abab00] dark:bg-[#FFFF00]"
-                            initial={{ x: -10 }}
-                            animate={{ x: 100 }}
-                            transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
-                        ></motion.div>
-                    </div>
-
-
-                    {/* to end user */}
-                    <div className="absolute top-[190px] left-[380px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-hidden">
-                        <motion.div
-                            className="absolute w-4 h-full bg-color-third dark:bg-color-third-dark"
-                            initial={{ x: -10 }}
-                            animate={{ x: 100 }}
-                            transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
-                        ></motion.div>
-
-                        {/* Solar */}
-                        <motion.div
-                            className="absolute w-4 h-full bg-[#8080ff] dark:bg-[#dadaff]"
-                            initial={{ x: -15 }}
-                            animate={{ x: 100 }}
-                            transition={{ duration: 1.5, ease: "linear", repeat: Infinity, delay: 2 }}
-                        ></motion.div>
-                    </div>
-
-                    {/* pv */}
-                    <div className="absolute top-[120px] left-[396px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-hidden">
-                        <motion.div
-                            className="w-4 h-full bg-[#8080ff] dark:bg-[#dadaff]"
-                            initial={{ x: -10 }}
-                            animate={{ x: 100 }}
-                            transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
-                        ></motion.div>
-                    </div>
-
-
-                    <div className="absolute top-[50px] left-[360px] w-[2.5px] h-[280px] bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[60deg] overflow-hidden">
-                        {/* bess to end user */}
-                        <motion.div
-                            className="w-full h-4 bg-color-third dark:bg-color-third-dark"
-                            initial={{ y: 210 }}
-                            animate={{ y: 110 }}
-                            transition={{ duration: 1.5, ease: 'linear', repeat: Infinity }}
-                        ></motion.div>
-
-                        {/* pv */}
-                        <div
-                            className="absolute top-[32px] w-full h-[82px] bg-[#D2D2D2] dark:bg-[#8E8E8E] overflow-y-hidden">
+            <div className="grid grid-cols-[70%_30%] gap-3 mt-5">
+                {/* Flow Diagram */}
+                <div className="flex items-center w-full overflow-x-scroll">
+                    <div className="relative scale-[1] w-[680px] h-[396px] mt-10 mb-6 mx-auto">
+                        <img src={`/images/overview-vector.png`} alt="" className="absolute w-full h-full mx-auto z-10" />
+                        {themeReady
+                            ? <img src={`/images/overview-grid-base${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-full h-full mx-auto" />
+                            : <img src={`/images/overview-grid-base.png`} alt="" className="w-full h-full mx-auto" />
+                        }
+                        {/* Grid to bess */}
+                        <div className="flex absolute top-[200px] left-[256px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-x-hidden">
                             <motion.div
-                                className="absolute w-full h-4 bg-[#8080ff] dark:bg-[#dadaff]"
-                                initial={{ y: -15 }}
-                                animate={{ y: 82 }}
-                                transition={{ duration: 1.5, ease: "linear", repeat: Infinity, delay: 0.8 }}
+                                className="absolute w-4 h-full bg-[#abab00] dark:bg-[#FFFF00]"
+                                initial={{ x: -10 }}
+                                animate={{ x: 100 }}
+                                transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
+                            ></motion.div>
+                        </div>
+
+
+                        {/* to end user */}
+                        <div className="absolute top-[190px] left-[380px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-hidden">
+                            <motion.div
+                                className="absolute w-4 h-full bg-color-third dark:bg-color-third-dark"
+                                initial={{ x: -10 }}
+                                animate={{ x: 100 }}
+                                transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
+                            ></motion.div>
+
+                            {/* Solar */}
+                            <motion.div
+                                className="absolute w-4 h-full bg-[#8080ff] dark:bg-[#dadaff]"
+                                initial={{ x: -15 }}
+                                animate={{ x: 100 }}
+                                transition={{ duration: 1.5, ease: "linear", repeat: Infinity, delay: 2 }}
                             ></motion.div>
                         </div>
 
                         {/* pv */}
-                        {/* <motion.div
+                        <div className="absolute top-[120px] left-[396px] w-[62px] h-[2.5px] mx-auto bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[30deg] overflow-hidden">
+                            <motion.div
+                                className="w-4 h-full bg-[#8080ff] dark:bg-[#dadaff]"
+                                initial={{ x: -10 }}
+                                animate={{ x: 100 }}
+                                transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
+                            ></motion.div>
+                        </div>
+
+
+                        <div className="absolute top-[50px] left-[360px] w-[2.5px] h-[280px] bg-[#D2D2D2] dark:bg-[#8E8E8E] rotate-[60deg] overflow-hidden">
+                            {/* bess to end user */}
+                            <motion.div
+                                className="w-full h-4 bg-color-third dark:bg-color-third-dark"
+                                initial={{ y: 210 }}
+                                animate={{ y: 110 }}
+                                transition={{ duration: 1.5, ease: 'linear', repeat: Infinity }}
+                            ></motion.div>
+
+                            {/* pv */}
+                            <div
+                                className="absolute top-[32px] w-full h-[82px] bg-[#D2D2D2] dark:bg-[#8E8E8E] overflow-y-hidden">
+                                <motion.div
+                                    className="absolute w-full h-4 bg-[#8080ff] dark:bg-[#dadaff]"
+                                    initial={{ y: -15 }}
+                                    animate={{ y: 82 }}
+                                    transition={{ duration: 1.5, ease: "linear", repeat: Infinity, delay: 0.8 }}
+                                ></motion.div>
+                            </div>
+
+                            {/* pv */}
+                            {/* <motion.div
                             className="absolute w-full h-4 bg-color-third dark:bg-[#dadaff] z-10"
                             initial={{ y: 82 }}
                             animate={{ y: 250 }}
                             transition={{ duration: 2, ease: "linear", repeat: Infinity, delay: 1.6 }}
                         ></motion.div> */}
 
-                        {/* Grid to bess */}
-                        <div
-                            className="absolute bottom-[36px] w-full h-[50px] bg-[#D2D2D2] dark:bg-[#8E8E8E] overflow-y-hidden">
-                            <motion.div
-                                className="absolute w-full h-4 bg-[#abab00] dark:bg-[#FFFF00]"
-                                // initial={{ y: 173 }}
-                                // animate={{ y: 250 }}
-                                initial={{ y: -20 }}
-                                animate={{ y: 100 }}
-                                transition={{ duration: 1.5, ease: "linear", repeat: Infinity, delay: 0.8 }}
-                            ></motion.div>
+                            {/* Grid to bess */}
+                            <div
+                                className="absolute bottom-[36px] w-full h-[50px] bg-[#D2D2D2] dark:bg-[#8E8E8E] overflow-y-hidden">
+                                <motion.div
+                                    className="absolute w-full h-4 bg-[#abab00] dark:bg-[#FFFF00]"
+                                    // initial={{ y: 173 }}
+                                    // animate={{ y: 250 }}
+                                    initial={{ y: -20 }}
+                                    animate={{ y: 100 }}
+                                    transition={{ duration: 1.5, ease: "linear", repeat: Infinity, delay: 0.8 }}
+                                ></motion.div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                {/* Graph */}
+                <Card className="">
+                    <div className="mb-6">
+                        <SocChart data={socData} />
+                    </div>
+                    <div>
+                        <PowerChart data={powerData} />
+                    </div>
+                </Card>
             </div>
 
             <div className="flex md:hidden items-center justify-center mb-10 md:mb-0 text-center">
@@ -172,7 +252,187 @@ export default function Overview() {
                 <FiArrowRight className="w-6 h-6 text-color-foreground-light dark:text-color-foreground-light-dark" />
             </div>
 
-            <div className="w-full mt-6 overflow-x-scroll">
+            {/* Status of overall system */}
+            <div className="grid grid-cols-[70%_30%] gap-3 mt-3">
+                <Card>
+                    <H2 text="Status of overall system" className="" />
+                    <div className="grid grid-cols-2">
+                        <div className="grid grid-cols-2">
+                            <div className="p-2.5 pl-0">
+                                <Label text="Bess Status" />
+                                <div className="text-primary">{bess1?.runningStatus ?? '-'}</div>
+                            </div>
+                            <div className="p-2.5">
+                                <Label text="Grid Mode" />
+                                <div>{pc?.gridMode ?? '-'}</div>
+                            </div>
+                            <div className="p-2.5 pl-0">
+                                <Label text="Total Power" />
+                                <div>{formatNumber(bess1?.power, 1, ' kW')}</div>
+                            </div>
+                            <div className="p-2.5">
+                                <Label text="Total Current" />
+                                <div>{formatNumber(bess1?.totalCurrent, 1, ' kW')}</div>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-2">
+                            <div className="p-2.5">
+                                <Label text="SOC" />
+                                <div className="mb-6">{formatNumber(bess1?.SOC, 1, ' %')}</div>
+                                <BarIndicator percentage={bess1?.SOC ?? 0} />
+                            </div>
+                            <div className="p-2.5">
+                                <Label text="SOH" />
+                                <div className="mb-6">{formatNumber(bess1?.SOH, 1, ' %')}</div>
+                                <BarIndicator percentage={bess1?.SOH ?? 0} />
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+
+                <Card>
+                    <div className="flex justify-between">
+                        <H2 text="Alarms" className="" />
+                        <Link href="/alarms">
+                            <div className="flex items-center justify-center w-9 h-9 bg-background dark:bg-background-d rounded-full cursor-pointer">
+                                <LuArrowUpRight />
+                            </div>
+                        </Link>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2.5 mt-3">
+                        <div className="flex flex-col items-center justify-center">
+                            {/* Gauge with number inside */}
+                            <div className="relative w-full h-auto aspect-square">
+                                <svg viewBox="0 0 200 200" className="w-full h-full">
+                                    {/* Outer Circle */}
+                                    <circle
+                                        cx="100"
+                                        cy="100"
+                                        r="95"
+                                        fill="none"
+                                        stroke="#ffffff"
+                                        strokeWidth="3"
+                                        className="stroke-critical"
+                                    />
+
+                                    {/* Dashed Inner Circle */}
+                                    <circle
+                                        cx="100"
+                                        cy="100"
+                                        r="80"
+                                        fill="none"
+                                        stroke="white"
+                                        strokeWidth="2"
+                                        strokeDasharray="2,30"
+                                        strokeLinecap="round"
+                                        transform="rotate(-90 100 100)"
+                                        className="stroke-critical"
+                                    />
+                                </svg>
+
+                                {/* Centered number */}
+                                <div className="absolute inset-0 flex items-center justify-center z-10">
+                                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                                        <div className="text-center">
+                                            <Label text="Critical" />
+                                            <H3 text={alarmSummary?.critical ?? '-'} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Text below circle */}
+                            {/* <p className="mt-2 text-sm text-white opacity-70">Critical</p> */}
+                        </div>
+                        <div className="flex flex-col items-center justify-center">
+                            {/* Gauge with number inside */}
+                            <div className="relative w-full h-auto aspect-square">
+                                <svg viewBox="0 0 200 200" className="w-full h-full">
+                                    {/* Outer Circle */}
+                                    <circle
+                                        cx="100"
+                                        cy="100"
+                                        r="95"
+                                        fill="none"
+                                        stroke="#ffffff"
+                                        strokeWidth="3"
+                                        className="stroke-major"
+                                    />
+
+                                    {/* Dashed Inner Circle */}
+                                    <circle
+                                        cx="100"
+                                        cy="100"
+                                        r="80"
+                                        fill="none"
+                                        stroke="white"
+                                        strokeWidth="2"
+                                        strokeDasharray="2,30"
+                                        strokeLinecap="round"
+                                        transform="rotate(-90 100 100)"
+                                        className="stroke-major"
+                                    />
+                                </svg>
+
+                                {/* Centered number */}
+                                <div className="absolute inset-0 flex items-center justify-center z-10">
+                                    <div className="text-center">
+                                        <Label text="Major" />
+                                        <H3 text={alarmSummary?.major ?? '-'} />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Text below circle */}
+                            {/* <p className="mt-2 text-sm text-white opacity-70">Major</p> */}
+                        </div>
+                        <div className="flex flex-col items-center justify-center">
+                            {/* Gauge with number inside */}
+                            <div className="relative w-full h-auto aspect-square">
+                                <svg viewBox="0 0 200 200" className="w-full h-full">
+                                    {/* Outer Circle */}
+                                    <circle
+                                        cx="100"
+                                        cy="100"
+                                        r="95"
+                                        fill="none"
+                                        stroke="#ffffff"
+                                        strokeWidth="3"
+                                        className="stroke-warning"
+                                    />
+
+                                    {/* Dashed Inner Circle */}
+                                    <circle
+                                        cx="100"
+                                        cy="100"
+                                        r="80"
+                                        fill="none"
+                                        stroke="white"
+                                        strokeWidth="2"
+                                        strokeDasharray="2,30"
+                                        strokeLinecap="round"
+                                        transform="rotate(-90 100 100)"
+                                        className="stroke-warning"
+                                    />
+                                </svg>
+
+                                {/* Centered number */}
+                                <div className="absolute inset-0 flex items-center justify-center z-10">
+                                    <div className="text-center">
+                                        <Label text="Warning" />
+                                        <H3 text={alarmSummary?.warning ?? '-'} />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Text below circle */}
+                            {/* <p className="mt-2 text-sm text-white opacity-70">Warning</p> */}
+                        </div>
+                    </div>
+                </Card>
+            </div>
+
+            {/* <div className="w-full mt-6 overflow-x-scroll">
                 <Table className="!w-[1200px] lg:!w-full">
                     <TableThead>
                         <TableRow className="!bg-transparent">
@@ -189,8 +449,7 @@ export default function Overview() {
                     <TableBody>
                         {besses && Object.entries(besses).map(([bessKey, bessValue]: [string, any]) => (
                             <>
-                                {/* <Link href={`/besses/${bessValue.bId}`} className="absolute w-full h-full"></Link> */}
-                                <TableRow>
+                            <TableRow>
                                     <TableCell>
                                         <div className="flex items-center">
                                             <GiElectric className={`w-5 h-5 mr-1 ${bessValue.runningStatus === 'Idle' ? "fill-color-fifth dark:fill-color-fifth-dark" : "fill-color-third dark:fill-color-third-dark"}`} />
@@ -226,8 +485,8 @@ export default function Overview() {
                         ))}
                     </TableBody>
                 </Table>
-            </div>
-            <div className="lg:grid lg:grid-cols-10 gap-5 mt-8">
+            </div> */}
+            {/* <div className="lg:grid lg:grid-cols-10 gap-5 mt-8">
                 <div className="lg:col-span-6">
                     <PC data={pc} className="h-full" />
                 </div>
@@ -251,7 +510,7 @@ export default function Overview() {
                         <div>{info.numberOfCell}</div>
                     </Card>
                 </div>
-            </div>
+            </div> */}
         </div >
     )
 }

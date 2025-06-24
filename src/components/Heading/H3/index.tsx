@@ -3,8 +3,8 @@ interface H3Props {
     className?: string;
 }
 
-export default function H1({ text, className }: H3Props) {
+export default function H3({ text, className }: H3Props) {
     return (
-        <h3 className={`mb-3 font-medium${className ? ' ' + className : ''}`}>{text}</h3>
+        <h3 className={`text-[1.1rem] ${className ? ' ' + className : ''}`}>{text}</h3>
     )
 }

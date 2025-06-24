@@ -21,14 +21,15 @@
 
 body > * {
   font-family: var(--font-kanit);
-  font-size: 1rem;
+  /* font-family: var(--font-urbanist); */
+  font-size: 0.985rem;
   font-weight: 300;
   /* line-height: 1.5; */
 }
 
 @media screen and (min-width: 1920px) {
   body > * {
-    font-size: 1.075rem;
+    font-size: 1rem;
   }
 }
 

@@ -26,6 +26,28 @@ const Kanit = localFont({
   variable: '--font-kanit'
 })
 
+const Urbanist = localFont({
+  src: [
+    {
+      path: '../../public/fonts/Urbanist/Urbanist-Regular.ttf',
+      weight: '400',
+    },
+    {
+      path: '../../public/fonts/Urbanist/Urbanist-Medium.ttf',
+      weight: '500',
+    },
+    {
+      path: '../../public/fonts/Urbanist/Urbanist-Semibold.ttf',
+      weight: '600',
+    },
+    {
+      path: '../../public/fonts/Urbanist/Urbanist-Bold.ttf',
+      weight: '700',
+    }
+  ],
+  variable: '--font-urbanist',
+})
+
 export const metadata: Metadata = {
   title: "MyBess",
   description: "",
@@ -41,7 +63,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${Kanit.variable} 
+      <body className={`${Kanit.variable}  ${Urbanist.variable}
       bg-color-background dark:bg-color-background-dark 
       text-color-foreground dark:text-color-foreground-dark`}
       >

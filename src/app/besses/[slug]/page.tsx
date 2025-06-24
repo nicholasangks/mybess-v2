@@ -9,12 +9,12 @@ import Cluster from '@/components/bess/Cluster';
 import { api } from '@/helpers/apiHelper';
 
 async function getBessData() {
-    const res = await api('/bess1/', 'GET');
+    const res = await api('/bess1data/', 'GET');
     return res
 }
 
 async function getClusters() {
-    const res = await api('/battery/', 'GET');
+    const res = await api('/batterydata/', 'GET');
 
     const clusters = [];
     if (res.hasOwnProperty("bess1")) {
@@ -55,10 +55,10 @@ export default function BessDetails({ params }: { params: { slug: string } }) {
     return (
         <>
             <ModalCusterPacks open={openClusterModal} setOpen={setOpenClusterModal} cId={cId} />
-            <H1 text="Bess Details" />
-            <div className="md:grid md:grid-cols-3 3xl:grid-cols-4 gap-4 xl:gap-5">
+            <H1 text="Battery System" />
+            <div className="md:grid md:grid-cols-3 3xl:grid-cols-4 gap-4 xl:gap-3">
                 <div className="md:col-span-1">
-                    <Bess data={bess} />
+                    <Bess data={bess} withClusterVoltage={true} />
                 </div>
                 <div className="md:col-span-2 3xl:col-span-3 3xl:max-w-[700px]">
                     {clusters.map((cluster: any, index: number) => {

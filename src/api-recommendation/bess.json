@@ -1,0 +1,28 @@
+[
+  {
+    "name": "bess1",
+    "id": 1,
+    "runningStatus": "Charging",
+    "chargeDischargeState": "Charging",
+    "SOC": "30.00",
+    "SOH": "100.00",
+    "chargeCapacity": "133.00",
+    "dischargeCapacity": "111.00",
+    "power": "15.00",
+    "totalVoltage": "500.00",
+    "totalCurrent": "20.00"
+  },
+  {
+    "name": "bess2",
+    "id": 2,
+    "runningStatus": "Charging",
+    "chargeDischargeState": "Charging",
+    "SOC": "30.00",
+    "SOH": "100.00",
+    "chargeCapacity": "133.00",
+    "dischargeCapacity": "111.00",
+    "power": "15.00",
+    "totalVoltage": "500.00",
+    "totalCurrent": "20.00"
+  }
+]

@@ -1,0 +1,148 @@
+[
+  {
+    "name": "bess1",
+    "bId": 1,
+    "runningStatus": "Charging",
+    "chargeDischargeState": "Charging",
+    "SOC": "30.00",
+    "SOH": "100.00",
+    "chargeCapacity": "133.00",
+    "dischargeCapacity": "111.00",
+    "power": "15.00",
+    "totalVoltage": "500.00",
+    "totalCurrent": "20.00",
+    "clusters": [
+      {
+        "bId": 1,
+        "cId": 1,
+        "runningStatus": "Idle",
+        "chargeDischargeState": "Idle",
+        "SOC": "100.00",
+        "SOH": "100.00",
+        "totalVoltage": "0.02",
+        "totalCurrent": "0.03",
+        "maxCellVoltage": "3.130",
+        "minCellVoltage": "3.100",
+        "maxCellTemperature": "28.50",
+        "alarmCount": 0,
+        "packs": [
+          {
+            "bId": 1,
+            "cId": 1,
+            "pId": 1,
+            "maxCellVoltage": "3.600",
+            "minCellVoltage": "2.700",
+            "cells": [
+              {
+                "voltage": "3.048",
+                "temperature": "25.48"
+              },
+              {
+                "voltage": "3.047",
+                "temperature": "25.47"
+              },
+              {
+                "voltage": "3.046",
+                "temperature": "25.46"
+              }
+            ]
+          },
+          {
+            "bId": 1,
+            "cId": 1,
+            "pId": 2,
+            "maxCellVoltage": "3.600",
+            "minCellVoltage": "2.700",
+            "cells": [
+              {
+                "voltage": "3.048",
+                "temperature": "25.48"
+              },
+              {
+                "voltage": "3.047",
+                "temperature": "25.47"
+              },
+              {
+                "voltage": "3.046",
+                "temperature": "25.46"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "bess2",
+    "bId": 2,
+    "runningStatus": "Charging",
+    "chargeDischargeState": "Charging",
+    "SOC": "30.00",
+    "SOH": "100.00",
+    "chargeCapacity": "133.00",
+    "dischargeCapacity": "111.00",
+    "power": "15.00",
+    "totalVoltage": "500.00",
+    "totalCurrent": "20.00",
+    "clusters": [
+      {
+        "bId": 2,
+        "cId": 1,
+        "runningStatus": "Idle",
+        "chargeDischargeState": "Idle",
+        "SOC": "100.00",
+        "SOH": "100.00",
+        "totalVoltage": "0.02",
+        "totalCurrent": "0.03",
+        "maxCellVoltage": "3.130",
+        "minCellVoltage": "3.100",
+        "maxCellTemperature": "28.50",
+        "alarmCount": 0,
+        "packs": [
+          {
+            "bId": 1,
+            "cId": 1,
+            "pId": 1,
+            "maxCellVoltage": "3.600",
+            "minCellVoltage": "2.700",
+            "cells": [
+              {
+                "voltage": "3.048",
+                "temperature": "25.48"
+              },
+              {
+                "voltage": "3.047",
+                "temperature": "25.47"
+              },
+              {
+                "voltage": "3.046",
+                "temperature": "25.46"
+              }
+            ]
+          },
+          {
+            "bId": 1,
+            "cId": 1,
+            "pId": 2,
+            "maxCellVoltage": "3.600",
+            "minCellVoltage": "2.700",
+            "cells": [
+              {
+                "voltage": "3.048",
+                "temperature": "25.48"
+              },
+              {
+                "voltage": "3.047",
+                "temperature": "25.47"
+              },
+              {
+                "voltage": "3.046",
+                "temperature": "25.46"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

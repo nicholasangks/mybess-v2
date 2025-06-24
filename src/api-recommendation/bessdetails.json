@@ -1,0 +1,41 @@
+{
+  "name": "bess1",
+  "id": 1,
+  "runningStatus": "Charging",
+  "chargeDischargeState": "Charging",
+  "SOC": "30.00",
+  "SOH": "100.00",
+  "chargeCapacity": "133.00",
+  "dischargeCapacity": "111.00",
+  "power": "15.00",
+  "totalVoltage": "500.00",
+  "totalCurrent": "20.00",
+  "clusters": [
+    {
+      "id": 1,
+      "runningStatus": "Idle",
+      "chargeDischargeState": "Idle",
+      "SOC": "100.00",
+      "SOH": "100.00",
+      "totalVoltage": "0.02",
+      "totalCurrent": "0.03",
+      "maxCellVoltage": "3.130",
+      "minCellVoltage": "3.100",
+      "maxCellTemperature": "28.50",
+      "alarmCount": 0
+    },
+    {
+      "id": 2,
+      "runningStatus": "Idle",
+      "chargeDischargeState": "Idle",
+      "SOC": "100.00",
+      "SOH": "100.00",
+      "totalVoltage": "0.02",
+      "totalCurrent": "0.03",
+      "maxCellVoltage": "3.130",
+      "minCellVoltage": "3.100",
+      "maxCellTemperature": "28.50",
+      "alarmCount": 0
+    }
+  ]
+}

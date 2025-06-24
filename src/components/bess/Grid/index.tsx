@@ -3,6 +3,7 @@ import { useTheme } from "next-themes";
 import Card from "@/components/Card"
 import Label from "@/components/Label"
 import { motion } from "framer-motion"
+import { formatNumber } from '@/helpers/formatters'
 
 interface GridProps {
     data: any;
@@ -63,11 +64,11 @@ export default function Grid({ data }: GridProps) {
             <div className="grid grid-cols-2 border-t border-color-border dark:border-color-border-dark text-center">
                 <div className="pt-2.5 text-center border-r border-color-border dark:border-color-border-dark">
                     <Label text="Active Power" />
-                    <div>{data.activePower} kW</div>
+                    <div>{formatNumber(data?.activePowerCtrl, 1, ' kW')}</div>
                 </div>
                 <div className="pt-2.5 text-center">
                     <Label text="Power Factor" />
-                    <div>{data.powerFactor}</div>
+                    <div>{formatNumber(data?.powerFactorCtrl, 2)}</div>
                 </div>
             </div>
         </Card>
