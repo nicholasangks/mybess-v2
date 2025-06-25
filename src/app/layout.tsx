@@ -37,7 +37,7 @@ const Urbanist = localFont({
       weight: '500',
     },
     {
-      path: '../../public/fonts/Urbanist/Urbanist-Semibold.ttf',
+      path: '../../public/fonts/Urbanist/Urbanist-SemiBold.ttf',
       weight: '600',
     },
     {
