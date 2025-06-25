@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { api } from "@/helpers/apiHelper"
-import H1 from "@/components/Heading/H1";
+import ContentWrapper from '@/components/ContentWrapper';
 import H2 from '@/components/Heading/H2';
 import Card from '@/components/Card';
 import Label from '@/components/Label';
@@ -28,8 +28,7 @@ export default function Infrastructure() {
 
 
     return (
-        <div>
-            <H1 text="Infrastructure" />
+        <ContentWrapper title="Infrastructure" >
             <div className="grid grid-cols-5 gap-3">
                 {infrastructure?.Lcs && (
                     <Card className="col-span-3">
@@ -137,6 +136,6 @@ export default function Infrastructure() {
                     </Card>
                 </div>
             )}
-        </div>
+        </ContentWrapper>
     )
 }

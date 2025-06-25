@@ -4,4 +4,5 @@
 // export const API_BASEURL = "https://a8b2-60-52-203-161.ngrok-free.app/api";
 export const API_BASEURL = "http://127.0.0.1:8000/api";
 
+export const API_REFRESH_INTERVAL = 5000;
 

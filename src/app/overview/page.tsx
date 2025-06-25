@@ -3,27 +3,25 @@
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
 import Link from "next/link"
-import H1 from "@/components/Heading/H1"
 import H2 from "@/components/Heading/H2"
 import H3 from "@/components/Heading/H3"
 import Label from "@/components/Label"
 import Card from "@/components/Card"
 import { Table, TableThead, TableBody, TableRow, TableCell } from "@/components/Table"
 import { api } from "@/helpers/apiHelper"
-import { GiElectric } from "react-icons/gi";
 import { motion } from "framer-motion";
 // import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
-import PC from "@/components/bess/PC"
+// import PC from "@/components/bess/PC"
 import useSWR from 'swr';
 import SocChart from "@/components/charts/SocChart"
 import PowerChart from "@/components/charts/PowerChart"
 // import SoHGaugeChart from "@/components/charts/SohGaugeChart"
-import GenericGaugeChart from "@/components/charts/GenericGaugeChart"
-import SemiCircleProgress from "@/components/SemiCircleProgress"
 import BarIndicator from "@/components/BarIndicator"
 import { LuArrowUpRight } from "react-icons/lu";
 import { formatNumber } from '@/helpers/formatters';
+import { API_REFRESH_INTERVAL } from "@/constants/common"
+import ContentWrapper from "@/components/ContentWrapper"
 
 async function getGeneralInfo() {
     const res = await api('/generalinfo/', 'GET');
@@ -91,33 +89,11 @@ export default function Overview() {
 
     // const { data: generalInfo, error: generalInfoError } = useSWR('generalInfo', getGeneralInfo, { refreshInterval: 5000 });
     // const { data: bessesData, error: bessesDataError } = useSWR('bessData', getBessesData, { refreshInterval: 5000 });
-    const { data: pcData, error: pcDataError } = useSWR('pcsData', getPcsData, { refreshInterval: 5000 });
-    const { data: socData, error: socDataError } = useSWR('socData', getSocData, { fallbackData: mockSocData, refreshInterval: 5000 });
-    const { data: powerData, error: powerDataError } = useSWR('powerData', getPowerData, { fallbackData: mockPowerData, refreshInterval: 5000 });
-    const { data: alarmSummaryData, error: alarmSummaryDataError } = useSWR('alarmSummary', getAlarmSummaryData, { refreshInterval: 5000 });
-    const { data: bess1Data, error: bess1DataError } = useSWR('bess1Data', getBess1Data, { refreshInterval: 5000 });
-
-    // const init = async () => {
-    //     let generalInfo = await getGeneralInfo()
-    //     let bessesData = await getBessesData()
-    //     let pcData = await getPcsData()
-
-    //     setInfo(generalInfo)
-    //     setBesses(bessesData)
-    //     setPc(pcData)
-    // }
-
-    // useEffect(() => {
-    //     // if (generalInfo && bessesData && pcData) {
-    //         // setInfo(generalInfo);
-    //         // setBesses(bessesData);
-    //         setPc(pcData);
-    //         setSoc(socData);
-    //         setPower(powerData);
-    //         setAlarmSummary(alarmSummaryData);
-    //         setBess1(bess1Data);
-    //     // }
-    // }, [generalInfo, bessesData, pcData, bess1Data]);
+    const { data: pcData, error: pcDataError } = useSWR('pcsData', getPcsData, { refreshInterval: API_REFRESH_INTERVAL });
+    const { data: socData, error: socDataError } = useSWR('socData', getSocData, { fallbackData: mockSocData, refreshInterval: API_REFRESH_INTERVAL });
+    const { data: powerData, error: powerDataError } = useSWR('powerData', getPowerData, { fallbackData: mockPowerData, refreshInterval: API_REFRESH_INTERVAL });
+    const { data: alarmSummaryData, error: alarmSummaryDataError } = useSWR('alarmSummary', getAlarmSummaryData, { refreshInterval: API_REFRESH_INTERVAL });
+    const { data: bess1Data, error: bess1DataError } = useSWR('bess1Data', getBess1Data, { refreshInterval: API_REFRESH_INTERVAL });
 
     useEffect(() => {
         // if (generalInfo && bessesData && pcData) {
@@ -136,13 +112,8 @@ export default function Overview() {
     }, [theme]);
 
     return (
-        <div>
-            <div className="flex items-center justify-between">
-                <H1 text="Bess Site Overview" className="!mb-0" />
-                <div>Alarm: 0</div>
-            </div>
-
-            <div className="grid grid-cols-[70%_30%] gap-3 mt-5">
+        <ContentWrapper title="Bess Site Overview">
+            <div className="grid grid-cols-[70%_30%] gap-3">
                 {/* Flow Diagram */}
                 <div className="flex items-center w-full overflow-x-scroll">
                     <div className="relative scale-[1] w-[680px] h-[396px] mt-10 mb-6 mx-auto">
@@ -511,6 +482,6 @@ export default function Overview() {
                     </Card>
                 </div>
             </div> */}
-        </div >
+        </ContentWrapper >
     )
 }

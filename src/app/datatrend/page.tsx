@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import H1 from '@/components/Heading/H1';
+import ContentWrapper from '@/components/ContentWrapper';
 import Label from '@/components/Label';
 import { api } from '@/helpers/apiHelper';
 import { Line } from 'react-chartjs-2';
@@ -227,98 +227,98 @@ export default function DataTrend() {
     };
 
     return (
-        <div className="p-10">
-            <H1 text="Data Trend" />
-
-            <div className="flex items-end justify-between gap-6 mb-10">
-                <div className="flex gap-10">
-                    <div>
-                        <Label text="Date" className="mb-1" />
-                        <div className="flex items-center h-[2.2rem] rounded-md bg-muted dark:bg-muted-d px-3">
-                            <div className="flex items-center justify-center h-[2.3rem] mr-1">
-                                <LuCalendar className="text-[1rem] text-muted-foreground dark:text-muted-foreground-d" />
-                            </div>
-                            <div className="flex gap-0 items-center w-full">
-                                <DatePicker
-                                    selected={startDate}
-                                    onChange={(date) => setStartDate(date)}
-                                    selectsStart
-                                    startDate={startDate}
-                                    endDate={endDate}
-                                    placeholderText="Start Date"
-                                    className="w-[6rem] h-full bg-transparent text-center outline-none text-foreground placeholder-muted-foreground dark:placeholder-muted-foreground-d"
-                                    dateFormat="yyyy-MM-dd"
-                                />
-                                <span className="text-muted-foreground">
-                                    <LuArrowRight />
-                                </span>
-                                <DatePicker
-                                    selected={endDate}
-                                    onChange={(date) => setEndDate(date)}
-                                    selectsEnd
-                                    startDate={startDate}
-                                    endDate={endDate}
-                                    minDate={startDate ?? undefined} 
-                                    placeholderText="End Date"
-                                    className="max-w-[6rem] h-full bg-transparent text-center outline-none text-foreground placeholder-muted-foreground dark:placeholder-muted-foreground-d"
-                                    dateFormat="yyyy-MM-dd"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="grid grid-cols-3 gap-3">
-                        {selectedData.map((_, index) => (
-                            <div key={index}>
-                                <Label text={`Data${index + 1}`} className="mb-1" />
-                                <div className="relative">
-                                    <select
-                                        value={selectedData[index]}
-                                        onChange={(e) => {
-                                            const updated = [...selectedData];
-                                            updated[index] = e.target.value;
-                                            setSelectedData(updated);
-                                        }}
-                                        className="w-full h-[2.2rem] px-3 pr-8 rounded-md bg-muted dark:bg-muted-d cursor-pointer outline-none appearance-none"
-                                    >
-                                        {DATA_OPTIONS.map((opt) => (
-                                            <option key={opt} value={opt} className="bg-muted dark:bg-muted-d">{opt}</option>
-                                        ))}
-                                    </select>
-                                    <div className="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 text-sm text-white">
-                                        <LuChevronDown />
-                                    </div>
+        <ContentWrapper title="Data Trend">
+            <div className="px-10 py-5">
+                <div className="flex items-end justify-between gap-6 mb-10">
+                    <div className="flex gap-10">
+                        <div>
+                            <Label text="Date" className="mb-1" />
+                            <div className="flex items-center h-[2.2rem] rounded-md bg-muted dark:bg-muted-d px-3">
+                                <div className="flex items-center justify-center h-[2.3rem] mr-1">
+                                    <LuCalendar className="text-[1rem] text-muted-foreground dark:text-muted-foreground-d" />
+                                </div>
+                                <div className="flex gap-0 items-center w-full">
+                                    <DatePicker
+                                        selected={startDate}
+                                        onChange={(date) => setStartDate(date)}
+                                        selectsStart
+                                        startDate={startDate}
+                                        endDate={endDate}
+                                        placeholderText="Start Date"
+                                        className="w-[6rem] h-full bg-transparent text-center outline-none text-foreground placeholder-muted-foreground dark:placeholder-muted-foreground-d"
+                                        dateFormat="yyyy-MM-dd"
+                                    />
+                                    <span className="text-muted-foreground">
+                                        <LuArrowRight />
+                                    </span>
+                                    <DatePicker
+                                        selected={endDate}
+                                        onChange={(date) => setEndDate(date)}
+                                        selectsEnd
+                                        startDate={startDate}
+                                        endDate={endDate}
+                                        minDate={startDate ?? undefined}
+                                        placeholderText="End Date"
+                                        className="max-w-[6rem] h-full bg-transparent text-center outline-none text-foreground placeholder-muted-foreground dark:placeholder-muted-foreground-d"
+                                        dateFormat="yyyy-MM-dd"
+                                    />
                                 </div>
                             </div>
-                        ))}
+                        </div>
+                        <div className="grid grid-cols-3 gap-3">
+                            {selectedData.map((_, index) => (
+                                <div key={index}>
+                                    <Label text={`Data${index + 1}`} className="mb-1" />
+                                    <div className="relative">
+                                        <select
+                                            value={selectedData[index]}
+                                            onChange={(e) => {
+                                                const updated = [...selectedData];
+                                                updated[index] = e.target.value;
+                                                setSelectedData(updated);
+                                            }}
+                                            className="w-full h-[2.2rem] px-3 pr-8 rounded-md bg-muted dark:bg-muted-d cursor-pointer outline-none appearance-none"
+                                        >
+                                            {DATA_OPTIONS.map((opt) => (
+                                                <option key={opt} value={opt} className="bg-muted dark:bg-muted-d">{opt}</option>
+                                            ))}
+                                        </select>
+                                        <div className="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 text-sm text-white">
+                                            <LuChevronDown />
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={() => fetchTrendingData()}
+                            className="min-w-[6.5rem] h-[2.1rem] px-3 rounded-md bg-primary"
+                            disabled={selectedData.every(d => d === 'None')}
+                        >
+                            Apply
+                        </button>
+                        <button
+                            onClick={exportToCSV}
+                            className="min-w-[6.5rem] h-[2.2rem] px-3 rounded-md text-white border border-white/20"
+                            disabled={!labels.length || !datasets.length}
+                        >
+                            Export CSV
+                        </button>
                     </div>
                 </div>
-                <div className="flex items-center gap-2">
-                    <button
-                        onClick={() => fetchTrendingData()}
-                        className="min-w-[6.5rem] h-[2.1rem] px-3 rounded-md bg-primary"
-                        disabled={selectedData.every(d => d === 'None')}
-                    >
-                        Apply
-                    </button>
-                    <button
-                        onClick={exportToCSV}
-                        className="min-w-[6.5rem] h-[2.2rem] px-3 rounded-md text-white border border-white/20"
-                        disabled={!labels.length || !datasets.length}
-                    >
-                        Export CSV
-                    </button>
-                </div>
-            </div>
 
-            {loading ? (
-                <p className="mt-4">Loading...</p>
-            ) : errorMessage ? (
-                <p className="mt-4 text-red-500">{errorMessage}</p>
-            ) : (
-                <div className="mt-10">
-                    <Line data={chartData} options={chartOptions} />
-                </div>
-            )}
-        </div>
+                {loading ? (
+                    <p className="mt-4">Loading...</p>
+                ) : errorMessage ? (
+                    <p className="mt-4 text-red-500">{errorMessage}</p>
+                ) : (
+                    <div className="mt-10">
+                        <Line data={chartData} options={chartOptions} />
+                    </div>
+                )}
+            </div>
+        </ContentWrapper>
     );
 }

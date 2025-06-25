@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import H1 from "@/components/Heading/H1";
+import ContentWrapper from "@/components/ContentWrapper";
 import Label from "@/components/Label";
 import { api } from "@/helpers/apiHelper";
 import { LuPower } from "react-icons/lu";
@@ -89,9 +89,7 @@ export default function ControlPanel() {
     }, []);
 
     return (
-        <div>
-            <H1 text="Control Panel" />
-
+        <ContentWrapper title="Control Panel">
             <div className="max-w-[750px] mt-[5rem] mx-auto">
                 {/* Operation */}
                 <div className="flex items-center">
@@ -167,6 +165,6 @@ export default function ControlPanel() {
                     onCloseAction={() => setModalData(null)}
                 />
             )}
-        </div>
+        </ContentWrapper>
     );
 }

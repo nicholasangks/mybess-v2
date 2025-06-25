@@ -69,9 +69,9 @@ export default function RootLayout({
       >
         <Providers>
           {/* <Header /> */}
-          <ContentWrapper>
+          {/* <ContentWrapper> */}
             {children}
-          </ContentWrapper>
+          {/* </ContentWrapper> */}
         </Providers>
       </body>
     </html>

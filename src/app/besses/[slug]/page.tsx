@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import H1 from '@/components/Heading/H1';
-import H3 from '@/components/Heading/H3'
+import ContentWrapper from '@/components/ContentWrapper';
 import ModalCusterPacks from '@/components/bess/ModalClusterPacks';
 import Bess from "@/components/bess/Bess"
 import Cluster from '@/components/bess/Cluster';
@@ -53,9 +52,8 @@ export default function BessDetails({ params }: { params: { slug: string } }) {
     }, []);
 
     return (
-        <>
+        <ContentWrapper title="Battery System">
             <ModalCusterPacks open={openClusterModal} setOpen={setOpenClusterModal} cId={cId} />
-            <H1 text="Battery System" />
             <div className="md:grid md:grid-cols-3 3xl:grid-cols-4 gap-4 xl:gap-3">
                 <div className="md:col-span-1">
                     <Bess data={bess} withClusterVoltage={true} />
@@ -70,6 +68,6 @@ export default function BessDetails({ params }: { params: { slug: string } }) {
                     })}
                 </div>
             </div>
-        </>
+        </ContentWrapper>
     )
 }

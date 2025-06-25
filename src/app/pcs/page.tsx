@@ -1,15 +1,16 @@
 'use client';
 
 import { useEffect, useState } from "react"
-import H1 from "@/components/Heading/H1"
 import Label from "@/components/Label"
 import PC from "@/components/bess/PC"
-import Grid from "@/components/bess/Grid"
-import { Table, TableThead, TableBody, TableRow, TableCell } from "@/components/Table"
+// import Grid from "@/components/bess/Grid"
+// import { Table, TableThead, TableBody, TableRow, TableCell } from "@/components/Table"
 import { api } from "@/helpers/apiHelper"
 import useSWR from "swr";
 import { DataListWrapper, DataList, DataCell } from "@/components/DataList"
 import { formatNumber } from '@/helpers/formatters';
+import { API_REFRESH_INTERVAL } from "@/constants/common";
+import ContentWrapper from "@/components/ContentWrapper";
 
 async function getPcData() {
     const res = await api('/pcsdata/', 'GET');
@@ -25,8 +26,8 @@ export default function Pcs() {
     const [pc, setPc] = useState<any>([])
     const [pcsControl, setPcsControl] = useState<any>([])
 
-    const { data: pcsData, error: pcsError } = useSWR('pcsData', getPcData, { refreshInterval: 5000 });
-    const { data: pcsControlData, error: pcsControlError } = useSWR('pcsControl', getPcsControl, { refreshInterval: 5000 });
+    const { data: pcsData, error: pcsError } = useSWR('pcsData', getPcData, { refreshInterval: API_REFRESH_INTERVAL });
+    const { data: pcsControlData, error: pcsControlError } = useSWR('pcsControl', getPcsControl, { refreshInterval: API_REFRESH_INTERVAL });
 
     useEffect(() => {
         if (pcsData && pcsControlData) {
@@ -35,21 +36,8 @@ export default function Pcs() {
         }
     }, [pcsData, pcsControlData]);
 
-    // const init = async () => {
-    //     let _pc = await getPcData()
-    //     let _pcsControl = await getPcsControl()
-
-    //     setPc(_pc)
-    //     setPcsControl(_pcsControl)
-    // }
-
-    // useEffect(() => {
-    //     init()
-    // }, []);
-
     return (
-        <div>
-            <H1 text="PCS" />
+        <ContentWrapper title="PCS">
             <div className="">
                 <div className="md:grid lg:grid-cols-10 3xl:max-w-[1900px] gap-4 xl:gap-5">
                     <div className="md:col-span-7">
@@ -289,6 +277,6 @@ export default function Pcs() {
                     </Table> */}
                 </div>
             </div>
-        </div>
+        </ContentWrapper>
     )
 }

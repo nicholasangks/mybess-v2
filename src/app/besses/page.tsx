@@ -3,15 +3,14 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Card from "@/components/Card";
-import H1 from "@/components/Heading/H1"
-import H3 from "@/components/Heading/H3"
+import ContentWrapper from "@/components/ContentWrapper";
 import Label from "@/components/Label";
-import LineChart from "@/components/LineChart"
 import Bess from "@/components/bess/Bess"
 import { api } from "@/helpers/apiHelper"
 import useSWR from "swr";
 import { formatNumber } from '@/helpers/formatters';
 import { LuArrowUpRight } from "react-icons/lu";
+import { API_REFRESH_INTERVAL } from "@/constants/common";
 
 async function getBessesData() {
     const res = await api('/batterydata/', 'GET');
@@ -27,8 +26,8 @@ export default function Besses() {
     const [besses, setBesses] = useState<any>([]);
     const [bess1, setBess1] = useState<any>([]);
 
-    const { data: bessesData, error: bessesError } = useSWR('bessData', getBessesData, { refreshInterval: 5000 });
-    const { data: bess1Data, error: bess1Error } = useSWR('bess1Data', getBess1Data, { refreshInterval: 5000 });
+    const { data: bessesData, error: bessesError } = useSWR('bessData', getBessesData, { refreshInterval: API_REFRESH_INTERVAL });
+    const { data: bess1Data, error: bess1Error } = useSWR('bess1Data', getBess1Data, { refreshInterval: API_REFRESH_INTERVAL });
 
     useEffect(() => {
         setBesses(bessesData);
@@ -36,23 +35,7 @@ export default function Besses() {
     }, [bessesData, bess1Data]);
 
     return (
-        <div>
-            <H1 text="Battery System" />
-            {/* <div className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-5 mb-4 xl:mb-5">
-                <Card className="mb-3 md:mb-0">
-                    <H3 text="Current" />
-                    <LineChart />
-                </Card>
-                <Card className="mb-3 md:mb-0">
-                    <H3 text="State of charge" />
-                    <LineChart />
-                </Card>
-                <Card className="mb-3 md:mb-0">
-                    <H3 text="Power" />
-                    <LineChart />
-                </Card>
-            </div > */}
-
+        <ContentWrapper title="Battery System">
             {/* Top */}
             <div className="grid grid-cols-12 gap-3 mb-3">
                 <Card className="col-span-7">
@@ -93,7 +76,7 @@ export default function Besses() {
                         </div>
                         <div>
                             <Label text="Alarm" />
-                            <Link href="/alarms" className="flex items-center cursor-pointer">
+                            <Link href="/alarms?type=BMS" className="flex items-center cursor-pointer">
                                 {bess1?.totalAlarmCount ?? '-'}
                                 <LuArrowUpRight className="ml-2 text-color-foreground-light dark:text-color-foreground-light-dark" />
                             </Link>
@@ -135,6 +118,6 @@ export default function Besses() {
                     </>
                 ))}
             </div>
-        </div >
+        </ContentWrapper >
     )
 }

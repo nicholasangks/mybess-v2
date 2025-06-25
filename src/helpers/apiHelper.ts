@@ -1,4 +1,5 @@
 import { API_BASEURL } from "@/constants/common";
+import { useGlobalStore } from "@/stores/useGlobalStore";
 
 // export async function api(
 //   endpoint: string,
@@ -30,7 +31,6 @@ import { API_BASEURL } from "@/constants/common";
 //   }
 // }
 
-
 export async function api(
   endpoint: string,
   method: "GET" | "POST" = "GET",
@@ -43,7 +43,7 @@ export async function api(
       headers: {
         ...headers,
         "Content-Type": "application/json",
-        // "ngrok-skip-browser-warning": "true", // Add this line
+        // "ngrok-skip-browser-warning": "true",
         Authorization: "Token 29d4c682a6c0748257a233c4a76a2e79b75b98e8",
       },
       body: body ? JSON.stringify(body) : null,
@@ -52,6 +52,9 @@ export async function api(
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
+
+    // Update global timestamp
+    useGlobalStore.getState().setLastUpdateTime(new Date());
 
     // return response;
     return await response.json();
