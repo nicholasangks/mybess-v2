@@ -28,7 +28,7 @@ export default function Modal({ open, setOpen, children }: ModalProps) {
         <>
             {open &&
                 <div className="fixed top-0 left-0 w-screen h-screen bg-black/[0.4] backdrop-blur z-50">
-                    <div ref={modalRef} className="absolute top-0 bottom-0 left-0 right-0 w-[90%] h-[95%] lg:h-[90%] m-auto  bg-color-background dark:bg-color-background-dark overflow-y-scroll overflow-x-hidden scrollbar scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                    <div ref={modalRef} className="absolute top-0 bottom-0 left-0 right-0 w-[90%] h-[95%] lg:h-[90%] m-auto  bg-background overflow-y-scroll overflow-x-hidden scrollbar scrollbar-thumb-gray-300 scrollbar-track-gray-100">
                         {children}
                     </div>
                 </div>

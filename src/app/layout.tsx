@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import Providers from './providers'
-import ContentWrapper from "@/components/ContentWrapper";
 import "./globals.css";
 
 const Kanit = localFont({
@@ -63,15 +62,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${Kanit.variable}  ${Urbanist.variable}
-      bg-color-background dark:bg-color-background-dark 
-      text-color-foreground dark:text-color-foreground-dark`}
+      <body className={`${Kanit.variable} ${Urbanist.variable} 
+      bg-background text-foreground`}
       >
         <Providers>
-          {/* <Header /> */}
-          {/* <ContentWrapper> */}
-            {children}
-          {/* </ContentWrapper> */}
+          {children}
         </Providers>
       </body>
     </html>

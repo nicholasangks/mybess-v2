@@ -228,14 +228,14 @@ export default function DataTrend() {
 
     return (
         <ContentWrapper title="Data Trend">
-            <div className="px-10 py-5">
+            <div className="px-0 py-5">
                 <div className="flex items-end justify-between gap-6 mb-10">
                     <div className="flex gap-10">
                         <div>
                             <Label text="Date" className="mb-1" />
-                            <div className="flex items-center h-[2.2rem] rounded-md bg-muted dark:bg-muted-d px-3">
+                            <div className="flex items-center h-[2.2rem] rounded-md bg-muted px-3">
                                 <div className="flex items-center justify-center h-[2.3rem] mr-1">
-                                    <LuCalendar className="text-[1rem] text-muted-foreground dark:text-muted-foreground-d" />
+                                    <LuCalendar className="text-[1rem] text-muted-foreground" />
                                 </div>
                                 <div className="flex gap-0 items-center w-full">
                                     <DatePicker
@@ -245,7 +245,7 @@ export default function DataTrend() {
                                         startDate={startDate}
                                         endDate={endDate}
                                         placeholderText="Start Date"
-                                        className="w-[6rem] h-full bg-transparent text-center outline-none text-foreground placeholder-muted-foreground dark:placeholder-muted-foreground-d"
+                                        className="w-[6rem] h-full bg-transparent text-center outline-none text-foreground placeholder-muted-foreground"
                                         dateFormat="yyyy-MM-dd"
                                     />
                                     <span className="text-muted-foreground">
@@ -259,7 +259,7 @@ export default function DataTrend() {
                                         endDate={endDate}
                                         minDate={startDate ?? undefined}
                                         placeholderText="End Date"
-                                        className="max-w-[6rem] h-full bg-transparent text-center outline-none text-foreground placeholder-muted-foreground dark:placeholder-muted-foreground-d"
+                                        className="max-w-[6rem] h-full bg-transparent text-center outline-none text-foreground placeholder-muted-foreground"
                                         dateFormat="yyyy-MM-dd"
                                     />
                                 </div>
@@ -277,10 +277,10 @@ export default function DataTrend() {
                                                 updated[index] = e.target.value;
                                                 setSelectedData(updated);
                                             }}
-                                            className="w-full h-[2.2rem] px-3 pr-8 rounded-md bg-muted dark:bg-muted-d cursor-pointer outline-none appearance-none"
+                                            className="w-full h-[2.2rem] px-3 pr-8 rounded-md bg-muted cursor-pointer outline-none appearance-none"
                                         >
                                             {DATA_OPTIONS.map((opt) => (
-                                                <option key={opt} value={opt} className="bg-muted dark:bg-muted-d">{opt}</option>
+                                                <option key={opt} value={opt} className="bg-muted">{opt}</option>
                                             ))}
                                         </select>
                                         <div className="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 text-sm text-white">

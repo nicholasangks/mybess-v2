@@ -7,6 +7,7 @@ import { DataListWrapper, DataList, DataCell } from "@/components/DataList"
 import { GiElectric } from "react-icons/gi";
 import { motion } from "framer-motion";
 import { formatNumber } from "@/helpers/formatters"
+import BatteryBar from "@/components/BatteryBar";
 
 interface BessProps {
     data: any;
@@ -16,18 +17,8 @@ interface BessProps {
 export default function Bess({ data, withClusterVoltage }: BessProps) {
     const [themeReady, setThemeReady] = useState(false);
     const { theme } = useTheme();
-    // const test = "10"
 
     useEffect(() => {
-        // if(data){
-        //     console.log(data.SOC)
-        //     console.log(parseInt("99"))
-        //     if(parseInt(data.SOC) < 50){
-        //         console.log("les")
-        //     }else{
-        //         console.log("mor")
-        //     }
-        // }
         if (theme !== undefined) {
             setThemeReady(true);
         }
@@ -42,14 +33,13 @@ export default function Bess({ data, withClusterVoltage }: BessProps) {
                         {
                             data.runningStatus !== 'Idle' &&
                             <motion.div
-                                className="h-6 w-6 mr-1.5 border-t-2 border-l-2 border-color-third-dark rounded-full overflow-hidden"
+                                className="flex items-center justify-center h-8 w-8 mr-1.5 border-t border-l border-accent-a rounded-full overflow-hidden"
                                 animate={{ rotate: [0, 360] }}
                                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                             ></motion.div>
                         }
-                        <GiElectric className={`w-4 h-4 ${data.runningStatus === 'Idle' ? "fill-color-fifth dark:fill-color-fifth-dark" : "absolute left-1 fill-color-third dark:fill-color-third-dark"}`} />
-                        {/* <GiElectric className={`w-5 h-5 mr-0.5 ${data.runningStatus === 'Idle' ? "fill-color-fifth dark:fill-color-fifth-dark" : "fill-color-third dark:fill-color-third-dark"}`} /> */}
-                        <div className={`text-sm ${data.runningStatus === 'Idle' ? "text-color-fifth dark:text-color-fifth-dark" : "text-color-third dark:text-color-third-dark"}`}>{data.runningStatus}</div>
+                        <GiElectric className={`w-4 h-4 ${data.runningStatus === 'Idle' ? "fill-muted" : "absolute left-2 fill-accent-a"}`} />
+                        <div className={`ml-1 text-sm ${data.runningStatus === 'Idle' ? "text-muted-foreground" : "text-accent-a"}`}>{data.runningStatus}</div>
                     </div>
                 </div>
                 {/* <div>{data.chargeDischargeState}</div> */}
@@ -61,25 +51,13 @@ export default function Bess({ data, withClusterVoltage }: BessProps) {
                     <div className="flex justify-between items-center w-full mt-4 mb-10">
                         <div className="w-50%">
                             <Label text="SOC" />
-                            <div>{formatNumber(data?.SOC, 1, '%')}</div>
-                            <div className="w-full h-[0.21rem] mt-1 bg-[#bfbfbf] dark:bg-color-fifth-dark">
-                                <div className={`h-full ${parseInt(data.SOC) <= 10 ? "bg-color-fourth dark:bg-color-fourth-dark" : parseInt(data.SOC) <= 30 ? "bg-color-six dark:bg-color-six-dark" : "bg-color-third dark:bg-color-third-dark"}`}
-                                    style={{ width: parseInt(data.SOC) + '%' }}>
-                                </div>
-
-                                {/* <div className={`h-full ${parseInt(test) <= 10 ? "bg-color-fourth dark:bg-color-fourth-dark" : parseInt(test) <= 30 ? "bg-color-six dark:bg-color-six-dark" : "bg-color-third dark:bg-color-third-dark"}`}
-                                style={{ width: parseInt(test) + '%' }}>
-                            </div> */}
-                            </div>
+                            <div className="mb-1">{formatNumber(data?.SOC, 1, '%')}</div>
+                            <BatteryBar percentage={Number(data.SOC)} />
                         </div>
                         <div className="text-right">
                             <Label text="SOH" />
-                            <div>{formatNumber(data?.SOH, 1, '%')}</div>
-                            <div className="w-full h-[0.21rem] mt-1 ml-auto mr-0 bg-[#bfbfbf] dark:bg-color-fifth-dark">
-                                <div className={`h-full ${parseInt(data.SOH) <= 10 ? "bg-color-fourth dark:bg-color-fourth-dark" : parseInt(data.SOH) <= 30 ? "bg-color-six dark:bg-color-six-dark" : "bg-color-third dark:bg-color-third-dark"}`}
-                                    style={{ width: parseInt(data.SOH) + '%' }}>
-                                </div>
-                            </div>
+                            <div className="mb-1">{formatNumber(data?.SOH, 1, '%')}</div>
+                            <BatteryBar percentage={Number(data.SOC)} />
                         </div>
                     </div>
 
@@ -116,32 +94,40 @@ export default function Bess({ data, withClusterVoltage }: BessProps) {
                         <DataCell withBgColor={true} className="justify-end col-span-2">{formatNumber(data?.totalVoltage, 1, ' V')}</DataCell>
                     </DataList>
                 </DataListWrapper>
+
+                {withClusterVoltage &&
+                    <>
+                        <DataList cols={5}>
+                            <DataCell className="col-span-3">
+                                <Label text="Max Cell Voltage" />
+                            </DataCell>
+                            <DataCell className="justify-end col-span-2">{formatNumber(data?.maxCellVoltage, 1, ' V')}</DataCell>
+                        </DataList>
+
+                        <DataList cols={5}>
+                            <DataCell withBgColor={true} className="col-span-3">
+                                <Label text="Min Cell Voltage" />
+                            </DataCell>
+                            <DataCell withBgColor={true} className="justify-end col-span-2">{formatNumber(data?.minCellVolt, 1, ' V')}</DataCell>
+                        </DataList>
+
+                        <DataList cols={5}>
+                            <DataCell className="col-span-3">
+                                <Label text="Max Cell Temperature" />
+                            </DataCell>
+                            <DataCell className="justify-end col-span-2">{formatNumber(data?.maxCellTemp, 1, ' °C')}</DataCell>
+                        </DataList>
+
+                        <DataList cols={5}>
+                            <DataCell withBgColor={true} className="col-span-3">
+                                <Label text="Min Cell Temperature" />
+                            </DataCell>
+                            <DataCell withBgColor={true} className="justify-end col-span-2">{formatNumber(data?.minCellTemp, 1, ' °C')}</DataCell>
+                        </DataList>
+                    </>
+                }
             </Card>
 
-            {withClusterVoltage &&
-                <div className="p-3">
-                    <div className="flex items-center justify-between h-10">
-                        <Label text="Max Cell Voltage" />
-                        <div className="flex-grow w-auto h-1 mx-3 border-t border-dashed border-border dark:border-border-d"></div>
-                        <div>{formatNumber(data?.maxCellVoltage, 1, ' V')}</div>
-                    </div>
-                    <div className="flex items-center justify-between h-10">
-                        <Label text="Min Cell Voltage" />
-                        <div className="flex-grow w-auto h-1 mx-3 border-t border-dashed border-border dark:border-border-d"></div>
-                        <div>{formatNumber(data?.minCellVolt, 1, ' V')}</div>
-                    </div>
-                    <div className="flex items-center justify-between h-10">
-                        <Label text="Max Cell Temperature" />
-                        <div className="flex-grow w-auto h-1 mx-3 border-t border-dashed border-border dark:border-border-d"></div>
-                        <div>{formatNumber(data?.maxCellTemp, 1, ' °C')}</div>
-                    </div>
-                    <div className="flex items-center justify-between h-10">
-                        <Label text="Min Cell Temperature" />
-                        <div className="flex-grow w-auto h-1 mx-3 border-t border-dashed border-border dark:border-border-d"></div>
-                        <div>{formatNumber(data?.minCellTemp, 1, ' °C')}</div>
-                    </div>
-                </div>
-            }
         </div>
     )
 }

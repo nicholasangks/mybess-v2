@@ -5,7 +5,7 @@ interface TableRowProps {
 
 export default function TableRow({ children, className }: TableRowProps) {
     return (
-        <tr className={`odd:bg-color-primary dark:odd:bg-color-primary-dark${className ? ' ' + className : ''}`}>
+        <tr className={`odd:bg-primary odd:bg-primary${className ? ' ' + className : ''}`}>
             {children}
         </tr>
     )

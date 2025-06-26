@@ -41,18 +41,15 @@ export default function Grid({ data }: GridProps) {
                 <div>
                     <div className="flex items-center">
                         <Label text="Off / On" />
-                        {/* <div className={`${onOff === 'on' ? "text-color-foreground-light dark:text-color-foreground-light-dark" : "text-color-third dark:text-color-third-dark"}`}>Off</div>
-                        <div className="text-color-foreground-light dark:text-color-foreground-light-dark">&nbsp;|&nbsp;</div>
-                        <div className={`${onOff === 'off' ? "text-color-foreground-light dark:text-color-foreground-light-dark" : "text-color-third dark:text-color-third-dark"}`}>On</div> */}
                     </div>
                     {/* <Label text="Off / On" /> */}
-                    <div className={`flex items-center w-10 h-4 mt-1.5 ml-auto mr-0 p-0.5 cursor-pointer ${onOff === "on" ? "bg-color-third dark:bg-color-third-dark" : "bg-color-second dark:bg-color-second-dark"}`}
+                    <div className={`flex items-center w-10 h-4 mt-1.5 ml-auto mr-0 p-0.5 cursor-pointer ${onOff === "on" ? "bg-accent-b" : "bg-muted"}`}
                         onClick={() => handleOnGrid()}
                     >
                         <motion.div
                             initial={{ x: onOff === 'off' ? 0 : '50%' }}
                             animate={{ x: onOff === 'off' ? 0 : '100%' }}
-                            className={`w-1/2 h-full bg-color-background dark:bg-color-primary-dark`}
+                            className={`w-1/2 h-full bg-background`}
                         ></motion.div>
                     </div>
                 </div>
@@ -61,8 +58,8 @@ export default function Grid({ data }: GridProps) {
                 ? <img src={`/images/grid${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-[45%] md:w-[57%] 3xl:w-[40%] h-auto mx-auto mt-3 mb-3" />
                 : <img src={`/images/grid.png`} alt="" className="w-[45%] md:w-[57%] 3xl:w-[40%] h-auto mx-auto mt-3 mb-3" />
             }
-            <div className="grid grid-cols-2 border-t border-color-border dark:border-color-border-dark text-center">
-                <div className="pt-2.5 text-center border-r border-color-border dark:border-color-border-dark">
+            <div className="grid grid-cols-2 border-t border-border text-center">
+                <div className="pt-2.5 text-center border-r border-border">
                     <Label text="Active Power" />
                     <div>{formatNumber(data?.activePowerCtrl, 1, ' kW')}</div>
                 </div>

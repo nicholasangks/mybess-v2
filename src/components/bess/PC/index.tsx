@@ -4,6 +4,7 @@ import Card from "@/components/Card"
 import H3 from "@/components/Heading/H3"
 import Label from "@/components/Label"
 import { formatNumber } from '@/helpers/formatters';
+import StatusTag from "@/components/StatusTag";
 
 interface PCProps {
     data: any;
@@ -23,12 +24,11 @@ export default function PC({ data, className }: PCProps) {
     return (
         <Card className="h-full items-center mb-4 md:mb-0">
             <div className="relative md:grid md:grid-cols-10 md:items-center h-full">
-                <div className="absolute top-0 right-0">{data?.runningStatus ?? '-'}</div>
-                <div className="relative flex items-center justify-center col-span-3 h-full py-0 md:pr-3 md:border-r border-color-border dark:border-color-border-dark text-center">
+                <div className="relative flex items-center justify-center col-span-3 h-full py-0 md:pr-3 md:border-r border-border">
                     <div>
-                        <div className="">
+                        <div className="flex justify-between">
                             <H3 text="PCS 1" className="!mb-0" />
-                            {/* <div className="text-color-fifth dark:text-color-fifth-dark">Idle</div> */}
+                            <StatusTag status={data?.runningStatus ?? '-'} />
                         </div>
                         {themeReady
                             ? <img src={`/images/pcs${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-[80%] md:w-[85%] lg:w-full 2xl:w-[95%] mt-5 mx-auto" />
@@ -36,7 +36,7 @@ export default function PC({ data, className }: PCProps) {
                         }
                     </div>
                 </div>
-                <div className="grid grid-cols-3 gap-3.5 md:col-span-7">
+                <div className="grid grid-cols-3 gap-4 pl-7 md:col-span-7">
                     <div>
                         <Label text="PCS Status" />
                         <div>{data?.runningStatus ?? '-'}</div>

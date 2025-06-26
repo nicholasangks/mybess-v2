@@ -5,7 +5,7 @@ interface TableCellProps {
 
 export default function TableCell({ children, className }: TableCellProps) {
     return (
-        <td className={`h-8 my-2 px-2 py-1 border-2 border-color-background dark:border-color-background-dark${className ? ' ' + className : ''}`}>
+        <td className={`h-8 my-2 px-2 py-1 border-2 border-background${className ? ' ' + className : ''}`}>
             {children}
         </td>
     )

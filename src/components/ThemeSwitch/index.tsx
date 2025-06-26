@@ -28,20 +28,20 @@ export default function ThemeSwitch() {
     if (!mounted) return null
 
     return (
-        <div className="flex items-center justify-center xl:justify-between" onClick={toggleTheme}>
-            <div className="flex items-center py-3 cursor-pointer">
+        <div className="flex items-center justify-center h-[2.5rem] xl:justify-between" onClick={toggleTheme}>
+            <div className="flex items-center cursor-pointer">
                 <div className="xl:mr-2.5">
                     {themeReady
                         ? <img src={`/images/icon-moon${theme === 'dark' ? '-dark.svg' : '.svg'}`} alt="" className="w-[25px] h-[25px]" />
                         : <img src={`/images/icon-moon.svg`} alt="" className="w-[25px] h-[25px]" />
                     }
                 </div>
-                <div className={`hidden xl:block text-color-foreground-light dark:text-color-foreground-light-dark`}>Dark Mode</div>
+                <div className={`hidden xl:block text-muted-foreground`}>Dark Mode</div>
             </div>
             <div className="hidden xl:block relative cursor-pointer">
-                <div className="flex items-center w-8 xl:w-10 h-4 bg-color-second dark:bg-color-second-dark p-0.5">
+                <div className="flex items-center w-8 xl:w-10 h-5 rounded-full bg-muted p-0.5">
                     <motion.div
-                        className="w-1/2 h-full bg-white dark:bg-color-third-dark"
+                        className="w-1/2 h-full bg-white dark:bg-primary rounded-full"
                         initial={{ x: theme === 'light' ? 0 : '50%' }}
                         animate={{ x: theme === 'light' ? 0 : '100%' }}
                     >
@@ -49,16 +49,5 @@ export default function ThemeSwitch() {
                 </div>
             </div>
         </div>
-        // <div className="relative cursor-pointer">
-        //     <div className="flex items-center w-8 xl:w-10 h-4 bg-color-second dark:bg-color-second-dark p-0.5" onClick={toggleTheme}>
-        //         <motion.div
-        //             className="w-1/2 h-full bg-white dark:bg-color-third-dark"
-        //             initial={{ x: theme === 'light' ? 0 : '50%' }}
-        //             animate={{ x: theme === 'light' ? 0 : '100%' }}
-        //         >
-        //         </motion.div>
-        //     </div>
-        //     {/* <div className={`absolute left-0 top-1/2 transform -translate-y-1/2 w-5 h-5 bg-gray-200 rounded-full ${theme === 'light' ? 'translate-x-0' : 'translate-x-full'}`}></div> */}
-        // </div>
     )
 }

@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
 import Modal from '@/components/Modal';
-import H3 from '@/components/Heading/H3';
+import H2 from '@/components/Heading/H2';
 import Label from '@/components/Label';
 import Battery from '../Battery';
 import { api } from '@/helpers/apiHelper';
 import Link from 'next/link';
 import { formatNumber } from '@/helpers/formatters';
+import { LuArrowUpRight } from "react-icons/lu";
 
 interface ModalClusterPacksProps {
     open: boolean;
@@ -65,13 +66,18 @@ export default function ModalCusterPacks({ open, setOpen, cId }: ModalClusterPac
 
     return (
         <Modal open={open} setOpen={setOpen}>
-            <div className="sticky top-0 lg:flex lg:items-center h-auto lg:h-12 px-4 lg:px-0 py-4 lg:py-0 z-50 border-b border-gray-300 dark:border-gray-600 bg-color-background dark:bg-color-background-dark">
+            <div className="sticky top-0 lg:flex lg:items-center h-auto lg:h-12 px-4 lg:px-0 py-4 lg:py-0 z-50 border-b border-muted bg-background">
                 <div className="lg:flex items-center justify-between w-[1000px] mx-auto">
-                    <H3 text={`${cId}`} className="!mb-0 capitalize" />
+                    <H2 text={`${cId}`} className="!mb-0 capitalize" />
                     <div className="lg:flex items-center">
-                        <div className="mr-5">Max cell voltage: {formatNumber(cluster?.maxCellVoltage, 1, ' V')}</div>
-                        <div className="mr-5">Max cell temperature: {formatNumber(cluster?.maxCellTemperature, 1, ' °C')}</div>
-                        <div><Link href="/alarms">Alarm: {cluster?.alarmCount ?? '-'}</Link></div>
+                        <div className="mr-5 text-sm text-muted-foreground">Max cell voltage: {formatNumber(cluster?.maxCellVoltage, 1, ' V')}</div>
+                        <div className="mr-5 text-sm text-muted-foreground">Max cell temperature: {formatNumber(cluster?.maxCellTemperature, 1, ' °C')}</div>
+                        <div className="text-sm text-muted-foreground">
+                            <Link href="/alarms" className="flex items-center">
+                                Alarm: {cluster?.alarmCount ?? '-'}
+                                <span><LuArrowUpRight className="ml-2 text-muted-foreground" /></span>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -80,13 +86,13 @@ export default function ModalCusterPacks({ open, setOpen, cId }: ModalClusterPac
                     packs.map((pack: any, index: number) => (
                         <div key={index} className="mb-10 lg:mb-12">
                             <div className="lg:flex items-center justify-between mb-5 ">
-                                <H3 text={`Pack ${pack.pId}`} className="!mb-0" />
+                                <H2 text={`Pack ${pack.pId}`} className="!mb-0" />
                                 <div className="lg:flex items-center">
                                     <div className="mr-5">
-                                        <Label text={`Min Cell Voltage ${pack.minCellVoltage} V`} />
+                                        <div className="text-muted-foreground">Min Cell Voltage: ${pack?.minCellVoltage} V</div>
                                     </div>
                                     <div>
-                                        <Label text={`Max Cell Voltage ${pack.maxCellVoltage} V`} />
+                                        <div className="text-muted-foreground ">Max Cell Voltage: ${pack?.maxCellVoltage} V</div>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +113,7 @@ export default function ModalCusterPacks({ open, setOpen, cId }: ModalClusterPac
                     ))
                 }
             </div>
-            <div className="sticky bottom-6 left-0 right-0 w-20 mx-auto py-1 bg-color-second dark:bg-color-second-dark text-center rounded-full cursor-pointer"
+            <div className="sticky bottom-6 left-0 right-0 w-20 mx-auto py-1 bg-secondary text-center rounded-full cursor-pointer"
                 onClick={() => setOpen(false)}>Close</div>
         </Modal>
     )

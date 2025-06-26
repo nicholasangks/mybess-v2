@@ -21,7 +21,7 @@ export default function Switch({ checked = false, onChange, className = '' }: Sw
     <div
       onClick={toggle}
       className={`w-[3rem] h-[1.5rem] p-[2px] rounded-full cursor-pointer transition-all
-        ${isOn ? 'bg-primary' : 'bg-muted dark:bg-muted-d'} ${className}`}
+        ${isOn ? 'bg-primary' : 'bg-muted'} ${className}`}
     >
       <div
         className={`h-full aspect-square rounded-full bg-white shadow-sm transition-all

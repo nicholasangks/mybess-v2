@@ -4,6 +4,7 @@ import Card from "@/components/Card"
 import H3 from "@/components/Heading/H3"
 import Label from "@/components/Label"
 import { formatNumber } from "@/helpers/formatters"
+import StatusTag from "@/components/StatusTag";
 
 interface ClusterProps {
     className?: string;
@@ -31,28 +32,14 @@ export default function Cluster({
             className={`md:flex md:items-center mb-4 xl:mb-5 cursor-pointer${className ? ' ' + className : ''}`}
             onClick={onClick}
         >
-            <div className="w-full md:w-[35%] md:!pr-3 !p-0  md:border-r border-color-border md:dark:border-color-border-dark">
-                <div className="flex justify-between">
-                    <H3 text={`Cluster ${data.cId}`} className="!mb-0" />
-                    <div>
-                        <Label text="Connection Status" className="text-sm" />
-                        <div className="flex items-center justify-end text-sm">
-                            <div className={`w-1.5 h-1.5 mr-1.5 rounded-full ${data.runningStatus === 'Idle' ? "bg-color-fifth dark:bg-color-fifth-dark" : "bg-color-third dark:bg-color-third-dark"}`}></div>
-                            <div className={`${data.runningStatus === 'Idle' ? "text-color-fifth dark:text-color-fifth-dark" : "text-color-third dark:text-color-third-dark"}`}>{data.runningStatus}</div>
-                        </div>
-                    </div>
-                </div>
-                {/* <div>{data.runningStatus}</div> */}
+            <div className="w-full md:w-[35%] md:!pr-3.5 !p-0 md:border-r border-border">
+                <H3 text={`Cluster ${data.cId}`} className="!mb-0" />
                 {themeReady
                     ? <img src={`/images/cluster${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-[70%] md:w-full h-auto mx-auto" />
                     : <img src={`/images/cluster.png`} alt="" className="w-[70%] md:w-full h-auto mx-auto" />
                 }
-                {/* <div className="mx-auto">
-                    <Label text="Alarm count" className="text-sm" />
-                    <div className="text-sm">{data.alarmCount}</div>
-                </div> */}
-                <div className="grid grid-cols-2 mb-6 md:mb-0 border-t border-b md:border-b-0 border-color-border dark:border-color-border-dark">
-                    <div className="pt-2 pb-2 md:pb-0 px-2 border-r border-color-border dark:border-color-border-dark text-center">
+                <div className="grid grid-cols-2 mb-6 md:mb-0 border-t border-b md:border-b-0 border-border">
+                    <div className="pt-2 pb-2 md:pb-0 px-2 border-r border-border text-center">
                         <Label text="SOC" />
                         <div>{formatNumber(data?.SOC, 1, '%')}</div>
                     </div>
@@ -62,39 +49,35 @@ export default function Cluster({
                     </div>
                 </div>
             </div>
-            <div className="w-full md:w-[65%] md:pl-4 xl:pl-5">
+            <div className="w-full md:w-[65%] md:pl-4 xl:pl-7">
                 <div className="grid grid-cols-2">
-                    <div>
+                    <div className="grid grid-cols-1 gap-4">
                         <div>
-                            <div className="px-0 md:px-2 py-2">
-                                <Label text="Total Capacity" />
-                                <div>- kWh</div>
-                            </div>
-                            <div className="px-0 md:px-2 py-2">
-                                <Label text="Total Voltage" />
-                                <div>{formatNumber(data?.totalVoltage, 1, ' V')}</div>
-                            </div>
-                            <div className="px-0 md:px-2 py-2">
-                                <Label text="Total Current" />
-                                <div>{formatNumber(data?.totalCurrent, 1, ' A')}</div>
-                            </div>
+                            <Label text="Connection Status" className="mb-0.5" />
+                            <StatusTag status={data?.runningStatus} />
+                        </div>
+                        <div>
+                            <Label text="Total Voltage" />
+                            <div>{formatNumber(data?.totalVoltage, 1, ' V')}</div>
+                        </div>
+                        <div>
+                            <Label text="Total Current" />
+                            <div>{formatNumber(data?.totalCurrent, 1, ' A')}</div>
                         </div>
                     </div>
 
-                    <div>
+                    <div className="grid grid-cols-1 gap-3">
                         <div>
-                            <div className="px-0 md:px-2 py-2">
-                                <Label text="Max Cell Temperature" />
-                                <div>{formatNumber(data?.maxCellTemperature, 1, ' °C')}</div>
-                            </div>
-                            <div className="px-0 md:px-2 py-2">
-                                <Label text="Min Cell Voltage" />
-                                <div>{formatNumber(data?.minCellVoltage, 1, ' V')}</div>
-                            </div>
-                            <div className="px-0 md:px-2 py-2">
-                                <Label text="Max Cell Voltage" />
-                                <div>{formatNumber(data?.maxCellVoltage, 1, ' V')}</div>
-                            </div>
+                            <Label text="Max Cell Temperature" />
+                            <div>{formatNumber(data?.maxCellTemperature, 1, ' °C')}</div>
+                        </div>
+                        <div>
+                            <Label text="Min Cell Voltage" />
+                            <div>{formatNumber(data?.minCellVoltage, 1, ' V')}</div>
+                        </div>
+                        <div>
+                            <Label text="Max Cell Voltage" />
+                            <div>{formatNumber(data?.maxCellVoltage, 1, ' V')}</div>
                         </div>
                     </div>
                 </div>

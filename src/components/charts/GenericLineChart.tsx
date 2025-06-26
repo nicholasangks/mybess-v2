@@ -38,7 +38,7 @@ export default function GenericLineChart({
     const strokeColor = '#009439';
 
     return (
-        <div className="bg-muted dark:bg-muted-d rounded-md">
+        <div>
             {title && <H2 text={title} />}
             <div className="w-full h-[210px]">
                 <ResponsiveContainer width="100%" height="100%">

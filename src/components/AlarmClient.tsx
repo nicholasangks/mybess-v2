@@ -86,18 +86,18 @@ export default function AlarmClient() {
             <div className="flex items-center justify-between mb-5">
                 <div className="flex items-center">
                     <div>
-                        <div className="inline-flex h-[2.3rem] rounded-full bg-muted dark:bg-muted-d p-[2px]">
+                        <div className="inline-flex h-[2.3rem] rounded-full bg-secondary p-[2px]">
                             <div
                                 onClick={() => handleTabChange('active')}
                                 className={`px-4 flex items-center justify-center rounded-full cursor-pointer transition
-                                    ${activeTab === 'active' ? 'bg-background dark:bg-background-d text-primary font-medium' : 'text-muted-foreground dark:text-muted-foreground-d'}`}
+                                    ${activeTab === 'active' ? 'bg-background text-primary font-medium' : 'text-muted-foreground'}`}
                             >
                                 Active
                             </div>
                             <div
                                 onClick={() => handleTabChange('history')}
                                 className={`px-4 flex items-center justify-center rounded-full cursor-pointer transition
-                                    ${activeTab === 'history' ? 'bg-background dark:bg-background-d text-primary font-medium' : 'text-muted-foreground dark:text-muted-foreground-d'}`}
+                                    ${activeTab === 'history' ? 'bg-background text-primary font-medium' : 'text-muted-foreground'}`}
                             >
                                 History
                             </div>
@@ -108,7 +108,7 @@ export default function AlarmClient() {
                             <div
                                 key={tab}
                                 onClick={() => handleTypeChange(tab)}
-                                className={`transition-colors ${type === tab ? 'text-primary' : 'text-muted-foreground dark:text-muted-foreground-d'}`}
+                                className={`transition-colors ${type === tab ? 'text-primary font-medium' : 'text-muted-foreground'}`}
                             >
                                 {tab}
                             </div>
@@ -117,10 +117,10 @@ export default function AlarmClient() {
                 </div>
             </div>
 
-            <div className="rounded-tl-lg rounded-tr-lg border border-color-border dark:border-color-border-dark">
+            <div className="rounded-tl-lg rounded-tr-lg border border-muted">
                 <table className="w-full text-left">
                     <thead>
-                        <tr className="border-b border-color-border dark:border-color-border-dark text-muted-foreground dark:text-muted-foreground-d">
+                        <tr className="border-b border-muted text-muted-foreground">
                             <th className="w-[4%] px-3 py-3 font-normal">ID</th>
                             <th className="w-[17%] px-3 py-3 font-normal">Occurance Time</th>
                             {activeTab === 'history' && <th className="w-[17%] px-3 py-3 font-normal">Clearance Time</th>}
@@ -139,18 +139,18 @@ export default function AlarmClient() {
 
                                 switch (alarm.level) {
                                     case 'Critical':
-                                        colorClass = 'bg-[#FF4714]/20 text-[#FF4714]';
-                                        barColor = 'bg-[#FF4714] shadow-[0_0_3px_rgba(255,71,20,0.6)]';
+                                        colorClass = 'bg-[#FF4714]/20 text-critical';
+                                        barColor = 'bg-critical shadow-[0_0_3px_rgba(255,71,20,0.6)]';
                                         filledBars = 10;
                                         break;
                                     case 'Major':
-                                        colorClass = 'bg-[#FFA500]/20 text-[#FFA500]';
-                                        barColor = 'bg-[#FFA500] shadow-[0_0_3px_rgba(255,165,0,0.6)]';
+                                        colorClass = 'bg-[#FFA500]/20 text-major';
+                                        barColor = 'bg-major shadow-[0_0_3px_rgba(255,165,0,0.6)]';
                                         filledBars = 6;
                                         break;
                                     case 'Warning':
-                                        colorClass = 'bg-[#C5A0FB]/20 text-[#C5A0FB]';
-                                        barColor = 'bg-[#C5A0FB] shadow-[0_0_3px_rgba(197,160,251,0.6)]';
+                                        colorClass = 'bg-[#C5A0FB]/20 text-warning';
+                                        barColor = 'bg-warning shadow-[0_0_3px_rgba(197,160,251,0.6)]';
                                         filledBars = 3;
                                         break;
                                     default:
@@ -160,7 +160,7 @@ export default function AlarmClient() {
                                 }
 
                                 return (
-                                    <tr key={alarm.id} className="align-top border-b border-color-border dark:border-color-border-dark">
+                                    <tr key={alarm.id} className="align-top border-b border-muted">
                                         <td className="px-3 py-3">{index + 1}</td>
                                         <td className="px-3 py-3">{alarm.date}</td>
                                         {activeTab === 'history' && <td className="px-3 py-3">{alarm.clearDate}</td>}

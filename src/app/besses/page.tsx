@@ -11,6 +11,7 @@ import useSWR from "swr";
 import { formatNumber } from '@/helpers/formatters';
 import { LuArrowUpRight } from "react-icons/lu";
 import { API_REFRESH_INTERVAL } from "@/constants/common";
+import BatteryBar from "@/components/BatteryBar";
 
 async function getBessesData() {
     const res = await api('/batterydata/', 'GET');
@@ -47,15 +48,15 @@ export default function Besses() {
                         <div>
                             <Label text="SOC" />
                             <div className="flex items-center">
-                                <div>{formatNumber(bess1?.SOC, 1, ' %')}</div>
-                                <div className="w-12 h-1 ml-2 rounded-full bg-primary"></div>
+                                <div className="mr-2">{formatNumber(bess1?.SOC, 1, ' %')}</div>
+                                <BatteryBar percentage={Number(bess1?.SOC) || 0} />
                             </div>
                         </div>
                         <div>
                             <Label text="SOH" />
                             <div className="flex items-center">
-                                <div>{formatNumber(bess1?.SOH, 1, ' %')}</div>
-                                <div className="w-12 h-1 ml-2 rounded-full bg-primary"></div>
+                                <div className="mr-2">{formatNumber(bess1?.SOH, 1, ' %')}</div>
+                                <BatteryBar percentage={Number(bess1?.SOH) || 0} />
                             </div>
                         </div>
                         <div>
@@ -78,7 +79,7 @@ export default function Besses() {
                             <Label text="Alarm" />
                             <Link href="/alarms?type=BMS" className="flex items-center cursor-pointer">
                                 {bess1?.totalAlarmCount ?? '-'}
-                                <LuArrowUpRight className="ml-2 text-color-foreground-light dark:text-color-foreground-light-dark" />
+                                <LuArrowUpRight className="ml-2 text-muted-foreground" />
                             </Link>
                         </div>
                     </div>
@@ -109,7 +110,6 @@ export default function Besses() {
 
 
             <div className="md:grid md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-4 xl:gap-3">
-                {/* {besses && Object.keys(besses).map((index: any) => ( */}
                 {besses && Object.entries(besses).map(([bessKey, bessValue]: [string, any]) => (
                     <>
                         <Link href={`/besses/${bessValue.bId}`}>
