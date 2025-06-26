@@ -140,17 +140,17 @@ export default function AlarmClient() {
                                 switch (alarm.level) {
                                     case 'Critical':
                                         colorClass = 'bg-[#FF4714]/20 text-critical';
-                                        barColor = 'bg-critical shadow-[0_0_3px_rgba(255,71,20,0.6)]';
+                                        barColor = 'bg-critical';
                                         filledBars = 10;
                                         break;
                                     case 'Major':
                                         colorClass = 'bg-[#FFA500]/20 text-major';
-                                        barColor = 'bg-major shadow-[0_0_3px_rgba(255,165,0,0.6)]';
+                                        barColor = 'bg-major';
                                         filledBars = 6;
                                         break;
                                     case 'Warning':
                                         colorClass = 'bg-[#C5A0FB]/20 text-warning';
-                                        barColor = 'bg-warning shadow-[0_0_3px_rgba(197,160,251,0.6)]';
+                                        barColor = 'bg-warning';
                                         filledBars = 3;
                                         break;
                                     default:
@@ -172,7 +172,7 @@ export default function AlarmClient() {
                                                 {Array.from({ length: 10 }).map((_, i) => (
                                                     <div
                                                         key={i}
-                                                        className={`w-[3px] h-[15px] transition-all duration-300 ${i < filledBars ? barColor : 'bg-white/10'}`}
+                                                        className={`w-[3px] h-[15px] transition-all duration-300 ${i < filledBars ? barColor : 'bg-muted'}`}
                                                     />
                                                 ))}
                                             </div>

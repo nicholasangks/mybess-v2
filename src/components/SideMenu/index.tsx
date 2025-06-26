@@ -87,7 +87,7 @@ export default function SideMenu() {
                                 <div>
                                     <div
                                         className={`flex items-center h-[2.5rem] my-2.5 px-8 cursor-pointer hover:bg-muted
-                                        ${pathname === '/besses' || pathname === '/pcs' || pathname === '/infrastructure' ? 'bg-muted text-white' : 'text-muted-foreground'}`}
+                                        ${pathname === '/besses' || pathname === '/pcs' || pathname === '/infrastructure' ? 'bg-muted text-foreground' : 'text-muted-foreground'}`}
                                         onClick={() => handleItemClick(index)}
                                     >
                                         <div className="mr-2.5">
@@ -107,7 +107,7 @@ export default function SideMenu() {
                                         <div className="mb-3 pl-16 flex flex-col gap-2">
                                             {item.sublist.map((sub, subIdx) => (
                                                 <Link href={sub.link} key={subIdx}>
-                                                    <div className="text-sm text-muted-foreground hover:text-white cursor-pointer py-1">
+                                                    <div className="text-sm text-muted-foreground hover:text-foreground cursor-pointer py-1">
                                                         {sub.title}
                                                     </div>
                                                 </Link>

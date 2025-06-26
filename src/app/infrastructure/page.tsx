@@ -7,6 +7,9 @@ import H2 from '@/components/Heading/H2';
 import Card from '@/components/Card';
 import Label from '@/components/Label';
 import { formatNumber } from '@/helpers/formatters';
+import { PiDropSimpleBold, PiDropHalf, PiDropSlashBold, PiThermometerSimple, PiBatteryChargingBold } from "react-icons/pi";
+import { LuFan } from "react-icons/lu";
+import IconWrapper from '@/components/IconWrapper';
 
 async function getInfrastructure() {
     const res = await api('/infrastucture/', 'GET');
@@ -32,7 +35,12 @@ export default function Infrastructure() {
             <div className="grid grid-cols-5 gap-3">
                 {infrastructure?.Lcs && (
                     <Card className="col-span-3">
-                        <H2 text="Liquid Cooling System" />
+                        <div className="flex items-center mb-3">
+                            <IconWrapper>
+                                <PiDropSimpleBold className="text-[1.3rem] font-bold" />
+                            </IconWrapper>
+                            <H2 text="Liquid Cooling System" className="!mb-0" />
+                        </div>
                         <div className="grid grid-cols-2 gap-2">
                             <div>
                                 <Label text="Inlet Pressure" />
@@ -60,7 +68,12 @@ export default function Infrastructure() {
 
                 {infrastructure?.enviroment && (
                     <Card className="col-span-2">
-                        <H2 text="Environment Data" />
+                        <div className="flex items-center mb-3">
+                            <IconWrapper>
+                                <PiDropHalf className="text-[1.3rem] font-bold" />
+                            </IconWrapper>
+                            <H2 text="Environment Data" className="!mb-0" />
+                        </div>
                         <div className="grid grid-cols-2 gap-2">
                             <div>
                                 <Label text="Temperature 1" />
@@ -88,50 +101,70 @@ export default function Infrastructure() {
             {infrastructure?.system && (
                 <div className="grid grid-cols-4 gap-3 mt-3">
                     <Card>
-                        <H2 text="Hvac" />
+                        <div className="flex items-center mb-3">
+                            <IconWrapper>
+                                <LuFan className="text-[1.3rem] font-bold" />
+                            </IconWrapper>
+                            <H2 text="HVAC" className="!mb-0" />
+                        </div>
                         <div className="flex justify-between py-1">
                             <Label text="Humidity 2" />
-                            <div>{infrastructure.system.hvac.remoteOnOff}</div>
+                            <div className="text-right">{infrastructure.system.hvac.remoteOnOff}</div>
                         </div>
                         <div className="flex justify-between py-1">
                             <Label text="Running Status" />
-                            <div>{infrastructure.system.hvac.runningStatus}</div>
+                            <div className="text-right">{infrastructure.system.hvac.runningStatus}</div>
                         </div>
                     </Card>
 
                     <Card>
-                        <H2 text="Temperature Sensor" />
+                        <div className="flex items-center mb-3">
+                            <IconWrapper>
+                                <PiThermometerSimple className="text-[1.3rem] font-bold" />
+                            </IconWrapper>
+                            <H2 text="Temperature Sensor" className="!mb-0" />
+                        </div>
                         <div className="flex justify-between py-1">
                             <Label text="Status" />
-                            <div>{infrastructure.system.temperatureSensor.status}</div>
+                            <div className="text-right">{infrastructure.system.temperatureSensor.status}</div>
                         </div>
                         <div className="flex justify-between py-1">
                             <Label text="Running Status" />
-                            <div>{infrastructure.system.temperatureSensor.running}</div>
+                            <div className="text-right">{infrastructure.system.temperatureSensor.running}</div>
                         </div>
                     </Card>
 
                     <Card>
-                        <H2 text="UPS" />
+                        <div className="flex items-center mb-3">
+                            <IconWrapper>
+                                <PiBatteryChargingBold className="text-[1.3rem] font-bold" />
+                            </IconWrapper>
+                            <H2 text="UPS" className="!mb-0" />
+                        </div>
                         <div className="flex justify-between py-1">
                             <Label text="Status" />
-                            <div>{infrastructure.system.ups.status}</div>
+                            <div className="text-right">{infrastructure.system.ups.status}</div>
                         </div>
                         <div className="flex justify-between py-1">
                             <Label text="Capacity" />
-                            <div>{infrastructure.system.ups.capacity}</div>
+                            <div className="text-right">{infrastructure.system.ups.capacity}</div>
                         </div>
                     </Card>
 
                     <Card>
-                        <H2 text="Dehumidifier" />
+                        <div className="flex items-center mb-3">
+                            <IconWrapper>
+                                <PiDropSlashBold className="text-[1.3rem] font-bold" />
+                            </IconWrapper>
+                            <H2 text="Dehumidifier" className="!mb-0" />
+                        </div>
                         <div className="flex justify-between py-1">
                             <Label text="Status" />
-                            <div>{infrastructure.system.dehumidifier.status}</div>
+                            <div className="text-right">{infrastructure.system.dehumidifier.status}</div>
                         </div>
                         <div className="flex justify-between py-1">
                             <Label text="Running" />
-                            <div>{infrastructure.system.dehumidifier.running}</div>
+                            <div className="text-right">{infrastructure.system.dehumidifier.running}</div>
                         </div>
                     </Card>
                 </div>

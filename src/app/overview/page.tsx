@@ -102,7 +102,7 @@ export default function Overview() {
                 {/* Flow Diagram */}
                 <div className="md:col-span-7 flex items-center w-full overflow-x-scroll">
                     <div className="relative w-[680px] h-[396px] mt-10 mb-6 mx-auto">
-                        <img src={`/images/overview-vector.png`} alt="" className="absolute w-full h-full mx-auto z-10" />
+                        <img src={`/images/overview-vector-2.png`} alt="" className="absolute w-full h-full mx-auto z-10" />
                         {themeReady
                             ? <img src={`/images/overview-grid-base${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="w-full h-full mx-auto" />
                             : <img src={`/images/overview-grid-base.png`} alt="" className="w-full h-full mx-auto" />

@@ -10,7 +10,7 @@
   --accent-a: #aaa928; /* flow line color 1 */
   --accent-b: #539343; /* flow line color 2 */
   --accent-c: #7F7FFB; /* flow line color 3 */
-  --muted: #f7f7f7; /* inside card lower opacity */
+  --muted: #d0d0d0; /* inside card lower opacity */
   --muted-foreground: #5f5f5f;
   --border: #d1d5db;
   --critical: #ff4714;

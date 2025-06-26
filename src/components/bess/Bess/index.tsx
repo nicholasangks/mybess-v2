@@ -45,8 +45,8 @@ export default function Bess({ data, withClusterVoltage }: BessProps) {
                 {/* <div>{data.chargeDischargeState}</div> */}
                 <div className="flex items-center relative mt-6 mb-5">
                     {themeReady
-                        ? <img src={`/images/bess${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:w-[65%] xl:max-w-[210px] h-auto mx-auto" />
-                        : <img src={`/images/bess.png`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:[65%] xl:max-w-[210px] h-auto mx-auto" />
+                        ? <img src={`/images/bess-v2${theme === 'dark' ? '-dark.png' : '.png'}`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[75%] xl:max-w-[235px] 2xl:w-[65%] h-auto mx-auto" />
+                        : <img src={`/images/bess-v2.png`} alt="" className="absolute left-0 right-0 w-[65%] xl:w-[67%] 2xl:[65%] xl:max-w-[210px] h-auto mx-auto" />
                     }
                     <div className="flex justify-between items-center w-full mt-4 mb-10">
                         <div className="w-50%">
