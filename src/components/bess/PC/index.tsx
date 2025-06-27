@@ -36,7 +36,7 @@ export default function PC({ data, className }: PCProps) {
                         }
                     </div>
                 </div>
-                <div className="grid grid-cols-3 gap-4 pl-7 md:col-span-7">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:pl-7 md:col-span-7">
                     <div>
                         <Label text="PCS Status" />
                         <div>{data?.runningStatus ?? '-'}</div>

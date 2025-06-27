@@ -246,8 +246,8 @@ export default function DataTrend() {
     return (
         <ContentWrapper title="Data Trend">
             <div className="px-0 py-5">
-                <div className="flex items-end justify-between gap-6 mb-10">
-                    <div className="flex gap-10">
+                <div className="md:flex items-end justify-between gap-6 mb-10">
+                    <div className="md:flex gap-10">
                         <div>
                             <Label text="Date" className="mb-1" />
                             <div className="flex items-center h-[2.2rem] rounded-md bg-muted px-3">
@@ -282,7 +282,7 @@ export default function DataTrend() {
                                 </div>
                             </div>
                         </div>
-                        <div className="grid grid-cols-3 gap-3">
+                        <div className="grid md:grid-cols-3 gap-3 mt-5 md:mt-0">
                             {selectedData.map((_, index) => (
                                 <div key={index}>
                                     <Label text={`Data${index + 1}`} className="mb-1" />
@@ -308,17 +308,17 @@ export default function DataTrend() {
                             ))}
                         </div>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 mt-7 md:mt-0">
                         <button
                             onClick={() => fetchTrendingData()}
-                            className="min-w-[6.5rem] h-[2.1rem] px-3 rounded-md bg-primary text-white"
+                            className="min-w-[6.7rem] h-[2.1rem] px-3 rounded-md bg-primary text-white"
                             disabled={selectedData.every(d => d === 'None')}
                         >
                             Apply
                         </button>
                         <button
                             onClick={exportToCSV}
-                            className="min-w-[6.5rem] h-[2.2rem] px-3 rounded-md border border-border"
+                            className="min-w-[7rem] h-[2.2rem] px-3 rounded-md border border-border"
                             disabled={!labels.length || !datasets.length}
                         >
                             Export CSV
@@ -331,8 +331,10 @@ export default function DataTrend() {
                 ) : errorMessage ? (
                     <p className="mt-4 text-red-500">{errorMessage}</p>
                 ) : (
-                    <div className="mt-10">
-                        <Line data={chartData} options={chartOptions} />
+                    <div className="mt-10 overflow-x-auto">
+                        <div className="min-w-[900px] md:min-w-0">
+                            <Line data={chartData} options={chartOptions} />
+                        </div>
                     </div>
                 )}
             </div>

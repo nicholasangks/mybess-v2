@@ -38,9 +38,9 @@ export default function Besses() {
     return (
         <ContentWrapper title="Battery System">
             {/* Top */}
-            <div className="grid grid-cols-12 gap-3 mb-3">
-                <Card className="col-span-7">
-                    <div className="grid grid-cols-3 gap-3.5">
+            <div className="grid md:grid-cols-12 gap-3 mb-3">
+                <Card className="md:col-span-7">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3.5">
                         <div>
                             <Label text="Battery Status" />
                             <div>{bess1?.chargeDischargeState ?? '-'}</div>
@@ -84,7 +84,7 @@ export default function Besses() {
                         </div>
                     </div>
                 </Card>
-                <Card className="grid grid-cols-2 col-span-5 gap-3">
+                <Card className="grid grid-cols-2 md:col-span-5 gap-3">
                     <div>
                         <Label text="Chargeable" />
                         <Label text="Energy" />

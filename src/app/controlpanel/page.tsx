@@ -90,7 +90,7 @@ export default function ControlPanel() {
 
     return (
         <ContentWrapper title="Control Panel">
-            <div className="max-w-[750px] mt-12 mx-auto">
+            <div className="md:max-w-[750px] mt-12 mx-auto">
                 {/* Operation */}
                 <div className="flex items-center">
                     <Label text="Operation" className="mr-3" />
@@ -98,19 +98,19 @@ export default function ControlPanel() {
                         const newValue = controlData?.onOff.toLowerCase().includes('off') ? 'On' : 'Off';
                         handleSubmit("onOff", newValue);
                     }}>
-                        <div className={`flex items-center justify-center w-[4rem] aspect-square mr-2 rounded-full border-[2px] ${controlData?.onOff.toLowerCase() === 'on' ? 'border-primary' : 'border-muted text-muted-foreground'}`}>
+                        <div className={`flex items-center justify-center w-[3rem] md:w-[4rem] aspect-square mr-2 rounded-full border-[2px] ${controlData?.onOff.toLowerCase() === 'on' ? 'border-primary' : 'border-muted text-muted-foreground'}`}>
                             <div className={`flex items-center justify-center w-[80%] aspect-square rounded-full ${controlData?.onOff.toLowerCase() === 'on' ? 'bg-primary opacity-30 blur-md' : 'bg-muted'}`}></div>
-                            <LuPower className="absolute text-xl" />
+                            <LuPower className="absolute md:text-xl" />
                         </div>
                         <div className={`font-medium ${controlData?.onOff.toLowerCase() === 'on' ? 'text-primary' : 'text-muted-foreground'}`}>{controlData?.onOff}</div>
                     </div>
                 </div>
 
                 {/* Modes */}
-                <div className="grid grid-cols-2 my-8 py-8 border-t border-b border-muted">
-                    <div className="border-r border-muted pr-10">
+                <div className="grid md:grid-cols-2 my-6 md:my-8 py-6 md:py-8 border-t border-b border-muted">
+                    <div className="md:border-r md:border-muted mb-8 md:mb-0 md:pr-10">
                         <Label text="Control" />
-                        <div className="grid grid-cols-2 gap-5 mt-4">
+                        <div className="grid grid-cols-2 gap-3 md:gap-5 mt-4">
                             {['remote-mode', 'local-mode'].map(mode => (
                                 <div key={mode} onClick={() => handleSubmit("remoteCtrl", mode)} className={`relative flex items-center justify-center w-full aspect-square rounded-full border-[2px] cursor-pointer ${controlData?.remoteCtrl.toLowerCase() === mode ? 'border-primary text-primary font-medium' : 'border-muted text-muted-foreground'}`}>
                                     <div className={`absolute flex items-center justify-center w-[90%] aspect-square rounded-full ${controlData?.remoteCtrl.toLowerCase() === mode ? 'bg-primary opacity-10 text-primary font-medium' : 'text-muted-foreground'}`}></div>
@@ -120,9 +120,9 @@ export default function ControlPanel() {
                         </div>
                     </div>
 
-                    <div className="pl-10">
+                    <div className="md:pl-10">
                         <Label text="Grid Mode" />
-                        <div className="grid grid-cols-2 gap-5 mt-4">
+                        <div className="grid grid-cols-2 gap-3 md:gap-5 mt-4">
                             {['pq-mode', 'vf-mode'].map(mode => (
                                 <div key={mode} onClick={() => handleSubmit("gridModeCtrl", mode)} className={`relative flex items-center justify-center w-full aspect-square rounded-full border-[2px] cursor-pointer ${controlData?.gridModeCtrl.toLowerCase() === mode ? 'border-primary text-primary font-medium' : 'border-muted text-muted-foreground'}`}>
                                     <div className={`absolute flex items-center justify-center w-[90%] aspect-square rounded-full capitalize ${controlData?.gridModeCtrl.toLowerCase() === mode ? 'bg-primary opacity-10' : 'text-muted-foreground'}`}></div>
@@ -134,7 +134,7 @@ export default function ControlPanel() {
                 </div>
 
                 {/* Inputs */}
-                <div className="grid grid-cols-3 gap-x-5 gap-y-8">
+                <div className="grid md:grid-cols-3 gap-x-5 gap-y-4 md:gap-y-8">
                     {[
                         { label: 'Active Power', value: activePower, setValue: setActivePower, key: 'activePowerCtrl' },
                         { label: 'Power Factor', value: powerFactor, setValue: setPowerFactor, key: 'powerFactorCtrl' },
