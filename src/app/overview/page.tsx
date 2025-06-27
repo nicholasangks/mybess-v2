@@ -204,31 +204,31 @@ export default function Overview() {
                 <Card className="col-span-7">
                     <H2 text="Status of overall system" className="" />
                     <div className="grid grid-cols-2">
-                        <div className="grid grid-cols-2">
-                            <div className="p-2.5 pl-0">
+                        <div className="grid grid-cols-2 gap-3.5">
+                            <div>
                                 <Label text="Bess Status" />
                                 <div className="text-primary">{bess1?.runningStatus ?? '-'}</div>
                             </div>
-                            <div className="p-2.5">
+                            <div>
                                 <Label text="Grid Mode" />
                                 <div>{pc?.gridMode ?? '-'}</div>
                             </div>
-                            <div className="p-2.5 pl-0">
+                            <div>
                                 <Label text="Total Power" />
                                 <div>{formatNumber(bess1?.power, 1, ' kW')}</div>
                             </div>
-                            <div className="p-2.5">
+                            <div>
                                 <Label text="Total Current" />
                                 <div>{formatNumber(bess1?.totalCurrent, 1, ' kW')}</div>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2">
-                            <div className="p-2.5">
+                        <div className="grid grid-cols-2 gap-3.5">
+                            <div>
                                 <Label text="SOC" />
                                 <div className="mb-6">{formatNumber(bess1?.SOC, 1, ' %')}</div>
                                 <BarIndicator percentage={bess1?.SOC ?? 0} />
                             </div>
-                            <div className="p-2.5">
+                            <div>
                                 <Label text="SOH" />
                                 <div className="mb-6">{formatNumber(bess1?.SOH, 1, ' %')}</div>
                                 <BarIndicator percentage={bess1?.SOH ?? 0} />

@@ -90,7 +90,7 @@ export default function ControlPanel() {
 
     return (
         <ContentWrapper title="Control Panel">
-            <div className="max-w-[750px] mt-[5rem] mx-auto">
+            <div className="max-w-[750px] mt-12 mx-auto">
                 {/* Operation */}
                 <div className="flex items-center">
                     <Label text="Operation" className="mr-3" />
@@ -98,7 +98,7 @@ export default function ControlPanel() {
                         const newValue = controlData?.onOff.toLowerCase().includes('off') ? 'On' : 'Off';
                         handleSubmit("onOff", newValue);
                     }}>
-                        <div className={`flex items-center justify-center w-[4rem] aspect-square mr-2 rounded-full border-[2px] ${controlData?.onOff.toLowerCase() === 'on' ? 'border-primary' : 'border-muted'}`}>
+                        <div className={`flex items-center justify-center w-[4rem] aspect-square mr-2 rounded-full border-[2px] ${controlData?.onOff.toLowerCase() === 'on' ? 'border-primary' : 'border-muted text-muted-foreground'}`}>
                             <div className={`flex items-center justify-center w-[80%] aspect-square rounded-full ${controlData?.onOff.toLowerCase() === 'on' ? 'bg-primary opacity-30 blur-md' : 'bg-muted'}`}></div>
                             <LuPower className="absolute text-xl" />
                         </div>
@@ -107,7 +107,7 @@ export default function ControlPanel() {
                 </div>
 
                 {/* Modes */}
-                <div className="grid grid-cols-2 my-10 py-10 border-t border-b border-muted">
+                <div className="grid grid-cols-2 my-8 py-8 border-t border-b border-muted">
                     <div className="border-r border-muted pr-10">
                         <Label text="Control" />
                         <div className="grid grid-cols-2 gap-5 mt-4">
@@ -134,7 +134,7 @@ export default function ControlPanel() {
                 </div>
 
                 {/* Inputs */}
-                <div className="grid grid-cols-3 gap-x-10 gap-y-8">
+                <div className="grid grid-cols-3 gap-x-5 gap-y-8">
                     {[
                         { label: 'Active Power', value: activePower, setValue: setActivePower, key: 'activePowerCtrl' },
                         { label: 'Power Factor', value: powerFactor, setValue: setPowerFactor, key: 'powerFactorCtrl' },
@@ -146,7 +146,7 @@ export default function ControlPanel() {
                             <Label text={label} />
                             <div className="mt-2 p-1 rounded-lg border border-muted">
                                 <input
-                                    className="w-full h-[2.2rem] px-3 bg-transparent text-center outline-none"
+                                    className="w-full h-[2rem] px-3 bg-transparent text-center outline-none"
                                     value={value}
                                     onChange={(e) => setValue(e.target.value)}
                                 />
