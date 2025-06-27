@@ -5,7 +5,7 @@ export default function LastUpdateTime() {
   const lastUpdate = useGlobalStore((state) => state.lastUpdateTime);
 
   return (
-    <div className="gap-1 text-right text-sm text-muted-foreground">
+    <div className="md:text-right text-sm text-muted-foreground">
       <div>Last Update Time</div>
       <div>
         {lastUpdate

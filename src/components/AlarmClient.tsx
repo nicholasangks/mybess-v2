@@ -83,8 +83,8 @@ export default function AlarmClient() {
 
     return (
         <ContentWrapper title="Alarms">
-            <div className="flex items-center justify-between mb-5">
-                <div className="flex items-center">
+            <div className="md:flex md:items-center md:justify-between mb-5">
+                <div className="md:flex md:items-center">
                     <div>
                         <div className="inline-flex h-[2.3rem] rounded-full bg-secondary p-[2px]">
                             <div
@@ -103,7 +103,7 @@ export default function AlarmClient() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex gap-5 ml-7 text-sm cursor-pointer">
+                    <div className="flex gap-5 mt-4 md:mt-0 md:ml-7 text-sm cursor-pointer">
                         {types.map((tab) => (
                             <div
                                 key={tab}
@@ -118,7 +118,7 @@ export default function AlarmClient() {
             </div>
 
             <div className="w-full overflow-x-auto">
-                <div className="min-w-[1240px] md:min-w-0 rounded-tl-lg rounded-tr-lg border border-muted">
+                <div className="min-w-[900px] md:min-w-0 rounded-tl-lg rounded-tr-lg border border-muted">
                     <table className="w-full text-left">
                         <thead>
                             <tr className="border-b border-muted text-muted-foreground">

@@ -25,7 +25,7 @@ export default function ContentWrapper({ title, children }: ContentWrapperProps)
       <SideMenu />
       <div className="grow w-[calc(100%-50px)] md:w-full md:py-8 px-4 md:px-6 xl:px-6 3xl:px-12 py-8">
         <div>
-          <div className="flex justify-between mb-5">
+          <div className="md:flex md:justify-between mb-6">
             <H1 text={title} className="!mb-0" />
             <LastUpdateTime />
           </div>
