@@ -119,7 +119,7 @@ export default function SideMenu() {
                                 <Link href={item.link} key={index}>
                                     <div
                                         className={`flex items-center justify-center xl:justify-normal h-[2.5rem] my-2.5 px-8 cursor-pointer hover:bg-muted
-                                    ${pathname === item.link ? 'bg-muted text-white' : 'text-muted-foreground'}`}
+                                    ${pathname === item.link ? 'bg-muted text-foreground font-medium' : 'text-muted-foreground'}`}
                                     >
                                         <div className="xl:mr-2.5">
                                             <img

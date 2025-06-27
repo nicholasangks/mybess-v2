@@ -33,13 +33,13 @@ export default function Bess({ data, withClusterVoltage }: BessProps) {
                         {
                             data.runningStatus !== 'Idle' &&
                             <motion.div
-                                className="flex items-center justify-center h-8 w-8 mr-1.5 border-t border-l border-accent-a rounded-full overflow-hidden"
+                                className="flex items-center justify-center w-6 h-auto aspect-square mr-1.5 border-t border-l border-accent-b rounded-full overflow-hidden"
                                 animate={{ rotate: [0, 360] }}
                                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                             ></motion.div>
                         }
-                        <GiElectric className={`w-4 h-4 ${data.runningStatus === 'Idle' ? "fill-muted" : "absolute left-2 fill-accent-a"}`} />
-                        <div className={`ml-1 text-sm ${data.runningStatus === 'Idle' ? "text-muted-foreground" : "text-accent-a"}`}>{data.runningStatus}</div>
+                        <GiElectric className={`w-4 h-4 ${data.runningStatus === 'Idle' ? "fill-muted" : "absolute left-1 fill-accent-b"}`} />
+                        <div className={`ml-1 text-sm ${data.runningStatus === 'Idle' ? "text-muted-foreground" : "text-accent-b"}`}>{data.runningStatus}</div>
                     </div>
                 </div>
                 {/* <div>{data.chargeDischargeState}</div> */}

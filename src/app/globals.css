@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: #EDEDEB;
   --foreground: #000000;
   --primary: #009439; /* brand color */
   --secondary: #f7f7f7; /* card */
@@ -16,6 +16,9 @@
   --critical: #ff4714;
   --major: #ffa500;
   --warning: #c5a0fb;
+  --graph-a: #81828b;
+  --graph-b: #F97205;
+  --graph-c: #924CD9;
 }
 
 .dark {
@@ -32,6 +35,9 @@
   --critical: #ff4714;
   --major: #ffa500;
   --warning: #c5a0fb;
+  --graph-a: #B2B3BF;
+  --graph-b: #F0AA63;
+  --graph-c: #7F7FFB;
 }
 
 /* @media (prefers-color-scheme: dark) {

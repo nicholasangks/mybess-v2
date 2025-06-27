@@ -33,7 +33,7 @@ export default function GenericLineChart({
 
     const { theme } = useTheme();
     const borderColor = theme === 'dark' ? '#b7b7b7' : '#00943A';
-    const gridColor = theme === 'dark' ? '#676767' : '#E4E4E4';
+    const gridColor = theme === 'dark' ? '#676767' : '#bfbfbf';
     const ticksColor = theme === 'dark' ? '#b7b7b7' : '#7f7f7f';
     const strokeColor = '#009439';
 

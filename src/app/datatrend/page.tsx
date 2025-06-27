@@ -32,6 +32,13 @@ const getYAxisID = (label: string) => {
     return 'y';
 };
 
+const getCssVar = (name: string): string => {
+    if (typeof window === 'undefined') return ''; // SSR guard
+    return getComputedStyle(document.documentElement)
+        .getPropertyValue(name)
+        .trim();
+};
+
 export default function DataTrend() {
     const [labels, setLabels] = useState<string[]>([]);
     const [datasets, setDatasets] = useState<any[]>([]);
@@ -69,7 +76,7 @@ export default function DataTrend() {
                 data,
                 fill: false,
                 borderColor: getColor(label),
-                borderWidth: 1.5,
+                borderWidth: 1.7,
                 tension: 0.3,
                 pointRadius: 0,
                 pointHoverRadius: 0,
@@ -105,11 +112,14 @@ export default function DataTrend() {
     const getColor = (label: string) => {
         switch (label) {
             case 'C1 SOC':
-                return 'rgba(75, 192, 192, 1)';
+                // return 'rgba(75, 192, 192, 1)';
+                return getCssVar('--graph-a');
             case 'C1 Total Power':
-                return 'rgba(0, 166, 64, 1)';
+                // return 'rgba(0, 166, 64, 1)';
+                return getCssVar('--graph-b');
             case 'C1 Total Voltage':
-                return 'rgba(54, 162, 235, 1)';
+                // return 'rgba(54, 162, 235, 1)';
+                return getCssVar('--graph-c');
             default:
                 return 'rgba(153, 102, 255, 1)';
         }
@@ -164,7 +174,7 @@ export default function DataTrend() {
                 position: 'bottom',
                 align: 'center',
                 labels: {
-                    color: '#ffffff',
+                    color: getCssVar('--foreground'),
                     padding: 20,
                     boxWidth: 12,
                     boxHeight: 12,
@@ -176,17 +186,26 @@ export default function DataTrend() {
         },
         scales: {
             x: {
-                ticks: { color: '#ccc' },
-                grid: { color: '#333' },
+                ticks: {
+                    color: getCssVar('--muted-foreground'),
+                },
+                grid: {
+                    color: getCssVar('--muted'),
+                },
             },
             y_soc: {
                 type: 'linear',
                 position: 'left',
+                // ticks: {
+                //     color: '#ccc',
+                // },
                 ticks: {
-                    color: '#ccc',
-                    // stepSize: 0.5,
+                    color: getCssVar('--muted-foreground'),
                 },
-                grid: { color: '#444' },
+                // grid: { color: '#444' },
+                grid: {
+                    color: getCssVar('--muted'),
+                },
                 title: {
                     display: true,
                     text: '%',
@@ -198,10 +217,9 @@ export default function DataTrend() {
                 position: 'right',
                 min: 0,
                 ticks: {
-                    color: '#ccc',
-                    // stepSize: 0.5,
+                    color: getCssVar('--muted-foreground'),
                 },
-                grid: { drawOnChartArea: false },
+                // grid: { drawOnChartArea: false },
                 title: {
                     display: true,
                     text: 'kW',
@@ -213,8 +231,7 @@ export default function DataTrend() {
                 position: 'right',
                 offset: true,
                 ticks: {
-                    color: '#ccc',
-                    // stepSize: 0.5,
+                    color: getCssVar('--muted-foreground'),
                 },
                 grid: { drawOnChartArea: false },
                 title: {
@@ -283,7 +300,7 @@ export default function DataTrend() {
                                                 <option key={opt} value={opt} className="bg-muted">{opt}</option>
                                             ))}
                                         </select>
-                                        <div className="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 text-sm text-white">
+                                        <div className="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 text-sm">
                                             <LuChevronDown />
                                         </div>
                                     </div>
@@ -294,14 +311,14 @@ export default function DataTrend() {
                     <div className="flex items-center gap-2">
                         <button
                             onClick={() => fetchTrendingData()}
-                            className="min-w-[6.5rem] h-[2.1rem] px-3 rounded-md bg-primary"
+                            className="min-w-[6.5rem] h-[2.1rem] px-3 rounded-md bg-primary text-white"
                             disabled={selectedData.every(d => d === 'None')}
                         >
                             Apply
                         </button>
                         <button
                             onClick={exportToCSV}
-                            className="min-w-[6.5rem] h-[2.2rem] px-3 rounded-md text-white border border-white/20"
+                            className="min-w-[6.5rem] h-[2.2rem] px-3 rounded-md border border-border"
                             disabled={!labels.length || !datasets.length}
                         >
                             Export CSV
