@@ -43,7 +43,7 @@ export async function api(
       headers: {
         ...headers,
         "Content-Type": "application/json",
-        // "ngrok-skip-browser-warning": "true",
+        "ngrok-skip-browser-warning": "true",
         Authorization: "Token 29d4c682a6c0748257a233c4a76a2e79b75b98e8",
       },
       body: body ? JSON.stringify(body) : null,
