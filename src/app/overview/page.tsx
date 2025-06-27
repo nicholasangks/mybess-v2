@@ -100,7 +100,7 @@ export default function Overview() {
         <ContentWrapper title="Bess Site Overview">
             <div className="md:grid md:grid-cols-10 md:gap-3">
                 {/* Flow Diagram */}
-                <div className="md:col-span-7 flex items-center w-full overflow-x-scroll">
+                <div className="md:col-span-7 md:flex md:items-center w-full overflow-x-scroll">
                     <div className="relative w-[680px] h-[396px] mt-10 mb-6 mx-auto">
                         <img src={`/images/overview-vector-2.png`} alt="" className="absolute w-full h-full mx-auto z-10" />
                         {themeReady
@@ -200,10 +200,10 @@ export default function Overview() {
 
 
             {/* Status of overall system */}
-            <div className="grid grid-cols-10 gap-3 mt-3">
-                <Card className="col-span-7">
+            <div className="md:grid md:grid-cols-10 md:gap-3 mt-3">
+                <Card className="md:col-span-7">
                     <H2 text="Status of overall system" className="" />
-                    <div className="grid grid-cols-2">
+                    <div className="md:grid md:grid-cols-2">
                         <div className="grid grid-cols-2 gap-3.5">
                             <div>
                                 <Label text="Bess Status" />
@@ -222,7 +222,7 @@ export default function Overview() {
                                 <div>{formatNumber(bess1?.totalCurrent, 1, ' kW')}</div>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-3.5">
+                        <div className="grid grid-cols-2 gap-3.5 mt-3.5 md:mt-0">
                             <div>
                                 <Label text="SOC" />
                                 <div className="mb-6">{formatNumber(bess1?.SOC, 1, ' %')}</div>
@@ -237,7 +237,7 @@ export default function Overview() {
                     </div>
                 </Card>
 
-                <Card className="col-span-3">
+                <Card className="md:col-span-3 mt-3 md:mt-0">
                     <div className="flex justify-between">
                         <H2 text="Alarms" className="" />
                         <Link href="/alarms">
@@ -246,7 +246,7 @@ export default function Overview() {
                             </div>
                         </Link>
                     </div>
-                    <div className="grid grid-cols-3 gap-2.5 mt-3">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 mt-3">
                         <div className="flex flex-col items-center justify-center">
                             {/* Gauge with number inside */}
                             <div className="relative w-full h-auto aspect-square">
