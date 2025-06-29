@@ -111,11 +111,11 @@ export default function Besses() {
 
             <div className="md:grid md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-4 xl:gap-3">
                 {besses && Object.entries(besses).map(([bessKey, bessValue]: [string, any]) => (
-                    <>
+                    <div key={bessKey}>
                         <Link href={`/besses/${bessValue.bId}`}>
                             <Bess data={bessValue} />
                         </Link>
-                    </>
+                    </div>
                 ))}
             </div>
         </ContentWrapper >
